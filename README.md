@@ -20,7 +20,6 @@
   - C:\environmentalVariablePath\C&C++\include
 - C++ header file path
   - C:\environmentalVariablePath\C&C++\lib\gcc\mingw32\6.3.0\include\c++
-- 
 - [Releases · niXman/mingw-builds-binaries · GitHub](https://github.com/niXman/mingw-builds-binaries/releases)
 - [MinGW - Minimalist GNU for Windows download | SourceForge.net](https://sourceforge.net/projects/mingw/)
 - [C ebook](https://github.com/auspbro/ebook-c)
