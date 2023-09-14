@@ -2,3 +2,4 @@ ignore
 *.out
 *.exe
 *.o
+.ipynb_checkpoints
