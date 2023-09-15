@@ -3,3 +3,9 @@ ignore
 *.exe
 *.o
 .ipynb_checkpoints
+.ssh
+test.c
+test.h
+test.cpp
+test.hpp
+test.py
