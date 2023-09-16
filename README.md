@@ -1,5 +1,6 @@
 - hark link command
-  - mklink /h \[link path\] \[file path\]
+  - mklink /h "C:\Users\user\AppData\Local\nvim\init.vim" nvimForWindows
+  - ln nvimForLinux ~/.config/nvim/init.vim
 - key.ahk
   1. window + r
   2. type "shell:startup"
