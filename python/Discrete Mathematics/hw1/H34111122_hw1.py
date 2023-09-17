@@ -7,10 +7,11 @@
 # 3. it will ask the user to input a value of x, say, b. Then it calculates and outputs f(b)
 # 4. it repeats step 3, unless b=0, which prints out f(0) and STOP
 
-# This code is written by 余柏穎, email h34111122@gs.ncku.edu.tw, on 2023/09/08
+# This code is written by 余柏穎, email h34111122@gs.ncku.edu.tw, on 2023/09/17
 # -------------------------
 
 import os
+from decimal import Decimal
 
 def printTerm(coefficient,degree,first):
     if coefficient == 0:
@@ -48,6 +49,15 @@ def printTerm(coefficient,degree,first):
         print(f' x^{degree}',end='')
         return False
 
+def multiply(a,b):
+    return Decimal(str(a))*Decimal(str(b))
+
+def power(a,n):
+    result = 1
+    for i in range(n):
+        result = Decimal(str(result)) * Decimal(str(a))
+    return result
+
 #class definition
 class Poly:
     def __init__(self,n,a):
@@ -57,8 +67,8 @@ class Poly:
     def plug(self,b):
         result = 0
         for i in range(self.maxDegree+1):
-            result += (self.coefficientList[i] * (b**i))
-        return result
+            result += multiply(self.coefficientList[i],power(b,i))
+        return float(result)
 
     def print(self):
         first = True
