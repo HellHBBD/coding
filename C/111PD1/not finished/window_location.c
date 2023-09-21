@@ -12,9 +12,36 @@ typedef struct
     int port;
 } Location;
 
+void addChar(char **string,char c){
+	int length;
+	if (*string == 0){
+		length = 0;
+	}
+	else
+		length = strlen(*string);
+	*string = realloc(*string,sizeof(char)*(length+2));
+	(*string)[length] = c;
+	(*string)[length+1] = '\0';
+}
+
 Location *parse_url(char *url){
 	Location *result = malloc(sizeof(Location));
-	sscanf(url,"%s://%s:%d/%s?%s#%s",&result->protocol,&result->host,&result->port,&result->pathname,&result->search,&result->hash);
+	result->protocol = 0;
+	result->host = 0;
+	result->pathname = 0;
+	result->search = 0;
+	result->hash = 0;
+	result->port = 0;
+	int i;
+	for (i = 0;i < strlen(url);i++){ //protocol
+		if (url[i] == ':'){
+			i += 3;
+			break;
+		}
+		addChar(&result->protocol,url[i]);
+	}
+	for (;i < strlen(url);i++){
+	}
 	return result;
 }
 
