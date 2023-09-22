@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct
-{
+typedef struct{
     char *protocol;
     char *host;
     char *pathname;
@@ -26,21 +25,57 @@ void addChar(char **string,char c){
 
 Location *parse_url(char *url){
 	Location *result = malloc(sizeof(Location));
-	result->protocol = 0;
-	result->host = 0;
-	result->pathname = 0;
-	result->search = 0;
-	result->hash = 0;
+	result->protocol = malloc(sizeof(char));
+	*result->protocol = '\0';
+	result->host = malloc(sizeof(char));
+	*result->host = '\0';
+	result->pathname = malloc(sizeof(char));
+	*result->pathname = '\0';
+	result->search = malloc(sizeof(char));
+	*result->search = '\0';
+	result->hash = malloc(sizeof(char));
+	*result->hash = '\0';
 	result->port = 0;
 	int i;
-	for (i = 0;i < strlen(url);i++){ //protocol
+	for (i = 0;url[i] != '\n';i++){ //protocol
 		if (url[i] == ':'){
 			i += 3;
 			break;
 		}
 		addChar(&result->protocol,url[i]);
 	}
-	for (;i < strlen(url);i++){
+	for (;url[i] != '\n';i++){ //host
+		if (url[i] == ':' || url[i] == '/')
+			break;
+		addChar(&result->host,url[i]);
+	}
+	if (url[i] == ':'){ //port
+		i++;
+		sscanf(&url[i],"%d",&result->port);
+		for (;url[i] != '\n';i++){
+			if (url[i] == '/'){
+				i++;
+				break;
+			}
+		}
+	}
+	for (;url[i] != '\n';i++){ //pathname
+		if (url[i] == '?' || url[i] == '#')
+			break;
+		addChar(&result->pathname,url[i]);
+	}
+	if (url[i] == '?'){ //search
+		i++;
+		for (;url[i] != '\n';i++){
+			if (url[i] == '#'){
+				i++;
+				break;
+			}
+			addChar(&result->search,url[i]);
+		}
+	}
+	for (;url[i] != '\n';i++){
+		addChar(&result->hash,url[i]);
 	}
 	return result;
 }
