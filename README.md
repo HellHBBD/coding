@@ -6,7 +6,8 @@
 - Linux
   ```bash
   ln nvimForLinux ~/.config/nvim/init.vim
-  ## "find file" commands
+  ```
+## "find file" commands
 - Windows
   ```batch
   dir /s [file/dir]
