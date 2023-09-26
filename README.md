@@ -21,16 +21,16 @@
 2. type "shell:startup"
 3. add "key.ahk" shortcut
 ## git command cheat sheet
-   ```bash
+   ```batch
    git config --global user.email "paulyu602@gmail.com"
    ```
-   ```bash
+   ```batch
    git config --global user.name "Hell HBBD"
    ```
-   ```bash
+   ```batch
    git clone git@github.com:HellHBBD/coding.git
    ```
-   ```bash
+   ```batch
    git push -u HellHBBD master
    ```
 ## java set up
