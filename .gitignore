@@ -1,4 +1,5 @@
 ignore
+*.in
 *.out
 *.exe
 *.o
