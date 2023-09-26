@@ -7,7 +7,7 @@
   ```bash
   ln nvimForLinux ~/.config/nvim/init.vim
   ```
-  ## "find file" commands
+## "find file" commands
 - Windows
   ```bash
   dir /s [file/dir]
@@ -15,11 +15,11 @@
 - Linux
   ```bash
   find -name [file/dir]
-  ## set up key.ahk when startup
+## set up key.ahk when startup
 1. window + r
 2. type "shell:startup"
 3. add "key.ahk" shortcut
-   ## git command cheat sheet
+## git command cheat sheet
 ```bash
 git config --global user.email "paulyu602@gmail.com"
 ```
@@ -34,9 +34,9 @@ git push -u HellHBBD master
 ```
 ## java set up
 - JAVA_HOME = jdk directory
-  ## python set up
+## python set up
 - add python & python\/scripts
-  ## Links
+## Links
 - [Releases · niXman/mingw-builds-binaries · GitHub](https://github.com/niXman/mingw-builds-binaries/releases)
 - [MinGW - Minimalist GNU for Windows download | SourceForge.net](https://sourceforge.net/projects/mingw/)
 - [C ebook](https://github.com/auspbro/ebook-c)
