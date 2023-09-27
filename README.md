@@ -1,19 +1,19 @@
 ## "hark link" commands
 - Windows
-  ```batch
+  ```
   mklink /h "C:\Users\user\AppData\Local\nvim\init.vim" nvimForWindows
   ```
 - Linux
-  ```bash
+  ```
   ln nvimForLinux ~/.config/nvim/init.vim
   ```
 ## "find file" commands
 - Windows
-  ```batch
+  ```
   dir /s [file/dir]
   ```
 - Linux
-  ```bash
+  ```
   find -name [file/dir]
   ```
 ## set up key.ahk when startup
@@ -21,16 +21,16 @@
 2. type "shell:startup"
 3. add "key.ahk" shortcut
 ## git command cheat sheet
-   ```batch
+   ```
    git config --global user.email "paulyu602@gmail.com"
    ```
-   ```batch
+   ```
    git config --global user.name "Hell HBBD"
    ```
-   ```batch
+   ```
    git clone git@github.com:HellHBBD/coding.git
    ```
-   ```batch
+   ```
    git push -u HellHBBD master
    ```
 ## java set up
