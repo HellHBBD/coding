@@ -69,9 +69,9 @@ au filetype java nnoremap <F3> :w<cr>:!java "%"<cr>
 au filetype java inoremap <F3> <esc>:w<cr>:!java "%"<cr>
 
 "debugger
-au filetype c nnoremap <F4> :w<cr>:set nornu<cr>:!gcc -std=c99 -g "%"<cr>
-au filetype cpp nnoremap <F4> :w<cr>:set nornu<cr>:!g++ -g "%"<cr>
-au filetype python nnoremap <F4> :w<cr>:set nornu<cr>:!copy "%" debug.py<cr>
+au filetype c nnoremap <F4> :w<cr>:!gcc -std=c99 -g "%"<cr>
+au filetype cpp nnoremap <F4> :w<cr>:!g++ -g "%"<cr>
+au filetype python nnoremap <F4> :w<cr>:!copy "%" debug.py<cr>
 
 "comments
 au filetype cpp noremap <c-/> mzI//<esc>`z
