@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+//remove "namespace" because swap function will conflict in the scope std
 
 template <class T>
 void swap(T &,T &);
@@ -29,19 +30,25 @@ int main() {
 		"DA","D2","D3","D4","D5","D6","D7","D8","D9","DT","DJ","DQ","DK",
 		"CA","C2","C3","C4","C5","C6","C7","C8","C9","CT","CJ","CQ","CK"
 	};
-	std::string East[13],Sorth[13],West[13],North[13];
-	shuffle(poker);
-	deal(poker,North,East,Sorth,West);
-	printDeck(poker);
-	InsertionSort(North,13);
-	printHand("North",North);
+	std::string East[13],Sorth[13],West[13],North[13]; //use one dimensional array to store each player's hand cards
+
+	shuffle(poker); //shuffle whole deck of poker
+	deal(poker,North,East,Sorth,West); //deal out cards to each player
+	printDeck(poker); //print deck with format
+
+	InsertionSort(North,13); //sort each player's hand cards
+	printHand("North",North); //and print hand cards with format
+
 	InsertionSort(East,13);
 	printHand("East",East);
+
 	InsertionSort(Sorth,13);
 	printHand("Sorth",Sorth);
+
 	InsertionSort(West,13);
 	printHand("West",West);
-	std::cout << "North's MAX_MIN_Sum Value: " << calculateValue(North) << std::endl;
+
+	std::cout << "North's MAX_MIN_Sum Value: " << calculateValue(North) << std::endl; //calculate and output max & min sum for each player
 	std::cout << "East's MAX_MIN_Sum Value: " << calculateValue(East) << std::endl;
 	std::cout << "Sorth's MAX_MIN_Sum Value: " << calculateValue(Sorth) << std::endl;
 	std::cout << "West's MAX_MIN_Sum Value: " << calculateValue(West) << std::endl;
@@ -79,19 +86,19 @@ void printHand(std::string playerName,std::string player[13]){
 	std::cout << playerName << std::endl;
 	std::cout << "S: ";
 	for (int i = 0;i < 13;i++)
-		if (player[i][0] == 'S')
+		if (player[i][0] == 'S') //output only with character 'S'
 			std::cout << player[i][1] << " ";
 	std::cout << std::endl << "H: ";
 	for (int i = 0;i < 13;i++)
-		if (player[i][0] == 'H')
+		if (player[i][0] == 'H') //output only with character 'H'
 			std::cout << player[i][1] << " ";
 	std::cout << std::endl << "D: ";
 	for (int i = 0;i < 13;i++)
-		if (player[i][0] == 'D')
+		if (player[i][0] == 'D') //output only with character 'D'
 			std::cout << player[i][1] << " ";
 	std::cout << std::endl << "C: ";
 	for (int i = 0;i < 13;i++)
-		if (player[i][0] == 'C')
+		if (player[i][0] == 'C') //output only with character 'C'
 			std::cout << player[i][1] << " ";
 	std::cout << std::endl << std::endl;
 }
@@ -103,15 +110,15 @@ void deal(std::string poker[4][13],std::string player1[13],std::string player2[1
 		player3[i] = poker[i%4][i/4*4+2];
 		player4[i] = poker[i%4][i/4*4+3];
 	}
-	player1[12] = poker[0][12];
+	player1[12] = poker[0][12]; //last card has different rule to others, pick at the end
 	player2[12] = poker[1][12];
 	player3[12] = poker[2][12];
 	player4[12] = poker[3][12];
 }
 
 int compare(const std::string &card1,const std::string &card2){
-	int n1 = 0,n2 = 0;
-	switch (card1[0]){
+	int n1 = 0,n2 = 0; //use different points to compare card1 and card2
+	switch (card1[0]){ //bigger color has 13 more points
 		case 'S': n1 += 13;
 		case 'H': n1 += 13;
 		case 'D': n1 += 13;
@@ -123,7 +130,7 @@ int compare(const std::string &card1,const std::string &card2){
 		case 'D': n2 += 13;
 		case 'C': ;
 	}
-	switch (card1[1]){
+	switch (card1[1]){ //bigger number has 1 more point
 		case 'K': n1++;
 		case 'Q': n1++;
 		case 'J': n1++;
@@ -153,10 +160,10 @@ int compare(const std::string &card1,const std::string &card2){
 		case '2': n2++;
 		case '1': ;
 	}
-	return n1-n2;
+	return n1-n2; //return compare result
 }
 
-int compare(const int &a,const int &b){
+int compare(const int &a,const int &b){ //this overloading function is for comparing int
 	return a-b;
 }
 
@@ -164,10 +171,10 @@ template <class T>
 void InsertionSort(T arr[], int n){
 	for (int unsortIndex = 1;unsortIndex < n;unsortIndex++){
 		for (int currentIndex = unsortIndex;currentIndex > 0;currentIndex--){
-			if (compare(arr[currentIndex],arr[currentIndex-1]) > 0)
-				break;
-			else
+			if (compare(arr[currentIndex],arr[currentIndex-1]) < 0)
 				swap(arr[currentIndex],arr[currentIndex-1]);
+			else
+				break;
 		}
 	}
 }
