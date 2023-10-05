@@ -20,7 +20,7 @@ void shuffle(string poker[4][13]){
 	}
 }
 
-void print(string poker[4][13]){
+void printDeck(string poker[4][13]){
 	for (int i = 0;i < 4;i++){
 		for (int j = 0;j < 13;j++){
 			cout << poker[i][j] << " | ";
@@ -28,6 +28,27 @@ void print(string poker[4][13]){
 		cout << endl;
 		cout << "-----------------------------------------------------------------" << endl << endl;
 	}
+}
+
+void printHand(string playerName,string player[13]){
+	cout << playerName << endl;
+	cout << "S: ";
+	for (int i = 0;i < 13;i++)
+		if (player[i][0] == 'S')
+			cout << player[i][1] << " ";
+	cout << endl << "H: ";
+	for (int i = 0;i < 13;i++)
+		if (player[i][0] == 'H')
+			cout << player[i][1] << " ";
+	cout << endl << "D: ";
+	for (int i = 0;i < 13;i++)
+		if (player[i][0] == 'D')
+			cout << player[i][1] << " ";
+	cout << endl << "C: ";
+	for (int i = 0;i < 13;i++)
+		if (player[i][0] == 'C')
+			cout << player[i][1] << " ";
+	cout << endl << endl;
 }
 
 void deal(string poker[4][13],string player1[13],string player2[13],string player3[13],string player4[13]){
@@ -94,7 +115,7 @@ template <class T>
 void InsertionSort(T arr[], int n){
 	for (int unsortIndex = 1;unsortIndex < n;unsortIndex++){
 		for (int currentIndex = unsortIndex;currentIndex > 0;currentIndex--){
-			if (compare(arr[currentIndex],arr[currentIndex-1]) < 0)
+			if (compare(arr[currentIndex],arr[currentIndex-1]) > 0)
 				break;
 			else
 				swap(arr[currentIndex],arr[currentIndex-1]);
@@ -112,10 +133,14 @@ int main() {
 	string East[13],Sorth[13],West[13],North[13];
 	shuffle(poker);
 	deal(poker,North,East,Sorth,West);
-	print(poker);
+	printDeck(poker);
 	InsertionSort(North,13);
+	printHand("North",North);
 	InsertionSort(East,13);
+	printHand("East",East);
 	InsertionSort(Sorth,13);
+	printHand("Sorth",Sorth);
 	InsertionSort(West,13);
+	printHand("West",West);
 	return 0;
 }
