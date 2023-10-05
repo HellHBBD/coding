@@ -171,18 +171,18 @@ template <class T>
 void InsertionSort(T arr[], int n){
 	for (int unsortIndex = 1;unsortIndex < n;unsortIndex++){
 		for (int currentIndex = unsortIndex;currentIndex > 0;currentIndex--){
-			if (compare(arr[currentIndex],arr[currentIndex-1]) < 0)
+			if (compare(arr[currentIndex],arr[currentIndex-1]) < 0) //if (current < current-1) then swap()
 				swap(arr[currentIndex],arr[currentIndex-1]);
-			else
+			else //else break
 				break;
 		}
 	}
 }
 
 int calculateValue(std::string player[13]){
-	int value[13];
+	int value[13]; //array to store 13 numbers of cards
 	for (int i = 0;i < 13;i++){
-		switch (player[i][1]){
+		switch (player[i][1]){ //convert cards to numbers (ignore colors)
 			case 'K':
 				value[i] = 13;
 				break;
@@ -224,6 +224,6 @@ int calculateValue(std::string player[13]){
 				break;
 		}
 	}
-	InsertionSort(value,13);
-	return value[0]+value[1]+value[11]+value[12];
+	InsertionSort(value,13); //sort by numbers
+	return value[0]+value[1]+value[11]+value[12]; //sum max & min
 }
