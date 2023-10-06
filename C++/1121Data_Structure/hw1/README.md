@@ -246,9 +246,9 @@ int calculateValue(std::string player[13]){
 3. 把四位玩家的手牌排序、印出。
 
 4. 分別計算四位玩家的點數加總。
-   
-   ```cpp
-   int main() {
+
+```cpp
+int main() {
     //use "std::string" to store each card is more efficient
     std::string poker[4][13] = {
         "SA","S2","S3","S4","S5","S6","S7","S8","S9","ST","SJ","SQ","SK",
@@ -258,23 +258,23 @@ int calculateValue(std::string player[13]){
     };
     std::string East[13],Sorth[13],West[13],North[13];
     //use one dimensional array to store each player's hand cards
-   
+
     shuffle(poker); //shuffle whole deck of poker
     printDeck(poker); //print deck with format
     deal(poker,North,East,Sorth,West); //deal out cards to each player
-   
+
     InsertionSort(North,13); //sort each player's hand cards
     printHand("North",North); //and print hand cards with format
-   
+
     InsertionSort(East,13);
     printHand("East",East);
-   
+
     InsertionSort(Sorth,13);
     printHand("Sorth",Sorth);
-   
+
     InsertionSort(West,13);
     printHand("West",West);
-   
+
     //calculate and output max & min sum for each player
     std::cout << "North's MAX_MIN_Sum Value: " << calculateValue(North);
     std::cout << std::endl;
@@ -285,8 +285,8 @@ int calculateValue(std::string player[13]){
     std::cout << "West's MAX_MIN_Sum Value: " << calculateValue(West);
     std::cout << std::endl;
     return 0;
-   }
-   ```
+}
+```
 
 ## 執行結果
 
