@@ -48,7 +48,8 @@ int main() {
 	InsertionSort(West,13);
 	printHand("West",West);
 
-	std::cout << "North's MAX_MIN_Sum Value: " << calculateValue(North) << std::endl; //calculate and output max & min sum for each player
+	//calculate and output max & min sum for each player
+	std::cout << "North's MAX_MIN_Sum Value: " << calculateValue(North) << std::endl;
 	std::cout << "East's MAX_MIN_Sum Value: " << calculateValue(East) << std::endl;
 	std::cout << "Sorth's MAX_MIN_Sum Value: " << calculateValue(Sorth) << std::endl;
 	std::cout << "West's MAX_MIN_Sum Value: " << calculateValue(West) << std::endl;
