@@ -5,7 +5,6 @@ ignore
 *.o
 *.pdf
 *.zip
-*.png
 .ipynb_checkpoints
 test.c
 test.h
