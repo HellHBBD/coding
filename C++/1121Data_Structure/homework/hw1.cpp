@@ -33,8 +33,8 @@ int main() {
 	std::string East[13],Sorth[13],West[13],North[13]; //use one dimensional array to store each player's hand cards
 
 	shuffle(poker); //shuffle whole deck of poker
-	deal(poker,North,East,Sorth,West); //deal out cards to each player
 	printDeck(poker); //print deck with format
+	deal(poker,North,East,Sorth,West); //deal out cards to each player
 
 	InsertionSort(North,13); //sort each player's hand cards
 	printHand("North",North); //and print hand cards with format
@@ -180,48 +180,22 @@ void InsertionSort(T arr[], int n){
 }
 
 int calculateValue(std::string player[13]){
-	int value[13]; //array to store 13 numbers of cards
+	int value[13] = {0}; //array to store 13 numbers of cards
 	for (int i = 0;i < 13;i++){
 		switch (player[i][1]){ //convert cards to numbers (ignore colors)
-			case 'K':
-				value[i] = 13;
-				break;
-			case 'Q':
-				value[i] = 12;
-				break;
-			case 'J':
-				value[i] = 11;
-				break;
-			case 'T':
-				value[i] = 10;
-				break;
-			case '9':
-				value[i] = 9;
-				break;
-			case '8':
-				value[i] = 8;
-				break;
-			case '7':
-				value[i] = 7;
-				break;
-			case '6':
-				value[i] = 6;
-				break;
-			case '5':
-				value[i] = 5;
-				break;
-			case '4':
-				value[i] = 4;
-				break;
-			case '3':
-				value[i] = 3;
-				break;
-			case '2':
-				value[i] = 2;
-				break;
-			case 'A':
-				value[i] = 1;
-				break;
+			case 'K': value[i]++;
+			case 'Q': value[i]++;
+			case 'J': value[i]++;
+			case 'T': value[i]++;
+			case '9': value[i]++;
+			case '8': value[i]++;
+			case '7': value[i]++;
+			case '6': value[i]++;
+			case '5': value[i]++;
+			case '4': value[i]++;
+			case '3': value[i]++;
+			case '2': value[i]++;
+			case 'A': value[i]++;
 		}
 	}
 	InsertionSort(value,13); //sort by numbers
