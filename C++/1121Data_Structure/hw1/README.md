@@ -274,7 +274,7 @@ int calculateValue(std::string player[13]){
    
     InsertionSort(West,13);
     printHand("West",West);
-
+   
     //calculate and output max & min sum for each player
     std::cout << "North's MAX_MIN_Sum Value: " << calculateValue(North);
     std::cout << std::endl;
@@ -290,8 +290,8 @@ int calculateValue(std::string player[13]){
 
 ## 執行結果
 
-![whole deck](C:\Users\user\paul_file\coding\images\whole_deck.png)
+![whole deck](../../../images/whole_deck.png)
 
-![each player's value](C:\Users\user\paul_file\coding\images\hand_card.png)
+![each player's value](../../../images/hand_card.png)
 
-![each player's value](C:\Users\user\paul_file\coding\images\value.png)
+![each player's value](../../../images/value.png)
