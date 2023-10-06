@@ -43,7 +43,8 @@ void printDeck(std::string poker[4][13]){
             std::cout << poker[i][j] << " | ";
         }
         std::cout << std::endl;
-        std::cout << "-----------------------------------------------------------------" << std::endl << std::endl;
+        std::cout << "-----------------------------------------------------------------";
+        std::cout << std::endl << std::endl;
     }
 }
 ```
@@ -87,7 +88,8 @@ void deal(std::string poker[4][13],std::string player1[13],std::string player2[1
         player3[i] = poker[i%4][i/4*4+2];
         player4[i] = poker[i%4][i/4*4+3];
     }
-    player1[12] = poker[0][12]; //last card has different rule to others, pick at the end
+    //last card has different rule to others, pick at the end
+    player1[12] = poker[0][12];
     player2[12] = poker[1][12];
     player3[12] = poker[2][12];
     player4[12] = poker[3][12];
@@ -96,7 +98,7 @@ void deal(std::string poker[4][13],std::string player1[13],std::string player2[1
 
 ## The **compare()** function (card version)
 
-兩張牌有非常多花色點數的排列組合，一個一個判斷不好寫，最後改成先評分在比較大小的方式。
+兩張牌有非常多花色點數的排列組合，一個一個判斷不好寫，最後改成先評分再比較大小的方式。
 
 - 黑桃：39分
 
@@ -167,7 +169,7 @@ int compare(const std::string &card1,const std::string &card2){
 仿造qsort的cmp函式的回傳方式。(兩張牌的評分相減即可)
 
 - card1 > card2：return > 0
-- card1 == card2：return == 0
+- card1 == card2：return 0
 - card1 < card2：return < 0
 
 ## The **compare()** function (number version)
@@ -175,7 +177,8 @@ int compare(const std::string &card1,const std::string &card2){
 這也是仿造qsort的cmp函式的回傳方式，差別是用來比較兩個數字的大小。
 
 ```cpp
-int compare(const int &a,const int &b){ //this overloading function is for comparing int
+//this overloading function is for comparing int
+int compare(const int &a,const int &b){
     return a-b;
 }
 ```
@@ -189,7 +192,8 @@ template <class T>
 void InsertionSort(T arr[], int n){
     for (int unsortIndex = 1;unsortIndex < n;unsortIndex++){
         for (int currentIndex = unsortIndex;currentIndex > 0;currentIndex--){
-            if (compare(arr[currentIndex],arr[currentIndex-1]) < 0) //if (current < current-1) then swap()
+            if (compare(arr[currentIndex],arr[currentIndex-1]) < 0)
+                //if (current < current-1) then swap()
 ```
 
 如果current比current-1還要小，就繼續交換，這裡的compare()可以在string和int的不同版本之間overload。
@@ -245,13 +249,15 @@ int calculateValue(std::string player[13]){
    
    ```cpp
    int main() {
-    std::string poker[4][13] = { //use "std::string" to store each card is more efficient
+    //use "std::string" to store each card is more efficient
+    std::string poker[4][13] = {
         "SA","S2","S3","S4","S5","S6","S7","S8","S9","ST","SJ","SQ","SK",
         "HA","H2","H3","H4","H5","H6","H7","H8","H9","HT","HJ","HQ","HK",
         "DA","D2","D3","D4","D5","D6","D7","D8","D9","DT","DJ","DQ","DK",
         "CA","C2","C3","C4","C5","C6","C7","C8","C9","CT","CJ","CQ","CK"
     };
-    std::string East[13],Sorth[13],West[13],North[13]; //use one dimensional array to store each player's hand cards
+    std::string East[13],Sorth[13],West[13],North[13];
+    //use one dimensional array to store each player's hand cards
    
     shuffle(poker); //shuffle whole deck of poker
     printDeck(poker); //print deck with format
@@ -268,19 +274,24 @@ int calculateValue(std::string player[13]){
    
     InsertionSort(West,13);
     printHand("West",West);
-   
-    std::cout << "North's MAX_MIN_Sum Value: " << calculateValue(North) << std::endl; //calculate and output max & min sum for each player
-    std::cout << "East's MAX_MIN_Sum Value: " << calculateValue(East) << std::endl;
-    std::cout << "Sorth's MAX_MIN_Sum Value: " << calculateValue(Sorth) << std::endl;
-    std::cout << "West's MAX_MIN_Sum Value: " << calculateValue(West) << std::endl;
+
+    //calculate and output max & min sum for each player
+    std::cout << "North's MAX_MIN_Sum Value: " << calculateValue(North);
+    std::cout << std::endl;
+    std::cout << "East's MAX_MIN_Sum Value: " << calculateValue(East);
+    std::cout << std::endl;
+    std::cout << "Sorth's MAX_MIN_Sum Value: " << calculateValue(Sorth);
+    std::cout << std::endl;
+    std::cout << "West's MAX_MIN_Sum Value: " << calculateValue(West);
+    std::cout << std::endl;
     return 0;
    }
    ```
 
 ## 執行結果
 
-![whole deck](https://github.com/HellHBBD/coding/assets/119148121/cc15e5bf-db92-43a8-9a3e-e5b0f5472e24)
+![whole deck](C:\Users\user\paul_file\coding\images\whole_deck.png)
 
-![each player's hand card](https://github.com/HellHBBD/coding/assets/119148121/3cfdebe9-fc00-4b6b-96b6-a4881246b771)
+![each player's value](C:\Users\user\paul_file\coding\images\hand_card.png)
 
-![each player's value](https://github.com/HellHBBD/coding/assets/119148121/4b293ff3-b4c7-4533-a654-ad05e97846bd)
+![each player's value](C:\Users\user\paul_file\coding\images\value.png)
