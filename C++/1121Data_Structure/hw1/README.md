@@ -279,8 +279,8 @@ int calculateValue(std::string player[13]){
 
 ## 執行結果
 
-![](C:\Users\user\AppData\Roaming\marktext\images\2023-10-06-12-11-39-image.png)
+![](2023-10-06-12-11-39-image.png)
 
-![](C:\Users\user\AppData\Roaming\marktext\images\2023-10-06-12-12-07-image.png)
+![](2023-10-06-12-12-07-image.png)
 
-![](C:\Users\user\AppData\Roaming\marktext\images\2023-10-06-12-12-30-image.png)
+![](2023-10-06-12-12-30-image.png)
