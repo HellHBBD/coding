@@ -279,8 +279,8 @@ int calculateValue(std::string player[13]){
 
 ## 執行結果
 
-![](2023-10-06-12-11-39-image.png)
+![whole deck](2023-10-06-12-11-39-image.png)
 
-![](2023-10-06-12-12-07-image.png)
+![each player's hand card](2023-10-06-12-12-07-image.png)
 
-![](2023-10-06-12-12-30-image.png)
+![each player's value](2023-10-06-12-12-30-image.png)
