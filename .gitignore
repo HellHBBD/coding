@@ -3,6 +3,8 @@ ignore
 *.out
 *.exe
 *.o
+*.pdf
+*.zip
 .ipynb_checkpoints
 test.c
 test.h
