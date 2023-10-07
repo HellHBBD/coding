@@ -8,9 +8,9 @@ void swap(T &,T &);
 
 void shuffle(std::string [][13]);
 
-void printDeck(std::string [][13]);
+void print(std::string [][13]);
 
-void printHand(std::string,std::string []);
+void print(std::string,std::string []);
 
 void deal(std::string [][13],std::string [],std::string [],std::string [],std::string []);
 
@@ -33,20 +33,20 @@ int main() {
 	std::string East[13],Sorth[13],West[13],North[13]; //use one dimensional array to store each player's hand cards
 
 	shuffle(poker); //shuffle whole deck of poker
-	printDeck(poker); //print deck with format
+	print(poker); //print deck with format
 	deal(poker,North,East,Sorth,West); //deal out cards to each player
 
 	InsertionSort(North,13); //sort each player's hand cards
-	printHand("North",North); //and print hand cards with format
+	print("North",North); //and print hand cards with format
 
 	InsertionSort(East,13);
-	printHand("East",East);
+	print("East",East);
 
 	InsertionSort(Sorth,13);
-	printHand("Sorth",Sorth);
+	print("Sorth",Sorth);
 
 	InsertionSort(West,13);
-	printHand("West",West);
+	print("West",West);
 
 	//calculate and output max & min sum for each player
 	std::cout << "North's MAX_MIN_Sum Value: " << calculateValue(North) << std::endl;
@@ -73,7 +73,7 @@ void shuffle(std::string poker[4][13]){
 	}
 }
 
-void printDeck(std::string poker[4][13]){
+void print(std::string poker[4][13]){
 	for (int i = 0;i < 4;i++){
 		for (int j = 0;j < 13;j++){
 			std::cout << poker[i][j] << " | ";
@@ -83,7 +83,7 @@ void printDeck(std::string poker[4][13]){
 	}
 }
 
-void printHand(std::string playerName,std::string player[13]){
+void print(std::string playerName,std::string player[13]){
 	std::cout << playerName << std::endl;
 	std::cout << "S: ";
 	for (int i = 0;i < 13;i++)

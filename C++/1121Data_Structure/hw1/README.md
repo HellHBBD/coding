@@ -32,12 +32,12 @@ rand()會產生0到RAND_MAX的整數，我不去管實際上換了幾次牌。
 }
 ```
 
-## The **printDeck()** function
+## The **print()** function (whole deck version)
 
-按照題目要求的格式輸出整副牌。
+按照題目要求的格式輸出整副牌。(overload with another version)
 
 ```cpp
-void printDeck(std::string poker[4][13]){
+void print(std::string poker[4][13]){
     for (int i = 0;i < 4;i++){
         for (int j = 0;j < 13;j++){
             std::cout << poker[i][j] << " | ";
@@ -49,12 +49,12 @@ void printDeck(std::string poker[4][13]){
 }
 ```
 
-## The **printHand()** function
+## The **print()** function (hand card version)
 
-依照題目要求格式輸出每個人的手牌。
+依照題目要求格式輸出每個人的手牌。(overload with another version)
 
 ```cpp
-void printHand(std::string playerName,std::string player[13]){
+void print(std::string playerName,std::string player[13]){
     std::cout << playerName << std::endl;
     std::cout << "S: ";
     for (int i = 0;i < 13;i++)
@@ -260,20 +260,20 @@ int main() {
     //use one dimensional array to store each player's hand cards
 
     shuffle(poker); //shuffle whole deck of poker
-    printDeck(poker); //print deck with format
+    print(poker); //print deck with format
     deal(poker,North,East,Sorth,West); //deal out cards to each player
 
     InsertionSort(North,13); //sort each player's hand cards
-    printHand("North",North); //and print hand cards with format
+    print("North",North); //and print hand cards with format
 
     InsertionSort(East,13);
-    printHand("East",East);
+    print("East",East);
 
     InsertionSort(Sorth,13);
-    printHand("Sorth",Sorth);
+    print("Sorth",Sorth);
 
     InsertionSort(West,13);
-    printHand("West",West);
+    print("West",West);
 
     //calculate and output max & min sum for each player
     std::cout << "North's MAX_MIN_Sum Value: " << calculateValue(North);
