@@ -32,7 +32,7 @@ int main() {
 	};
 	std::string East[13],Sorth[13],West[13],North[13]; //use one dimensional array to store each player's hand cards
 
-	shuffle(poker); //shuffle whole deck of poker
+	//shuffle(poker); //shuffle whole deck of poker
 	print(poker); //print deck with format
 	deal(poker,North,East,Sorth,West); //deal out cards to each player
 
@@ -105,16 +105,12 @@ void print(std::string playerName,std::string player[13]){
 }
 
 void deal(std::string poker[4][13],std::string player1[13],std::string player2[13],std::string player3[13],std::string player4[13]){
-	for (int i = 0;i < 12;i++){
-		player1[i] = poker[i%4][i/4*4];
-		player2[i] = poker[i%4][i/4*4+1];
-		player3[i] = poker[i%4][i/4*4+2];
-		player4[i] = poker[i%4][i/4*4+3];
+	for (int i = 0;i < 13;i++){
+		player1[i] = poker[i%4       ][i/4*4         ];
+		player2[i] = poker[i%4+i/12  ][i/4*4+1-i/12  ];
+		player3[i] = poker[i%4+i/12*2][i/4*4+2-i/12*2];
+		player4[i] = poker[i%4+i/12*3][i/4*4+3-i/12*3];
 	}
-	player1[12] = poker[0][12]; //last card has different rule to others, pick at the end
-	player2[12] = poker[1][12];
-	player3[12] = poker[2][12];
-	player4[12] = poker[3][12];
 }
 
 int compare(const std::string &card1,const std::string &card2){

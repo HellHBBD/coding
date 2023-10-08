@@ -34,7 +34,7 @@ rand()會產生0到RAND_MAX的整數，我不去管實際上換了幾次牌。
 
 ## The **print()** function (whole deck version)
 
-按照題目要求的格式輸出整副牌。(overload with another version)
+按照題目要求的格式輸出整副牌。(與另一個版本overload)
 
 ```cpp
 void print(std::string poker[4][13]){
@@ -51,7 +51,7 @@ void print(std::string poker[4][13]){
 
 ## The **print()** function (hand card version)
 
-依照題目要求格式輸出每個人的手牌。(overload with another version)
+依照題目要求格式輸出每個人的手牌。(與另一個版本overload)
 
 ```cpp
 void print(std::string playerName,std::string player[13]){
@@ -78,7 +78,9 @@ void print(std::string playerName,std::string player[13]){
 
 ## The **deal()** function
 
-前12張牌是有規律的，可以整理成迴圈；最後一張牌的規則較為不同，獨立出來發牌。
+`i/a*b`是不超過a沒有變化，每次變化又是以b為單位。
+
+原本因為最後一張牌的規則較為不同，一開始設計獨立出來發牌。
 
 ```cpp
 void deal(std::string poker[4][13],std::string player1[13],std::string player2[13],std::string player3[13],std::string player4[13]){
@@ -96,6 +98,19 @@ void deal(std::string poker[4][13],std::string player1[13],std::string player2[1
 }
 ```
 
+後來發現可以整理在一起。
+
+```cpp
+void deal(std::string poker[4][13],std::string player1[13],std::string player2[13],std::string player3[13],std::string player4[13]){
+    for (int i = 0;i < 13;i++){
+        player1[i] = poker[i%4       ][i/4*4         ];
+        player2[i] = poker[i%4+i/12  ][i/4*4+1-i/12  ];
+        player3[i] = poker[i%4+i/12*2][i/4*4+2-i/12*2];
+        player4[i] = poker[i%4+i/12*3][i/4*4+3-i/12*3];
+    }
+}
+```
+
 ## The **compare()** function (card version)
 
 兩張牌有非常多花色點數的排列組合，一個一個判斷不好寫，最後改成先評分再比較大小的方式。
@@ -110,7 +125,7 @@ void deal(std::string poker[4][13],std::string player1[13],std::string player2[1
 
 - n點數：(n-1)分
 
-點數最高分數是12分，比起花色的13分，比較結果會是花色的加權比較重，例如：方塊A(13分) > 梅花K(12分)。
+點數最高分數是12分，比起花色的13分，比較結果會是花色的加權比較重，例如：`方塊A(13分) > 梅花K(12分)`。
 
 ```cpp
 int compare(const std::string &card1,const std::string &card2){
@@ -168,9 +183,9 @@ int compare(const std::string &card1,const std::string &card2){
 
 仿造qsort的cmp函式的回傳方式。(兩張牌的評分相減即可)
 
-- card1 > card2：return > 0
-- card1 == card2：return 0
-- card1 < card2：return < 0
+- `card1 > card2` $\Rightarrow$ `return value > 0`
+- `card1 = card2` $\Rightarrow$ `return value = 0`
+- `card1 < card2` $\Rightarrow$ `return value < 0`
 
 ## The **compare()** function (number version)
 
