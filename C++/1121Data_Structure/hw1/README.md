@@ -18,12 +18,12 @@ void swap(T &a,T &b){ //swap using reference
 ```cpp
 void shuffle(std::string poker[4][13]){
     srand(time(0));
-    int switchTime = rand(); //shuffle random times
 ```
 
 rand()會產生0到RAND_MAX的整數，我不去管實際上換了幾次牌。
 
 ```cpp
+    int switchTime = rand(); //shuffle random times
     while (switchTime--){ //while (0) stop
         int card1 = rand()%52; //take random two cards and swap
         int card2 = rand()%52;
@@ -130,12 +130,12 @@ void deal(std::string poker[4][13],std::string player1[13],std::string player2[1
 ```cpp
 int compare(const std::string &card1,const std::string &card2){
     int n1 = 0,n2 = 0; //use different points to compare card1 and card2
-    switch (card1[0]){ //bigger color has 13 more points
 ```
 
 利用switch不break會一路往下執行的特性，讓程式更好寫和也更容易讀懂。
 
 ```cpp
+    switch (card1[0]){ //bigger color has 13 more points
         case 'S': n1 += 13;
         case 'H': n1 += 13;
         case 'D': n1 += 13;
@@ -207,13 +207,13 @@ template <class T>
 void InsertionSort(T arr[], int n){
     for (int unsortIndex = 1;unsortIndex < n;unsortIndex++){
         for (int currentIndex = unsortIndex;currentIndex > 0;currentIndex--){
-            if (compare(arr[currentIndex],arr[currentIndex-1]) < 0)
-                //if (current < current-1) then swap()
 ```
 
 如果current比current-1還要小，就繼續交換，這裡的compare()可以在string和int的不同版本之間overload。
 
 ```cpp
+            if (compare(arr[currentIndex],arr[currentIndex-1]) < 0)
+                //if (current < current-1) then swap()
                 swap(arr[currentIndex],arr[currentIndex-1]);
             else //else break
                 break;
