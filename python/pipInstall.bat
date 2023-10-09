@@ -6,4 +6,5 @@ pip install matplotlib
 pip install Pillow
 pip install image
 pip install pypl
+pip install tk
 pause
