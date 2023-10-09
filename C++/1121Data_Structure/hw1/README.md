@@ -183,9 +183,9 @@ int compare(const std::string &card1,const std::string &card2){
 
 仿造qsort的cmp函式的回傳方式。(兩張牌的評分相減即可)
 
-- `card1 > card2` $\Rightarrow$ `return value > 0`
-- `card1 = card2` $\Rightarrow$ `return value = 0`
-- `card1 < card2` $\Rightarrow$ `return value < 0`
+- `card1 > card2` => `return value > 0`
+- `card1 = card2` => `return value = 0`
+- `card1 < card2` => `return value < 0`
 
 ## The **compare()** function (number version)
 
