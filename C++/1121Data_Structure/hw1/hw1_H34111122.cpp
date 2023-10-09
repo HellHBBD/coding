@@ -32,7 +32,7 @@ int main() {
 	};
 	std::string East[13],Sorth[13],West[13],North[13]; //use one dimensional array to store each player's hand cards
 
-	//shuffle(poker); //shuffle whole deck of poker
+	shuffle(poker); //shuffle whole deck of poker
 	print(poker); //print deck with format
 	deal(poker,North,East,Sorth,West); //deal out cards to each player
 
