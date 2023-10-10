@@ -117,3 +117,10 @@ set splitbelow "new at below
 set splitright "vnew at right
 set hlsearch
 
+"vim-plug
+call plug#begin()
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+set noshowmode
+let g:airline#extensions#tabline#enabled = 1
+call plug#end()
