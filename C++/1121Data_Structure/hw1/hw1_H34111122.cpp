@@ -3,6 +3,8 @@
 #include <iostream>
 //remove "namespace" because swap function will conflict in the scope std
 
+#define getName(var) #var
+
 template <class T>
 void swap(T &,T &);
 
@@ -37,16 +39,16 @@ int main() {
 	deal(poker,North,East,Sorth,West); //deal out cards to each player
 
 	InsertionSort(North,13); //sort each player's hand cards
-	print("North",North); //and print hand cards with format
+	print(getName(North),North); //and print hand cards with format
 
 	InsertionSort(East,13);
-	print("East",East);
+	print(getName(East),East);
 
 	InsertionSort(Sorth,13);
-	print("Sorth",Sorth);
+	print(getName(Sorth),Sorth);
 
 	InsertionSort(West,13);
-	print("West",West);
+	print(getName(West),West);
 
 	//calculate and output max & min sum for each player
 	std::cout << "North's MAX_MIN_Sum Value: " << calculateValue(North) << std::endl;
