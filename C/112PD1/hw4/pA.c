@@ -1,11 +1,10 @@
-
 #include <stdio.h>
 
 int main(){
 	int days,starting_day;
-	//printf("Enter number of days in month: ");
+	puts("Enter number of days in month: ");
 	scanf("%d",&days);
-	//printf("Enter starting day of the week (1=Sun, 7=Sat): ");
+	puts("Enter starting day of the week (1=Sun, 7=Sat): ");
 	scanf("%d",&starting_day);
 	int count = 0;
 	for (int i = 0;i < days;){
@@ -25,4 +24,3 @@ int main(){
 	}
 	return 0;
 }
-
