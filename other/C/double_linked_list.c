@@ -22,13 +22,13 @@ void rm();
 
 void pop();
 
-void clear();
+void clear(struct List *);
 
 struct List *find();
 
 struct Node *search(struct List *,int);
 
-void reverse();
+void reverse(struct List *);
 
 struct List *copy();
 
@@ -39,15 +39,10 @@ int main(){
 	list->length = 0;
 	list->head = 0;
 	list->tail = 0;
-	append(list,2);
-	append(list,3);
-	append(list,5);
+	for (int i = 0;i < 5;i++)
+		append(list,i);
 	print(list);
-	insert(list,0,1);
-	print(list);
-	insert(list,3,1);
-	print(list);
-	free(list);
+	clear(list);
 	return 0;
 }
 
@@ -86,6 +81,26 @@ void insert(struct List *list,int index,T value){
 	list->length ++;
 }
 
+void clear(struct List *list){
+	struct Node *forward = list->head;
+	struct Node *backward = list->tail;
+	while (1){
+		if (forward == backward){
+			free(forward);
+			break;
+		}
+		if (forward->next == backward){
+			free(forward);
+			free(backward);
+			break;
+		}
+		forward = forward->next;
+		backward = backward->previous;
+		free(forward->previous);
+		free(backward->next);
+	}
+}
+
 struct Node *search(struct List *list,int index){
 	struct Node *result = 0;
 	if (2*index <= list->length-1){
@@ -105,4 +120,10 @@ void print(struct List *list){
 	for (struct Node *node = list->head;node != 0;node = node->next)
 		printf("%d ",node->value);
 	puts("");
+}
+
+void reverse(struct List *list){
+	struct Node *temp = list->head;
+	list->head = list->tail;
+	list->head = temp;
 }
