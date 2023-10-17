@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #define T int
+#define MAX 99999999
 
 struct Node{
 	T value;
@@ -34,14 +36,17 @@ struct List *copy();
 
 void print(struct List *);
 
+void progress_bar(unsigned long long,unsigned long long);
+
 int main(){
 	struct List *list = malloc(sizeof(struct List));
 	list->length = 0;
 	list->head = 0;
 	list->tail = 0;
-	for (int i = 0;i < 5;i++)
+	int start,end;
+	for (int i = 0;i < MAX;i++){
 		append(list,i);
-	print(list);
+	}
 	clear(list);
 	return 0;
 }
@@ -87,10 +92,12 @@ void clear(struct List *list){
 	while (1){
 		if (forward == backward){
 			free(forward);
+			forward = 0;
 			break;
 		}
 		if (forward->next == backward){
 			free(forward);
+			forward = backward = 0;
 			free(backward);
 			break;
 		}
@@ -98,7 +105,10 @@ void clear(struct List *list){
 		backward = backward->previous;
 		free(forward->previous);
 		free(backward->next);
+		forward->previous = backward->next = 0;
 	}
+	list->length = 0;
+	list->head = list->tail = 0;
 }
 
 struct Node *search(struct List *list,int index){
@@ -116,14 +126,28 @@ struct Node *search(struct List *list,int index){
 	return result;
 }
 
+void reverse(struct List *list){
+}
+
 void print(struct List *list){
 	for (struct Node *node = list->head;node != 0;node = node->next)
 		printf("%d ",node->value);
 	puts("");
 }
 
-void reverse(struct List *list){
-	struct Node *temp = list->head;
-	list->head = list->tail;
-	list->head = temp;
+void progress_bar(unsigned long long i,unsigned long long max){
+	if (i == max){
+		puts("[====================]100%");
+		return;
+	}
+	int percent = i*100/max;
+	printf("\e[?25l[");
+	for (int j = 0;j < 20;j++){
+		if (j < percent/5)
+			printf("=");
+		else
+			printf(" ");
+	}
+	printf("]");
+	printf("%3d\%\r\e[?25h",percent);
 }
