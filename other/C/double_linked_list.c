@@ -18,6 +18,8 @@ struct List{
 
 void append(struct List *,T);
 
+void extent(struct List *,T *);
+
 void insert(struct List *,int,T);
 
 void rm();
