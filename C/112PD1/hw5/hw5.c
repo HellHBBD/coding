@@ -18,7 +18,7 @@ int main(){
 	int KirbyA = 0;
 	int KirbyB = 0;
 	int KirbyC = 0;
-	int option,Kirby,money;
+	int option,Kirby,money = 0;
 	char flush;
 	while (1){
 		puts("Options: (1)Openning (2)List (3)Adding (4)Exit");
@@ -48,18 +48,24 @@ int main(){
 			if (open){
 				printf("Please enter three numbers: ");
 				int a,b,c;
-				char d;
 				while (1){
-					int getNumber = scanf("%d %d %d%c",&a,&b,&c,&d);
+					int getNumber = scanf("%d%d%d",&a,&b,&c);
+					flush = getchar();
 					//printf("%d %d %d%c",a,b,c,d);
-					if (getNumber == 4 && d == '\n' && a == -1 && b == -1 && c == -1 && enter_again){
+					if (getNumber == 3 && flush == '\n' && a == -1 && b == -1 && c == -1 && enter_again){
 						enter_again = false;
 						break;
 					}
-					else if (getNumber == 4 && d == '\n' && a > 0 && b > 0 && c > 0)
+					else if (getNumber == 3 && flush == '\n' && a > 0 && b > 0 && c > 0){
+						enter_again = false;
 						break;
+					}
 					else{
-						while ((flush = getchar()) != '\n' && flush != EOF);
+						while (1){
+							if (flush == '\n')
+								break;
+							flush = getchar();
+						}
 						printf("Error: Please try again or enter '-1 -1 -1' to make a new options: ");
 						enter_again = true;
 					}
