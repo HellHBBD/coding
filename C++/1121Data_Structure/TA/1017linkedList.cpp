@@ -87,6 +87,7 @@ class Chain {
 			}
 		}
 		void deleteElements(T data){
+			//your code here
 			ChainNode<T>* currentNode = first;
 			ChainNode<T>* previousNode = 0;
 			while (currentNode){
