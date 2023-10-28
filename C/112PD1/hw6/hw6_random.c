@@ -5,13 +5,13 @@
 
 void Homework6_1(){
 	int N;
-	N = rand()/195001+5000;
+	N = rand()%195001+5000;
 	printf("%d\n",N);
 	int array[N];
-	array[0] = rand()/(1<<28)+1;
+	array[0] = rand()%(1<<28)+1;
 	printf("%d",array[0]);
 	for (int i = 1;i < N;i++){
-		array[i] = rand()/(1<<28)+1;
+		array[i] = rand()%(1<<28)+1;
 		printf(" %d",array[i]);
 	}
 	puts("");
@@ -22,13 +22,13 @@ void Homework6_1(){
 
 void Homework6_2(){
 	int N;
-	/* N = rand()/195001+5000; */
-	N = rand()/10+1;
+	/* N = rand()%195001+5000; */
+	N = rand()%10+1;
 	int array[N-1];
-	array[0] = rand()/N+1;
+	array[0] = rand()%N+1;
 	printf("%d",array[0]);
 	for (int i = 1;i < N-1;i++){
-		array[i] = rand()/N+1;
+		array[i] = rand()%N+1;
 		printf(" %d",array[i]);
 	}
 	puts("");
