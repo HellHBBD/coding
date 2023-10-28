@@ -12,7 +12,6 @@ void Homework6_1(){
 	printf("%d",array[N-1]);
 	for (int i = N-2;i >= 0;i--)
 		printf(" %d",array[i]);
-	puts("");
 }
 
 int main(){

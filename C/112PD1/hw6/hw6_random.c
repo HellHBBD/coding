@@ -5,15 +5,13 @@
 
 void Homework6_1(){
 	int N;
-	N = rand();
-	int *array = malloc(sizeof(int)*N);
+	N = rand()/(1<<30);
+	int array[N];
 	for (int i = 0;i < N;i++)
-		array[i] = rand();
+		array[i] = rand()/(1<<30);
 	printf("%d",array[N-1]);
 	for (int i = N-2;i >= 0;i--)
 		printf(" %d",array[i]);
-	puts("");
-	free(array);
 }
 
 int main(){
