@@ -20,17 +20,46 @@ void Homework6_1(){
 		printf(" %d",array[i]);
 }
 
+void Homework6_2(){
+	int N;
+	/* N = rand()/195001+5000; */
+	N = rand()/10+1;
+	int array[N-1];
+	array[0] = rand()/N+1;
+	printf("%d",array[0]);
+	for (int i = 1;i < N-1;i++){
+		array[i] = rand()/N+1;
+		printf(" %d",array[i]);
+	}
+	puts("");
+	bool exist[N];
+	for (int i = 0;i < N-1;i++)
+		exist[array[i]-1] = true;
+	for (int i = 0;i < N;i++){
+		if (!exist[i]){
+			printf("%d",i+1);
+			break;
+		}
+	}
+}
+
+void Homework6_3(){
+}
+
+void Homework6_4(){
+}
+
 int main(){
 	srand(time(0));
 	int option;
 	scanf("%d",&option);
 	if (option == 1)
 		Homework6_1();
-	/* else if (option == 2) */
-	/* 	Homework6_2(); */
-	/* else if (option == 3) */
-	/* 	Homework6_3(); */
-	/* else if (option == 4) */
-	/* 	Homework6_4(); */
+	else if (option == 2)
+		Homework6_2();
+	else if (option == 3)
+		Homework6_3();
+	else if (option == 4)
+		Homework6_4();
 	return 0;
 }
