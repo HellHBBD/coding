@@ -20,27 +20,36 @@ void Homework6_1(){
 		printf(" %d",array[i]);
 }
 
+void swap(int *a,int *b){
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
 void Homework6_2(){
 	int N;
-	/* N = rand()%195001+5000; */
-	N = rand()%10+1;
-	int array[N-1];
-	array[0] = rand()%N+1;
+	N = rand()%195001+5000;
+	printf("%d\n",N);
+	int array[N];
+	for (int i = 0;i < N;i++)
+		array[i] = i+1;
+	for (int i = 0;i < rand();i++)
+		swap(&array[rand()%N],&array[rand()%N]);
 	printf("%d",array[0]);
 	for (int i = 1;i < N-1;i++){
-		array[i] = rand()%N+1;
 		printf(" %d",array[i]);
 	}
 	puts("");
-	bool exist[N];
-	for (int i = 0;i < N-1;i++)
-		exist[array[i]-1] = true;
-	for (int i = 0;i < N;i++){
-		if (!exist[i]){
-			printf("%d",i+1);
-			break;
-		}
-	}
+	printf("%d",array[N-1]);
+	/* bool exist[N]; */
+	/* for (int i = 0;i < N-1;i++) */
+	/* 	exist[array[i]-1] = true; */
+	/* for (int i = 0;i < N;i++){ */
+	/* 	if (!exist[i]){ */
+	/* 		printf("%d",i+1); */
+	/* 		break; */
+	/* 	} */
+	/* } */
 }
 
 void Homework6_3(){
