@@ -21,6 +21,8 @@ void Homework6_1(){
 }
 
 void swap(int *a,int *b){
+	if (*a == *b)
+		return;
 	*a = *a ^ *b;
 	*b = *a ^ *b;
 	*a = *a ^ *b;
@@ -33,8 +35,11 @@ void Homework6_2(){
 	int array[N];
 	for (int i = 0;i < N;i++)
 		array[i] = i+1;
-	for (int i = 0;i < rand();i++)
-		swap(&array[rand()%N],&array[rand()%N]);
+	for (int i = 0;i < 10;i++){
+		int index1 = rand()%N;
+		int index2 = rand()%N;
+		swap(&array[index1],&array[index2]);
+	}
 	printf("%d",array[0]);
 	for (int i = 1;i < N-1;i++){
 		printf(" %d",array[i]);
