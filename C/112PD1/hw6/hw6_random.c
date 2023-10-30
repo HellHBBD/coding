@@ -21,9 +21,9 @@ void Homework6_1(){
 }
 
 void swap(int *a,int *b){
-	int temp = *a;
-	*a = *b;
-	*b = temp;
+	*a = *a ^ *b;
+	*b = *a ^ *b;
+	*a = *a ^ *b;
 }
 
 void Homework6_2(){
@@ -93,6 +93,39 @@ void Homework6_3(){
 }
 
 void Homework6_4(){
+	/* int m = rand()%6+5,n = rand()%6+5; */
+	int m = rand()%501+500,n = rand()%501+500;
+	printf("%d %d\n",n,m);
+	int array[n][m];
+	for (int i = 0;i < n;i++){
+		array[i][0] = rand()%1000+1;
+		printf("%d",array[i][0]);
+		for (int j = 1;j < m;j++){
+			array[i][j] = rand()%1000+1;
+			printf(" %d",array[i][j]);
+		}
+		puts("");
+	}
+	/* int swapList[5][4]; */
+	/* for (int i = 0;i < 5;i++){ */
+	/* 	scanf("%d%d%d%d",&swapList[i][0],&swapList[i][1],&swapList[i][2],&swapList[i][3]); */
+	/* } */
+	for (int i = 0;i < 5;i++){
+		int x1 = rand()%n+1,y1 = rand()%m+1,x2 = rand()%n+1,y2 = rand()%m+1;
+		printf("%d %d %d %d\n",x1,y1,x2,y2);
+		swap(&array[x1-1][y1-1],&array[x2-1][y2-1]);
+	}
+	printf("%d",array[0][0]);
+	for (int j = 1;j < m;j++){
+		printf(" %d",array[0][j]);
+	}
+	for (int i = 1;i < n;i++){
+		puts("");
+		printf("%d",array[i][0]);
+		for (int j = 1;j < m;j++){
+			printf(" %d",array[i][j]);
+		}
+	}
 }
 
 int main(){
