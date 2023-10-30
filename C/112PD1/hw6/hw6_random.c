@@ -53,6 +53,43 @@ void Homework6_2(){
 }
 
 void Homework6_3(){
+	int N;
+	N = rand()%50001+50000;
+	printf("%d\n",N);
+	int array[N];
+	long brray[N];
+	array[0] = rand()%1000000000;
+	printf("%d",array[0]);
+	brray[0] = array[0];
+	for (int i = 1;i < N;i++){
+		array[i] = rand()%1000000000;
+		printf(" %d",array[i]);
+		brray[i] = brray[i-1] + array[i];
+	}
+	puts("");
+	int queryTime;
+	queryTime = rand()%50001+50000;
+	printf("%d\n",queryTime);
+	long result[queryTime];
+	for (int i = 0;i < queryTime;i++){
+		int left = rand()%N+1,right = rand()%N+1;
+		if (left > right)
+			swap(&left,&right);
+		printf("%d %d\n",left,right);
+		long lvalue,rvalue;
+		if (left == 1)
+			lvalue = 0;
+		else
+			lvalue = brray[left-2];
+		rvalue = brray[right-1];
+		result[i] = rvalue-lvalue;
+	}
+	for (int i = 0;i < queryTime;i++){
+		if (i == queryTime-1)
+			printf("%ld",result[i]);
+		else
+			printf("%ld\n",result[i]);
+	}
 }
 
 void Homework6_4(){
