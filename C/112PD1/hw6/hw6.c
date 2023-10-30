@@ -32,6 +32,31 @@ void Homework6_2(){
 }
 
 void Homework6_3(){
+	int N;
+	scanf("%d",&N);
+	int array[N];
+	long brray[N];
+	scanf("%d",&array[0]);
+	brray[0] = array[0];
+	for (int i = 1;i < N;i++){
+		scanf("%d",&array[i]);
+		brray[i] = brray[i-1] + array[i];
+	}
+	int queryTime;
+	scanf("%d",&queryTime);
+	for (int i = 0;i < queryTime;i++){
+		long left,right;
+		scanf("%ld%ld",&left,&right);
+		if (left == 1)
+			left = 0;
+		else
+			left = brray[left-2];
+		right = brray[right-1];
+		if (i == queryTime-1)
+			printf("%ld",right-left);
+		else
+			printf("%ld\n",right-left);
+	}
 }
 
 void Homework6_4(){
