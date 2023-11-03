@@ -7,12 +7,14 @@ unsigned long long solved;
 
 int f(int n){
 	if (solved & (1 << n))
-		return table[n-1];
+		return table[n];
+	int size = log2(solved);
+	if (n > size){
+		table = realloc(table,sizeof(int)*(n+1));
+	}
 	solved |= (1 << n);
-	int size = log2(solved) + 1;
-	table = realloc(table,sizeof(int)*size);
-	table[n-1] = f(n-1) + f(n-2);
-	return table[n-1];
+	table[n] = f(n-1) + f(n-2);
+	return table[n];
 }
 
 int main(){
@@ -21,7 +23,9 @@ int main(){
 	table[0] = 0;
 	table[1] = 1;
 	solved = 3;
-	printf("%d\n",f(5));
+	for (int i = 0;i < 20;i++)
+		printf("%d ",f(i));
+	puts("");
 	free(table);
 	return 0;
 }
