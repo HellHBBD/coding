@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <time.h>
+#define swap(a,b) ((a)^=(b)^=(a)^=(b))
 
 void Homework6_1(){
 	int N;
@@ -20,14 +21,6 @@ void Homework6_1(){
 		printf(" %d",array[i]);
 }
 
-void swap(int *a,int *b){
-	if (*a == *b)
-		return;
-	*a = *a ^ *b;
-	*b = *a ^ *b;
-	*a = *a ^ *b;
-}
-
 void Homework6_2(){
 	int N;
 	N = rand()%195001+5000;
@@ -38,7 +31,7 @@ void Homework6_2(){
 	for (int i = 0;i < 10;i++){
 		int index1 = rand()%N;
 		int index2 = rand()%N;
-		swap(&array[index1],&array[index2]);
+		swap(array[index1],array[index2]);
 	}
 	printf("%d",array[0]);
 	for (int i = 1;i < N-1;i++){
@@ -79,7 +72,7 @@ void Homework6_3(){
 	for (int i = 0;i < queryTime;i++){
 		int left = rand()%N+1,right = rand()%N+1;
 		if (left > right)
-			swap(&left,&right);
+			swap(left,right);
 		printf("%d %d\n",left,right);
 		long lvalue,rvalue;
 		if (left == 1)
@@ -118,7 +111,7 @@ void Homework6_4(){
 	for (int i = 0;i < 5;i++){
 		int x1 = rand()%n+1,y1 = rand()%m+1,x2 = rand()%n+1,y2 = rand()%m+1;
 		printf("%d %d %d %d\n",x1,y1,x2,y2);
-		swap(&array[x1-1][y1-1],&array[x2-1][y2-1]);
+		swap(array[x1-1][y1-1],array[x2-1][y2-1]);
 	}
 	printf("%d",array[0][0]);
 	for (int j = 1;j < m;j++){

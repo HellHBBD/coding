@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <time.h>
+#define swap(a,b) ((a)^=(b)^=(a)^=(b))
 
 void Homework6_1(){
 	int N;
@@ -59,14 +60,6 @@ void Homework6_3(){
 	}
 }
 
-void swap(int *a,int *b){
-	if (*a == *b)
-		return;
-	*a = *a ^ *b;
-	*b = *a ^ *b;
-	*a = *a ^ *b;
-}
-
 void Homework6_4(){
 	int m,n;
 	scanf("%d%d",&n,&m);
@@ -83,7 +76,7 @@ void Homework6_4(){
 	for (int i = 0;i < 5;i++){
 		int x1,y1,x2,y2;
 		scanf("%d%d%d%d",&x1,&y1,&x2,&y2);
-		swap(&array[x1-1][y1-1],&array[x2-1][y2-1]);
+		swap(array[x1-1][y1-1],array[x2-1][y2-1]);
 	}
 	printf("%d",array[0][0]);
 	for (int j = 1;j < m;j++){
