@@ -13,19 +13,27 @@ void print(struct heapTree *tree){
 	puts("");
 }
 
-int swap(int *a,int *b){
-	if (*a <= *b)
-		return -1;
-	int temp = *a;
-	*a = *b;
-	*b = temp;
-	return 0;
+int max(const int a,const int b){
+	return a-b;
 }
 
-void initializedCheck(int *array,int index){
+int min(const int a,const int b){
+	return b-a;
+}
+
+int swap(int *array,int index1,int index2){
+	if (max(array[index1-1],array[index2-1]) <= 0)
+		return -1;
+	int temp = array[index1-1];
+	array[index1-1] = array[index2-1];
+	array[index2-1] = temp;
+	return index2;
+}
+
+void initializedCheck(int *array,int index){ //done
 	if (index == 1)
 		return;
-	int noSwap = swap(&array[index-1],&array[index/2-1]);
+	int noSwap = swap(array,index-1,index/2-1);
 	if (noSwap)
 		return;
 	initializedCheck(array,index/2);
@@ -34,28 +42,31 @@ void initializedCheck(int *array,int index){
 void uninitializedCheck(int *array,int index){
 	if (index == 1)
 		return;
-	int noSwap = swap(&array[index-1],&array[index/2-1]);
+	int noSwap = swap(array,index-1,index/2-1);
 	if (noSwap)
 		return;
 	/* lookup(array,index/2); */
 }
 
-void push(struct heapTree *tree,int element){
+void push(struct heapTree *tree,int element){ //done
 	tree->length++;
 	tree->array = realloc(tree->array,sizeof(int)*tree->length);
 	tree->array[tree->length-1] = element;
 	initializedCheck(tree->array,tree->length);
 }
 
-void pop(struct heapTree *tree){
+int pop(struct heapTree *tree){
+	int max = tree->array[0];
+	tree->array[0] = tree->array[tree->length-1];
 	tree->length--;
-	int reinsert = tree->array[tree->length];
-	tree->array[0] = 0;
 	tree->array = realloc(tree->array,sizeof(int)*tree->length);
+	uninitializedCheck(tree->array,1);
 }
 
-struct heapTree *gen(int length){
+struct heapTree *gen(int length){ //done
 	struct heapTree *tree = malloc(sizeof(struct heapTree));
+	tree->array = 0;
+	tree->length = 0;
 	for (int i = 1;i <= length;i++)
 		push(tree,i);
 	return tree;
