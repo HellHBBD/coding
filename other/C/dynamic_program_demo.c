@@ -5,6 +5,20 @@
 int *table;
 unsigned long long solved;
 
+void printBits(size_t const size, void const * const ptr){
+	unsigned char *b = (unsigned char*) ptr;
+	unsigned char byte;
+	int i, j;
+
+	for (i = size-1; i >= 0; i--) {
+		for (j = 7; j >= 0; j--) {
+			byte = (b[i] >> j) & 1;
+			printf("%u", byte);
+		}
+	}
+	puts("");
+}
+
 int f(int n){
 	if (solved & (1 << n)) //test if n bit is 1
 		return table[n];
@@ -25,7 +39,7 @@ int main(){
 
 	//test
 	for (int i = 0;i < 20;i++)
-		printf("%d ",f(i));
+		printf("%-5d\n",f(i));
 	puts("");
 
 	free(table);
