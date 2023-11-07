@@ -57,6 +57,7 @@ TreeNode* BST::Search(int KEY){
 }
 void BST::InsertBST(int key, string element){
 
+
 	TreeNode *parent_node = 0;
 	TreeNode *insert_position = 0;
 	TreeNode *new_node = new TreeNode(key, element);
@@ -78,7 +79,7 @@ void BST::InsertBST(int key, string element){
 		// your code here
 		root = new_node;
 	}
-	else if (new_node->key < parent_node->key){
+	else if (new_node->key < parent_node->key){ // change y to parent_node
 		// your code here
 		parent_node->leftchild = new_node;
 	}
