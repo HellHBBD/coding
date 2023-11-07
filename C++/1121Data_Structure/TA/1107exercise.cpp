@@ -1,4 +1,3 @@
-// C++ code
 #include <iostream>
 #include <string>
 #include <queue>
@@ -9,168 +8,170 @@ using std::endl;
 
 class BST;
 class TreeNode{
-private:
-    TreeNode *leftchild;
-    TreeNode *rightchild;
-    TreeNode *parent;
-    int key;
-    string element;
-public:
-    TreeNode():leftchild(0),rightchild(0),parent(0),key(0),element(""){};
-    TreeNode(int a, string b):leftchild(0),rightchild(0),parent(0),key(a),element(b){};
+	private:
+		TreeNode *leftchild;
+		TreeNode *rightchild;
+		TreeNode *parent;
+		int key;
+		string element;
+	public:
+		TreeNode():leftchild(0),rightchild(0),parent(0),key(0),element(""){};
+		TreeNode(int a, string b):leftchild(0),rightchild(0),parent(0),key(a),element(b){};
 
-    int GetKey(){return key;}              // ¬°¤F¦bmain()­n¯à°÷ÀËµønode¬O§_¥¿½T
-    string GetElement(){return element;}   // ¤~»İ­n³o¨â­Ómember functionÅª¨úprivate data
+		int GetKey(){return key;}              // ç‚ºäº†åœ¨main()è¦èƒ½å¤ æª¢è¦–nodeæ˜¯å¦æ­£ç¢º
+		string GetElement(){return element;}   // æ‰éœ€è¦é€™å…©å€‹member functionè®€å–private data
 
-    // ¨ä¾l±¡ªp, ¦]¬°class BST¬Oclass TreeNodeªºfriend class
-    // ¦bclass BSTªºmember function¤¤, ¥i¥Hª½±µ¦s¨úclass TreeNodeªºprivate data
+		// å…¶é¤˜æƒ…æ³, å› ç‚ºclass BSTæ˜¯class TreeNodeçš„friend class
+		// åœ¨class BSTçš„member functionä¸­, å¯ä»¥ç›´æ¥å­˜å–class TreeNodeçš„private data
 
-    friend class BST;   // ©ñ¦b private ©Î public ³£¥i¥H
+		friend class BST;   // æ”¾åœ¨ private æˆ– public éƒ½å¯ä»¥
 };
 
 class BST{
-private:
-    TreeNode *root;
-    TreeNode* Leftmost(TreeNode *current);
-    TreeNode* Successor(TreeNode *current);
+	private:
+		TreeNode *root;
+		TreeNode* Leftmost(TreeNode *current);
+		TreeNode* Successor(TreeNode *current);
 
-public:
-    BST():root(0){};
-    TreeNode* Search(int key);
-    void InsertBST(int key, string element);
-    void InorderPrint();
-    void Levelorder();
+	public:
+		BST():root(0){};
+		TreeNode* Search(int key);
+		void InsertBST(int key, string element);
+		void InorderPrint();
+		void Levelorder();
 };
 TreeNode* BST::Search(int KEY){
 
-    TreeNode *current = root;               // ±Ncurent«ü¦Vroot§@¬°traversal°_ÂI
+	TreeNode *current = root;               // å°‡curentæŒ‡å‘rootä½œç‚ºtraversalèµ·é»
 
-    while (current != NULL && KEY != current->key) {  // ¨âºØ±¡ªp¸õ¥X°j°é¡G
-    	                                              // 1.¨S§ä¨ì 2.¦³§ä¨ì
-        if (KEY < current->key){
-            current = current->leftchild;   // ¦V¥ª¨«
-        }
-        else {
-            current = current->rightchild;  // ¦V¥k¨«
-        }
-    }
-    return current;
+	while (current != NULL && KEY != current->key) {  // å…©ç¨®æƒ…æ³è·³å‡ºè¿´åœˆï¼š
+		// 1.æ²’æ‰¾åˆ° 2.æœ‰æ‰¾åˆ°
+		if (KEY < current->key){
+			current = current->leftchild;   // å‘å·¦èµ°
+		}
+		else {
+			current = current->rightchild;  // å‘å³èµ°
+		}
+	}
+	return current;
 }
 void BST::InsertBST(int key, string element){
 
-    TreeNode *y = 0;
-    TreeNode *x = 0;
-    TreeNode *insert_node = new TreeNode(key, element);
+	TreeNode *parent_node = 0;
+	TreeNode *insert_position = 0;
+	TreeNode *new_node = new TreeNode(key, element);
 
-    x = root;
-    while (x != NULL) {                // Ãş¦üSearchªº¤è¦¡´M§ä¾A·íªº´O¤J¦ì¸m
-        y = x;
-        if (insert_node->key < x->key){
-            x = x->leftchild;
-        }
-        else{
-            x = x->rightchild;
-        }
-    }                                  // ¸õ¥X°j°é«á, x§Y¬°NULL¡A¦Óy«h¬Oinsert_nodeªºparent
+	insert_position = root;
+	while (insert_position != NULL) {                // é¡ä¼¼Searchçš„æ–¹å¼å°‹æ‰¾é©ç•¶çš„åµŒå…¥ä½ç½®
+		parent_node = insert_position;
+		if (new_node->key < insert_position->key){
+			insert_position = insert_position->leftchild;
+		}
+		else{
+			insert_position = insert_position->rightchild;
+		}
+	}                                  // è·³å‡ºè¿´åœˆå¾Œ, insert_positionå³ç‚ºNULLï¼Œè€Œparent_nodeå‰‡æ˜¯new_nodeçš„parent
 
-    insert_node->parent = y;           // ±Ninsert_nodeªºparent pointer«ü¦Vy
+	new_node->parent = parent_node;           // å°‡new_nodeçš„parent pointeræŒ‡å‘parent_node
 
-    if (y == NULL){                    // ¤U­±¤@²Õif-else, §âinsert_node±µ¤WBST
-       //
-    }
-    else if (insert_node->key < y->key){
-        //
-
-    }
-    else{
-       //
-    }
+	if (parent_node == NULL){                    // ä¸‹é¢ä¸€çµ„if-else, æŠŠnew_nodeæ¥ä¸ŠBST
+		// your code here
+		root = new_node;
+	}
+	else if (new_node->key < parent_node->key){
+		// your code here
+		parent_node->leftchild = new_node;
+	}
+	else{
+		// your code here
+		parent_node->rightchild = new_node;
+	}
 }
 TreeNode* BST::Leftmost(TreeNode *current){
 
-    while (current->leftchild != NULL){
-        current = current->leftchild;
-    }
-    return current;
+	while (current->leftchild != NULL){
+		current = current->leftchild;
+	}
+	return current;
 }
 TreeNode* BST::Successor(TreeNode *current){
 
-    if (current->rightchild != NULL){
-        return Leftmost(current->rightchild);
-    }
+	if (current->rightchild != NULL){
+		return Leftmost(current->rightchild);
+	}
 
-    TreeNode *new_node = current->parent;
+	TreeNode *new_node = current->parent;
 
-    while (new_node != NULL && current == new_node->rightchild) {
-        current = new_node;
-        new_node = new_node->parent;
-    }
+	while (new_node != NULL && current == new_node->rightchild) {
+		current = new_node;
+		new_node = new_node->parent;
+	}
 
-    return new_node;
+	return new_node;
 }
 void BST::InorderPrint(){
-    TreeNode *current = new TreeNode;
-    current = Leftmost(root);
-    while(current){
-        cout << current->element << "(" << current->key << ")" << " ";
-        current = Successor(current);
-    }
+	TreeNode *current = new TreeNode;
+	current = Leftmost(root);
+	while(current){
+		cout << current->element << "(" << current->key << ")" << " ";
+		current = Successor(current);
+	}
 }
 
 void BST::Levelorder(){
 
-    std::queue<TreeNode*> q;
-    q.push(this->root);					    // §âroot§@¬°level-order traversal¤§°_ÂI
-    								        // ±À¶iqueue¤¤
-    while (!q.empty()){                     // ­Yqueue¤£¬OªÅªº, ªí¥ÜÁÙ¦³node¨S¦³visiting
+	std::queue<TreeNode*> q;
+	q.push(this->root);					    // æŠŠrootä½œç‚ºlevel-order traversalä¹‹èµ·é»
+	// æ¨é€²queueä¸­
+	while (!q.empty()){                     // è‹¥queueä¸æ˜¯ç©ºçš„, è¡¨ç¤ºé‚„æœ‰nodeæ²’æœ‰visiting
 
-    	TreeNode *current = q.front();      // ¨ú¥X¥ı¶i¤Jqueueªºnode
-    	q.pop();
-    	cout << current->element << "(" << current->key << ")" << " ";
+		TreeNode *current = q.front();      // å–å‡ºå…ˆé€²å…¥queueçš„node
+		q.pop();
+		cout << current->element << "(" << current->key << ")" << " ";
 
-    	if (current->leftchild != NULL){    // ­Yleftchild¦³¸ê®Æ, ±N¨ä±À¶iqueue
-            q.push(current->leftchild);
-        }
-        if (current->rightchild != NULL){   // ­Yrightchild¦³¸ê®Æ, ±N¨ä±À¶iqueue
-            q.push(current->rightchild);
-        }
-    }
+		if (current->leftchild != NULL){    // è‹¥leftchildæœ‰è³‡æ–™, å°‡å…¶æ¨é€²queue
+			q.push(current->leftchild);
+		}
+		if (current->rightchild != NULL){   // è‹¥rightchildæœ‰è³‡æ–™, å°‡å…¶æ¨é€²queue
+			q.push(current->rightchild);
+		}
+	}
 }
 
 int main(){
-    BST T;
+	BST T;
 
-    T.InsertBST(8,"³°");
-    T.InsertBST(1000,"±y¤H");
-    T.InsertBST(2,"¥ìÃÃ");
-    T.InsertBST(513,"¯«¤ì");
-    T.InsertBST(245,"±s¤l");
-    T.InsertBST(5,"Àu");
-    T.InsertBST(1,"ÃÃ­ì");
+	T.InsertBST(8,"é™¸");
+	T.InsertBST(1000,"æ‚ äºº");
+	T.InsertBST(2,"ä¼Šè—¤");
+	T.InsertBST(513,"ç¥æœ¨");
+	T.InsertBST(245,"å¾¡å­");
+	T.InsertBST(5,"å„ª");
+	T.InsertBST(1,"è—¤åŸ");
 
 
-    cout << "Inorder Traversal:\n";
-    T.InorderPrint();
-    cout << endl;
-    cout << "Level-order Traversal:\n";
-    T.Levelorder();
-    cout << endl;
+	cout << "Inorder Traversal:\n";
+	T.InorderPrint();
+	cout << endl;
+	cout << "Level-order Traversal:\n";
+	T.Levelorder();
+	cout << endl;
 
-    TreeNode *node = T.Search(1000);
-    if(node != NULL){
-    	cout << "There is " << node->GetElement() << "(" << node->GetKey() << ")" << endl;
-    }
-    else {
-    	cout << "no element with Key(1000)" << endl;
-    }
+	TreeNode *node = T.Search(1000);
+	if(node != NULL){
+		cout << "There is " << node->GetElement() << "(" << node->GetKey() << ")" << endl;
+	}
+	else {
+		cout << "no element with Key(1000)" << endl;
+	}
 
-    node = T.Search(73);
-    if(node != NULL){
-    	cout << "There is " << node->GetElement() << "(" << node->GetKey() << ")" << endl;
-    }
-    else {
-    	cout << "no element with Key(73)" << endl;
-    }
+	node = T.Search(73);
+	if(node != NULL){
+		cout << "There is " << node->GetElement() << "(" << node->GetKey() << ")" << endl;
+	}
+	else {
+		cout << "no element with Key(73)" << endl;
+	}
 
-    return 0;
-};
+	return 0;
+}
