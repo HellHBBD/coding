@@ -99,8 +99,8 @@ void clear(struct List *list){
 		}
 		if (forward->next == backward){
 			free(forward);
-			forward = backward = 0;
 			free(backward);
+			forward = backward = 0;
 			break;
 		}
 		forward = forward->next;
