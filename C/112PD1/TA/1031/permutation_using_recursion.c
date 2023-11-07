@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int answer[8],used[8];
+int answer[8],used = 0;
 
 void permutation(int cnt){
 	/* printf("%d call\n",cnt); */
@@ -12,11 +12,11 @@ void permutation(int cnt){
 		return;
 	}
 	for (int i = 1;i <= 8;i++){
-		if (used[i-1] == 0){
+		if (~used & (1<<(i-1))){
 			answer[cnt] = i;
-			used[i-1] = i;
+			used |= (1<<(i-1));
 			permutation(cnt+1);
-			used[i-1] = 0;
+			used &= ~(1<<(i-1));
 		}
 	}
 }
