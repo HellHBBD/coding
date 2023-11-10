@@ -1,43 +1,106 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#define abs(a,b) ((a) > (b) ? (a)-(b) : (b)-(a))
 
 struct File{
 	int name;
 	int size;
 };
 
-struct System{
+struct FileList{
 	struct File *disk[21];
 	int count;
 };
 
-void add(struct System *system){
-	int i = 0;
-	for (;i < 21;i++){
-		if (system->disk[i] == 0){
-			system->disk[i] = malloc(sizeof(struct File));
-			printf("Please input file name and file sizes: ");
-			scanf("%d%d",&system->disk[i]->name,&system->disk[i]->size);
-			system->count++;
-			break;
+int Cnr(int n,int r){
+	int result = 1;
+	for (int i = r;i <= n;i++)
+		result *= i;
+	for (int i = 1;i <= (n-r);i++)
+		result /= i;
+	return result;
+}
+
+void optimizeDelete(struct File **disk,const int n,const int r,int expectSize,struct FileList *currentChoice,int *index,int currentSize,struct FileList *bestChoice,int *bestSize){
+	if (r == 1){
+		for (int i = 0;i < n;i++){
+			currentSize += disk[i]->size;
+			currentChoice->disk[*index] = disk[i];
+			(*index)++;
+
+			if (abs(expectSize,currentSize) < abs(expectSize,*bestSize) || *bestSize == 0){
+				*bestSize = currentSize;
+				*bestChoice = *currentChoice;
+			}
+
+			currentSize -= disk[i]->size;
+			(*index)--;
 		}
+		return;
 	}
-	if (system->count == 21){
-		int fileCount,fileSize;
-		printf("Hard drive exceeds its capacity, please enter the number of files to be deleted:");
-		scanf("%d%d",&fileCount,&fileSize);
-		//delete
+	for (int i = r-1;i < n;i++){
+		currentSize += disk[i]->size;
+		currentChoice->disk[*index] = disk[i];
+		(*index)++;
+		optimizeDelete(disk,i,r-1,expectSize,currentChoice,index,currentSize,bestChoice,bestSize);
+		currentSize -= disk[i]->size;
+		(*index)--;
 	}
 }
 
-void query(struct System *system){
+void add(struct FileList *fileList){
+	int i = 0;
+	for (;i < 21;i++){
+		if (fileList->disk[i] == 0){
+			fileList->disk[i] = malloc(sizeof(struct File));
+			printf("Please input file name and file size: ");
+			scanf("%d%d",&fileList->disk[i]->name,&fileList->disk[i]->size);
+			fileList->count++;
+			break;
+		}
+	}
+	if (fileList->count == 21){
+		int fileCount,fileSize;
+		printf("Hard drive exceeds its capacity, please enter the number of files to be deleted: ");
+		scanf("%d%d",&fileCount,&fileSize);
+		struct FileList currentChoice = {.disk = {}, .count = fileCount};
+		struct FileList bestChoice = {.disk = {}, .count = fileCount};
+		int index = 0,bestSize = 0;
+		optimizeDelete(fileList->disk,21,fileCount,fileSize,&currentChoice,&index,0,&bestChoice,&bestSize);
+		for (int i = 0;i < fileCount;i++){
+			if (i == 0)
+				printf("%d",bestChoice.disk[i]->name);
+			else
+				printf(" %d",bestChoice.disk[i]->name);
+		}
+		puts("");
+		for (int i = 0;i < fileList->count;i++){
+			bool allDelete = true;
+			for (int j = 0;j < fileCount;j++){
+				if (bestChoice.disk[j] != 0){
+					allDelete = false;
+					if (bestChoice.disk[j] == fileList->disk[i]){
+						free(fileList->disk[i]);
+						bestChoice.disk[j] = fileList->disk[i] = 0;
+					}
+				}
+			}
+			if (allDelete)
+				break;
+		}
+		fileList->count -= fileCount;
+	}
+}
+
+void query(const struct FileList *fileList){
 	int fileName;
 	printf("Please input the file name: ");
 	scanf("%d",&fileName);
 	for (int i = 0;i < 21;i++){
-		if (system->disk[i] == 0)
+		if (fileList->disk[i] == 0)
 			continue;
-		if (system->disk[i]->name == fileName){
+		if (fileList->disk[i]->name == fileName){
 			puts("YES");
 			return;
 		}
@@ -45,28 +108,31 @@ void query(struct System *system){
 	puts("NO");
 }
 
-void delete(struct System *system){
+void delete(struct FileList *fileList){
 	for (int i = 0;i < 21;i++){
-		free(system->disk[i]);
-		system->disk[i] = 0;
+		if (fileList->disk[i] != 0){
+			free(fileList->disk[i]);
+			fileList->disk[i] = 0;
+		}
 	}
+	fileList->count = 0;
 }
 
 int main(){
-	struct System system = {.disk = {}, .count = 0};
+	struct FileList fileList = {.disk = {}, .count = 0};
 	while (1){
 		int option;
-		printf("Option: ");
+		printf("Options: ");
 		scanf("%d",&option);
 		switch (option){
 			case 1:
-				add(&system);
+				add(&fileList);
 				break;
 			case 2:
-				query(&system);
+				query(&fileList);
 				break;
 			case 3:
-				delete(&system);
+				delete(&fileList);
 				return 0;
 		}
 	}
