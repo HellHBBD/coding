@@ -49,6 +49,7 @@ int compareSong(const Song *A, const Song *B) {
 
 int main() {
 	// Q1
+	cout << "Q1" << endl;
 	musicSystem list;
 	list.insertNode("Yellow", "Coldplay", 2011);
 	list.insertNode("Photograph", "Ed Sheran", 2014);
@@ -59,6 +60,7 @@ int main() {
 
 	cout << "------------------------" << endl;
 	// Q2
+	cout << "Q2" << endl;
 	list.insertNode("Blank space", "Taylor Swift", 2014);
 	list.insertNode("Fix you", "Coldplay", 2011);
 	list.insertNode("Perfect", "Ed Sheran", 2017);
@@ -67,11 +69,13 @@ int main() {
 
 	cout << "------------------------" << endl;
 	// Q3
+	cout << "Q3" << endl;
 	list.deleteNodesInRange(2013, 2015);
 	list.printAllSong();
 
 	cout << "------------------------" << endl;
 	// Q4
+	cout << "Q4" << endl;
 	list.renameSingerInNode("Ed Sheran", "Ed Sheeran");
 	list.printAllSong();
 
@@ -152,7 +156,6 @@ void musicSystem::renameSingerInNode(const string &old_name, const string &new_n
 }
 
 void musicSystem::printAllSong() const {
-	cout << endl;
 	Song *song = head;
 	while (song) { //traversal through whole list
 		cout << song->songTitle << " (" << song->singer << ", " << song->releaseYear << ")" << endl;
@@ -162,7 +165,6 @@ void musicSystem::printAllSong() const {
 }
 
 void musicSystem::reversePrintAllSong() const {
-	cout << endl;
 	Song *song = tail;
 	while (song) { //traversal through whole list
 		cout << song->songTitle << " (" << song->singer << ", " << song->releaseYear << ")" << endl;
