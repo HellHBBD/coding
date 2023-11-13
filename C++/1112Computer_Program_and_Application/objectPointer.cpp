@@ -1,15 +1,16 @@
 #include <iostream>
 using namespace std;
 
-class Count{
+class Count {
 	public:
 		void setX(int);
 		void print();
+
 	private:
 		int x;
 };
 
-int main(){
+int main() {
 	Count counter;
 	Count *counterPtr = &counter;
 	Count &counterRef = counter;
@@ -28,10 +29,10 @@ int main(){
 	return 0;
 }
 
-void Count::setX(int value){
+void Count::setX(int value) {
 	x = value;
 }
 
-void Count::print(){
+void Count::print() {
 	cout << x << endl;
 }

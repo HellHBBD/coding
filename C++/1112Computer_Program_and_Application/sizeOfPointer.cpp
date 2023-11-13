@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int main(){
+int main() {
 	int a = 7;
 	int *aPtr = &a;
 	float b = 5.3;

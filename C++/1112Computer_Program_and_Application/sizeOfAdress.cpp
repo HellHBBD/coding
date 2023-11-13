@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int main(){
+int main() {
 	int b = 3;
 	int *bPtr = &b;
 	void *cPtr;

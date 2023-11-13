@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(){
+int main() {
 	puts("Welcome to NCKU Program Design I");
 	return 0;
 }

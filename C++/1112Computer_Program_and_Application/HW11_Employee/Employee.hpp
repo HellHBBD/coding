@@ -3,32 +3,32 @@
 #ifndef EMPLOYEE_H
 #define EMPLOYEE_H
 
-#include <string> // C++ standard string class
 #include "Date.hpp"
+#include <string> // C++ standard string class
 using namespace std;
 
-class Employee 
-{
+class Employee {
 	public:
-		Employee( const string &, const string &, const string & ,int,int,int);
+		Employee(const string &, const string &, const string &, int, int, int);
 		virtual ~Employee(){};
 
-		void setFirstName( const string & ); // set first name
-		string getFirstName() const; // return first name
+		void setFirstName(const string &); // set first name
+		string getFirstName() const;	   // return first name
 
-		void setLastName( const string & ); // set last name
-		string getLastName() const; // return last name
+		void setLastName(const string &); // set last name
+		string getLastName() const;		  // return last name
 
-		void setSocialSecurityNumber( const string & ); // set SSN
-		string getSocialSecurityNumber() const; // return SSN
+		void setSocialSecurityNumber(const string &); // set SSN
+		string getSocialSecurityNumber() const;		  // return SSN
 
-		void setBirthDate(int month,int day,int year);
+		void setBirthDate(int month, int day, int year);
 		Date getBirthDate() const;
 		// pure virtual function makes Employee abstract base class
 		virtual double earnings() const = 0; // pure virtual
-		virtual void print() const; // virtual
-		static void setCurrentDate(int,int,int);
+		virtual void print() const;			 // virtual
+		static void setCurrentDate(int, int, int);
 		static Date getCurrentDate();
+
 	private:
 		string firstName;
 		string lastName;

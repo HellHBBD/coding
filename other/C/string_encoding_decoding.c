@@ -1,38 +1,38 @@
 #include <stdio.h>
 
-void decoding(){
+void decoding() {
 	int line;
-	scanf("%d%*c",&line);
-	for (int i = 0;i < line;i++){
+	scanf("%d%*c", &line);
+	for (int i = 0; i < line; i++) {
 		char c;
-		while ((c = getchar()) != '\n' && c != EOF){
+		while ((c = getchar()) != '\n' && c != EOF) {
 			int n;
-			scanf("%d",&n);
-			for (int j = 0;j < n;j++)
+			scanf("%d", &n);
+			for (int j = 0; j < n; j++)
 				putchar(c);
 		}
 		puts("");
 	}
 }
 
-void encoding(){
+void encoding() {
 	int line;
-	scanf("%d%*c",&line);
-	for (int i = 0;i < line;i++){
-		char current = getchar(),c;
+	scanf("%d%*c", &line);
+	for (int i = 0; i < line; i++) {
+		char current = getchar(), c;
 		int count = 1;
-		while (1){
+		while (1) {
 			c = getchar();
-			if (c == '\n'){
+			if (c == '\n') {
 				putchar(current);
-				printf("%d",count);
+				printf("%d", count);
 				break;
 			}
 			if (c == current)
 				count++;
-			else{
+			else {
 				putchar(current);
-				printf("%d",count);
+				printf("%d", count);
 				current = c;
 				count = 1;
 			}
@@ -41,11 +41,11 @@ void encoding(){
 	}
 }
 
-int main(){
+int main() {
 	int option;
 	puts("(1)encoding (2)decoding");
-	scanf("%d",&option);
-	switch (option){
+	scanf("%d", &option);
+	switch (option) {
 		case 1:
 			encoding();
 			break;

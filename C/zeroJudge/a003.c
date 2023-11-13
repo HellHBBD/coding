@@ -1,10 +1,10 @@
 #include <stdio.h>
 
-int main(){
-	int m,d;
-	scanf("%d %d",&m,&d);
-	int s = (m*2+d)%3;
-	switch (s){
+int main() {
+	int m, d;
+	scanf("%d %d", &m, &d);
+	int s = (m * 2 + d) % 3;
+	switch (s) {
 		case 0:
 			puts("普通");
 			break;

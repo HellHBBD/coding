@@ -1,12 +1,12 @@
 #include <iostream>
 using namespace std;
 
-void f(const int *xPtr){
+void f(const int *xPtr) {
 	//*xPtr = 100; error: const can't be lvalue
 }
 
-int main(){
-	int x,y,z,x1,y1,z1;
+int main() {
+	int x, y, z, x1, y1, z1;
 
 	const int *xPtr = &x;
 	xPtr = &x1;

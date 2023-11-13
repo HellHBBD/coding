@@ -1,20 +1,20 @@
 #include <iostream>
 using namespace std;
 
-int main(){
-	int a[] = {1,2,3};
+int main() {
+	int a[] = {1, 2, 3};
 	char ch[] = "abc";
-	cout << "a = " << a << endl; //print address
-	cout << "ch = " << ch << endl; //print string
-	cout << "&ch = " << &ch << endl; //print address
-	cout << "(void*)ch = " << (void*)ch << endl; //cast as a void pointer (print address)
-	cout << "*ch = " << *ch << endl; //print ch[0]
+	cout << "a = " << a << endl;				  //print address
+	cout << "ch = " << ch << endl;				  //print string
+	cout << "&ch = " << &ch << endl;			  //print address
+	cout << "(void*)ch = " << (void *)ch << endl; //cast as a void pointer (print address)
+	cout << "*ch = " << *ch << endl;			  //print ch[0]
 
 	cout << endl;
 
 	char *cp = ch;
-	cout << "cp = " << cp << endl; //print string
-	cout << "(void*)cp = " << (void*)cp << endl; //cast as a void pointer (print address)
+	cout << "cp = " << cp << endl;				  //print string
+	cout << "(void*)cp = " << (void *)cp << endl; //cast as a void pointer (print address)
 
 	cout << endl;
 

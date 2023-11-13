@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-class Account{
+class Account {
 	public:
 		Account(double = 0);
 		virtual ~Account();
@@ -14,6 +14,7 @@ class Account{
 		virtual std::string getType() const;
 		virtual void printOption() const = 0;
 		virtual bool choose(int) = 0;
+
 	private:
 		double balance;
 		bool setBalance(double);

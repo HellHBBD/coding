@@ -2,7 +2,7 @@
 #define BASE_H
 #include "header.hpp"
 
-class Base{
+class Base {
 	public:
 		void hello();
 };

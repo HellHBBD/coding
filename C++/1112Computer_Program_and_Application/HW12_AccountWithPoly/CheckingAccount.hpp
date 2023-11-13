@@ -4,9 +4,9 @@
 #include "Account.hpp"
 #include <iostream>
 
-class CheckingAccount: public Account{
+class CheckingAccount: public Account {
 	public:
-		CheckingAccount(double = 0,double = 0);
+		CheckingAccount(double = 0, double = 0);
 		void setFee(double);
 		double getFee() const;
 		bool credit(double) override;
@@ -14,6 +14,7 @@ class CheckingAccount: public Account{
 		std::string getType() const;
 		void printOption() const;
 		bool choose(int);
+
 	private:
 		double fee;
 };

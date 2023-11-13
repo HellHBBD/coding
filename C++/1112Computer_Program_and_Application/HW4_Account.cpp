@@ -1,17 +1,17 @@
 #include <iostream>
 using namespace std;
 
-class Account{
+class Account {
 	public:
-		Account(int); //init
+		Account(int);	  //init
 		void credit(int); //add
-		void debit(int); //minus
+		void debit(int);  //minus
 		int getBalance(); //get
 	private:
 		int accountBalance;
 };
 
-int main(){
+int main() {
 	Account John(100), Jane(50);
 	John.credit(30);
 	John.debit(-15);
@@ -23,24 +23,23 @@ int main(){
 	return 0;
 }
 
-Account::Account(int balance){
+Account::Account(int balance) {
 	if (balance >= 0)
 		accountBalance = balance;
-	else{
+	else {
 		cout << "invalid balance!" << endl;
 		accountBalance = 0;
 	}
 }
 
-void Account::credit(int balance){
+void Account::credit(int balance) {
 	if (balance >= 0)
 		accountBalance += balance;
-	else{
+	else
 		cout << "invalid balance!" << endl;
-	}
 }
 
-void Account::debit(int balance){
+void Account::debit(int balance) {
 	if (balance < 0)
 		cout << "invalid balance!" << endl;
 	else if (balance > accountBalance)
@@ -49,6 +48,6 @@ void Account::debit(int balance){
 		accountBalance -= balance;
 }
 
-int Account::getBalance(){
+int Account::getBalance() {
 	return accountBalance;
 }

@@ -1,19 +1,20 @@
 #include <iostream>
 using namespace std;
 
-class People{
+class People {
 	public:
 		People(int);
 		People();
-		People(const People&);
+		People(const People &);
 		~People();
 		int getAge() const;
+
 	private:
 		int Age;
 };
 
-int main(){
-	People p1(18),p2;
+int main() {
+	People p1(18), p2;
 	cout << "p1:" << p1.getAge() << endl;
 	p2 = p1;
 	cout << "p2:" << p2.getAge() << endl;
@@ -24,26 +25,25 @@ int main(){
 	return 0;
 }
 
-People::People(int age): //construct with parameter
-	Age(age)
-{
+People::People(int age) : //construct with parameter
+						  Age(age) {
 	cout << "construct" << endl;
 }
 
-People::People(){//construct with no parameter
+People::People() { //construct with no parameter
 	Age = 0;
 	cout << "construct" << endl;
 }
 
-People::People(const People &p){
+People::People(const People &p) {
 	cout << "copy construct" << endl;
 	Age = p.Age;
 }
 
-People::~People(){
+People::~People() {
 	cout << "destruct" << endl;
 }
 
-int People::getAge() const{
+int People::getAge() const {
 	return Age;
 }

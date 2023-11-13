@@ -2,7 +2,7 @@
 #define DERIVE_H
 #include "Base.hpp"
 
-class Derive: public Base{
+class Derive: public Base {
 	public:
 		void hello();
 };

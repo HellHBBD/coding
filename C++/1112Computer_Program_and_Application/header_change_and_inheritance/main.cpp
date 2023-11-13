@@ -1,6 +1,6 @@
 #include "derive.hpp"
 
-int main(){
+int main() {
 	Base Alex;
 	Alex.hello();
 	Derive Paul;

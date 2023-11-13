@@ -1,16 +1,17 @@
 #include <iostream>
 using namespace std;
 
-class Number{
+class Number {
 	public:
 		Number();
 		void print();
 		void printc() const;
+
 	private:
 		int x;
 };
 
-int main(){
+int main() {
 	Number a;
 	const Number b;
 	a.print();
@@ -20,14 +21,14 @@ int main(){
 	return 0;
 }
 
-Number::Number(){
+Number::Number() {
 	x = 0;
 }
 
-void Number::print(){
+void Number::print() {
 	cout << x;
 }
 
-void Number::printc() const{
+void Number::printc() const {
 	cout << x;
 }

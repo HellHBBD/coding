@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int main(){
+int main() {
 	int *cp;
 	cp = 0; //null pointer
 	//cp = 1; -> error

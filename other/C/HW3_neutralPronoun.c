@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *strConcat(char *str1,char *str2){
-	char *result = malloc(strlen(str1)+strlen(str2)+1);
-	char *r = result,*p1 = str1,*p2 = str2;
-	for (int i=0;i<strlen(str1);i++){
+char *strConcat(char *str1, char *str2) {
+	char *result = malloc(strlen(str1) + strlen(str2) + 1);
+	char *r = result, *p1 = str1, *p2 = str2;
+	for (int i = 0; i < strlen(str1); i++) {
 		*r = *p1;
 		r++;
 		p1++;
 	}
-	for (int i=0;i<strlen(str2);i++){
+	for (int i = 0; i < strlen(str2); i++) {
 		*r = *p2;
 		r++;
 		p2++;
@@ -19,10 +19,10 @@ char *strConcat(char *str1,char *str2){
 	return result;
 }
 
-char *charConcat(char *str1,char str2){
-	char *result = malloc(strlen(str1)+2);
-	char *r = result,*p1 = str1;
-	for (int i=0;i<strlen(str1);i++){
+char *charConcat(char *str1, char str2) {
+	char *result = malloc(strlen(str1) + 2);
+	char *r = result, *p1 = str1;
+	for (int i = 0; i < strlen(str1); i++) {
 		*r = *p1;
 		r++;
 		p1++;
@@ -32,17 +32,16 @@ char *charConcat(char *str1,char str2){
 	return result;
 }
 
-
-void clear(char *str){
-	for (int i=0;i<strlen(str);i++)
+void clear(char *str) {
+	for (int i = 0; i < strlen(str); i++)
 		*(str++) = '\0';
 }
 
-int main(){
-	char c,*result,*buffer,she[] = "she or ", her[] = "her or ";
+int main() {
+	char c, *result, *buffer, she[] = "she or ", her[] = "her or ";
 	c = getchar();
-	buffer = charConcat(buffer,c);
-	printf("%s",buffer);
+	buffer = charConcat(buffer, c);
+	printf("%s", buffer);
 	clear(buffer);
 	//while (1){
 	//	c = getchar();

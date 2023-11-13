@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-int main(){
-	int a,b,c,prize = 0;
-	scanf("%d-%d-%d",&a,&b,&c);
+int main() {
+	int a, b, c, prize = 0;
+	scanf("%d-%d-%d", &a, &b, &c);
 	if (a == b && b == c)
 		prize += 300;
 	if (a + b < c)
@@ -11,6 +11,6 @@ int main(){
 		prize += 100;
 	if (a < b)
 		prize += 50;
-	printf("%d",prize);
+	printf("%d", prize);
 	return 0;
 }

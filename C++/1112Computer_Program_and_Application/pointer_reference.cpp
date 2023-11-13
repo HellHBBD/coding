@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-int main(){
+int main() {
 	int c = 1;
 	int *cp = &c; //pointer must assign by an address
-	int &cr = c; //reference variable
+	int &cr = c;  //reference variable
 	int &crr = cr;
 	cout << c << " " << cr << " " << crr << endl;
 	cout << &c << " " << &cr << " " << &crr << endl; //reference represent the same address

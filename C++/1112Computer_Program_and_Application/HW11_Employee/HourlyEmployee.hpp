@@ -5,27 +5,26 @@
 
 #include "Employee.hpp" // Employee class definition
 
-class HourlyEmployee : public Employee 
-{
+class HourlyEmployee: public Employee {
 	public:
 		static const int hoursPerWeek = 168; // hours in one week
 
-		HourlyEmployee( const string &, const string &, 
-				const string &, double = 0.0, double = 0.0 ,int = 1,int = 1,int = 1900);
+		HourlyEmployee(const string &, const string &,
+					   const string &, double = 0.0, double = 0.0, int = 1, int = 1, int = 1900);
 
-		void setWage( double ); // set hourly wage
+		void setWage(double);	// set hourly wage
 		double getWage() const; // return hourly wage
 
-		void setHours( double ); // set hours worked
+		void setHours(double);	 // set hours worked
 		double getHours() const; // return hours worked
 
 		// keyword virtual signals intent to override
 		virtual double earnings() const; // calculate earnings
-		virtual void print() const; // print HourlyEmployee object
+		virtual void print() const;		 // print HourlyEmployee object
 	private:
-		double wage; // wage per hour
+		double wage;  // wage per hour
 		double hours; // hours worked for week
-}; // end class HourlyEmployee
+};					  // end class HourlyEmployee
 
 #endif // HOURLY_H
 

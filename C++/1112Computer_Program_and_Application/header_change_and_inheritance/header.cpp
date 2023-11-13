@@ -1,7 +1,7 @@
-#include <iostream>
 #include "header.hpp"
+#include <iostream>
 using namespace std;
 
-void say(){
+void say() {
 	cout << "changing again" << endl;
 }
