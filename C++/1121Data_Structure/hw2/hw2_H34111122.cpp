@@ -15,8 +15,8 @@ struct Song {
 
 class musicSystem {
 	private:
-		struct Song *head;
-		struct Song *tail;
+		Song *head;
+		Song *tail;
 
 	public:
 		musicSystem();
@@ -32,10 +32,8 @@ class musicSystem {
 int compareStrings(const string &A, const string &B) {
 	if (A < B)
 		return -1;
-
 	else if (A == B)
 		return 0;
-
 	else
 		return 1;
 }
@@ -88,7 +86,7 @@ musicSystem::musicSystem() {
 musicSystem::~musicSystem() {
 	if (head == 0)
 		return;
-	struct Song *song = head;
+	Song *song = head;
 	while (song = song->next)
 		delete song->prev;
 	delete tail;
@@ -96,8 +94,8 @@ musicSystem::~musicSystem() {
 }
 
 void musicSystem::appendNode(const string &songTitle, const string &singer, const int &releaseYear) {
-	struct Song *new_song = new struct Song;
-	*new_song = (struct Song){.songTitle = songTitle, .singer = singer, .releaseYear = releaseYear, .next = 0, .prev = tail};
+	Song *new_song = new Song;
+	*new_song = (Song){.songTitle = songTitle, .singer = singer, .releaseYear = releaseYear, .next = 0, .prev = tail};
 	if (head == 0)
 		head = new_song;
 	else
@@ -106,8 +104,8 @@ void musicSystem::appendNode(const string &songTitle, const string &singer, cons
 }
 
 void musicSystem::insertNode(const string &songTitle, const string &singer, const int &releaseYear) {
-	struct Song *new_song = new struct Song, *insert_position = head;
-	*new_song = (struct Song){.songTitle = songTitle, .singer = singer, .releaseYear = releaseYear};
+	Song *new_song = new Song, *insert_position = head;
+	*new_song = (Song){.songTitle = songTitle, .singer = singer, .releaseYear = releaseYear};
 	while (insert_position) {
 		if (compareSong(new_song, insert_position) <= 0)
 			break;
