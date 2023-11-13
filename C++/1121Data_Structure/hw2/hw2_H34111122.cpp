@@ -6,11 +6,11 @@ using std::endl;
 using std::string;
 
 struct Song {
-	string songTitle;
-	string singer;
-	int releaseYear;
-	Song *next;
-	Song *prev;
+		string songTitle;
+		string singer;
+		int releaseYear;
+		Song *next;
+		Song *prev;
 };
 
 class musicSystem {
@@ -30,25 +30,23 @@ class musicSystem {
 };
 
 int compareStrings(const string &A, const string &B) {
-	if (A < B) {
+	if (A < B)
 		return -1;
-	}
-	else if (A == B) {
+
+	else if (A == B)
 		return 0;
-	}
-	else {
+
+	else
 		return 1;
-	}
 }
 
-int compareSong(const Song *A, const Song *B){
-	if (A->releaseYear == B->releaseYear){
-		if (A->singer == B->singer){
-			return compareStrings(A->songTitle,B->songTitle);
-		}
-		return compareStrings(A->singer,B->singer);
+int compareSong(const Song *A, const Song *B) {
+	if (A->releaseYear == B->releaseYear) {
+		if (A->singer == B->singer)
+			return compareStrings(A->songTitle, B->songTitle);
+		return compareStrings(A->singer, B->singer);
 	}
-	return A->releaseYear-B->releaseYear;
+	return A->releaseYear - B->releaseYear;
 }
 
 int main() {
@@ -71,12 +69,12 @@ int main() {
 
 	cout << "------------------------" << endl;
 	// Q3
-	list.deleteNodesInRange(2013,2015);
+	list.deleteNodesInRange(2013, 2015);
 	list.printAllSong();
 
 	cout << "------------------------" << endl;
 	// Q4
-	list.renameSingerInNode("Ed Sheran","Ed Sheeran");
+	list.renameSingerInNode("Ed Sheran", "Ed Sheeran");
 	list.printAllSong();
 
 	return 0;
@@ -87,18 +85,17 @@ musicSystem::musicSystem() {
 	tail = 0;
 }
 
-musicSystem::~musicSystem(){
+musicSystem::~musicSystem() {
 	if (head == 0)
 		return;
 	struct Song *song = head;
-	while (song = song->next){
+	while (song = song->next)
 		delete song->prev;
-	}
 	delete tail;
 	head = tail = 0;
 }
 
-void musicSystem::appendNode(const string &songTitle, const string &singer, const int &releaseYear){
+void musicSystem::appendNode(const string &songTitle, const string &singer, const int &releaseYear) {
 	struct Song *new_song = new struct Song;
 	*new_song = (struct Song){.songTitle = songTitle, .singer = singer, .releaseYear = releaseYear, .next = 0, .prev = tail};
 	if (head == 0)
@@ -108,15 +105,15 @@ void musicSystem::appendNode(const string &songTitle, const string &singer, cons
 	tail = new_song;
 }
 
-void musicSystem::insertNode(const string &songTitle, const string &singer, const int &releaseYear){
+void musicSystem::insertNode(const string &songTitle, const string &singer, const int &releaseYear) {
 	struct Song *new_song = new struct Song, *insert_position = head;
 	*new_song = (struct Song){.songTitle = songTitle, .singer = singer, .releaseYear = releaseYear};
-	while (insert_position){
-		if (compareSong(new_song,insert_position) <= 0)
+	while (insert_position) {
+		if (compareSong(new_song, insert_position) <= 0)
 			break;
 		insert_position = insert_position->next;
 	}
-	if (insert_position == 0){
+	if (insert_position == 0) {
 		appendNode(songTitle, singer, releaseYear);
 		return;
 	}
@@ -129,10 +126,10 @@ void musicSystem::insertNode(const string &songTitle, const string &singer, cons
 		new_song->prev->next = new_song;
 }
 
-void musicSystem::deleteNodesInRange(const int &start, const int &end){
+void musicSystem::deleteNodesInRange(const int &start, const int &end) {
 	Song *delete_song = head;
-	while (delete_song){
-		if (delete_song->releaseYear >= start && delete_song->releaseYear <= end){
+	while (delete_song) {
+		if (delete_song->releaseYear >= start && delete_song->releaseYear <= end) {
 			if (delete_song->next == 0)
 				tail = delete_song->prev;
 			else
@@ -147,29 +144,29 @@ void musicSystem::deleteNodesInRange(const int &start, const int &end){
 	}
 }
 
-void musicSystem::renameSingerInNode(const string &old_name, const string &new_name){
+void musicSystem::renameSingerInNode(const string &old_name, const string &new_name) {
 	Song *rename_song = head;
-	while (rename_song){
+	while (rename_song) {
 		if (rename_song->singer == old_name)
 			rename_song->singer = new_name;
 		rename_song = rename_song->next;
 	}
 }
 
-void musicSystem::printAllSong() const{
+void musicSystem::printAllSong() const {
 	cout << endl;
 	Song *song = head;
-	while (song){
+	while (song) {
 		cout << song->songTitle << " (" << song->singer << ", " << song->releaseYear << ")" << endl;
 		song = song->next;
 	}
 	cout << endl;
 }
 
-void musicSystem::reversePrintAllSong() const{
+void musicSystem::reversePrintAllSong() const {
 	cout << endl;
 	Song *song = tail;
-	while (song){
+	while (song) {
 		cout << song->songTitle << " (" << song->singer << ", " << song->releaseYear << ")" << endl;
 		song = song->prev;
 	}
