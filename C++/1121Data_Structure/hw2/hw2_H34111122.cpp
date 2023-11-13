@@ -39,8 +39,8 @@ int compareStrings(const string &A, const string &B) {
 }
 
 int compareSong(const Song *A, const Song *B) {
-	if (A->releaseYear == B->releaseYear) { //1. releaseYear
-		if (A->singer == B->singer) //2. singer
+	if (A->releaseYear == B->releaseYear) {					   //1. releaseYear
+		if (A->singer == B->singer)							   //2. singer
 			return compareStrings(A->songTitle, B->songTitle); //3. songTitle
 		return compareStrings(A->singer, B->singer);
 	}
@@ -88,7 +88,7 @@ musicSystem::~musicSystem() {
 		return;
 	Song *song = head;
 	while (song = song->next) //move forward
-		delete song->prev; //and delete backward
+		delete song->prev;	  //and delete backward
 	delete tail;
 	head = tail = 0;
 }
