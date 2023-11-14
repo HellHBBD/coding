@@ -80,7 +80,7 @@ musicSystem::~musicSystem() {
 
 ## The **appendNode()** function
 
-1. 把designated initializer強制轉型然後直接賦值，節省行數
+1. 把compound literal強制轉型然後直接賦值，節省行數
 
 2. 把正常情況和整個list是空的情況分開處理
 
