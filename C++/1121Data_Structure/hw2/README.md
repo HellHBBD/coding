@@ -45,9 +45,9 @@ int compareStrings(const string &A, const string &B) {
 
 ```cpp
 int compareSong(const Song *A, const Song *B) {
-    if (A->releaseYear == B->releaseYear) {                       //1. releaseYear
-        if (A->singer == B->singer)                               //2. singer
-            return compareStrings(A->songTitle, B->songTitle); //3. songTitle
+    if (A->releaseYear == B->releaseYear) {                     //1. releaseYear
+        if (A->singer == B->singer)                             //2. singer
+            return compareStrings(A->songTitle, B->songTitle);  //3. songTitle
         return compareStrings(A->singer, B->singer);
     }
     return A->releaseYear - B->releaseYear;
