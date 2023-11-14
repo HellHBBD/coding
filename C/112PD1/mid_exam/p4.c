@@ -1,4 +1,5 @@
 #include <stdio.h>
+#define MAX 100
 
 int pureRecursive(int n) {
 	if (n <= 2)
@@ -20,12 +21,16 @@ int iterative(int n) {
 	return j;
 }
 
-int *temp = malloc(sizeof(int) * 3), max = 2;
-temp[0] = 0;
-temp[1] = 1;
-temp[2] = 2;
+int temp[MAX], record = 7;
 
 int tempRecursive(int n) {
+	if (record & (1 << n))
+		;
+	else {
+		temp[n] = tempRecursive(n - 1) + tempRecursive(n - 2) + tempRecursive(n - 3);
+		record |= (1 << n);
+	}
+	return temp[n];
 }
 
 int main() {
@@ -34,6 +39,12 @@ int main() {
 	puts("");
 	for (int i = 0; i < 10; i++)
 		printf("%d ", iterative(i));
+	puts("");
+	temp[0] = 0;
+	temp[1] = 1;
+	temp[2] = 2;
+	for (int i = 0; i < 10; i++)
+		printf("%d ", tempRecursive(i));
 	puts("");
 	return 0;
 }
