@@ -71,7 +71,6 @@ int main() {
 	// Q3
 	cout << "Q3" << endl;
 	list.deleteNodesInRange(2013, 2015);
-	list.printAllSong();
 
 	cout << "------------------------" << endl;
 	// Q4
@@ -132,6 +131,7 @@ void musicSystem::deleteNodesInRange(const int &start, const int &end) {
 	Song *delete_song = head;
 	while (delete_song) { //traversal through whole list
 		if (delete_song->releaseYear >= start && delete_song->releaseYear <= end) {
+			cout << delete_song->songTitle << " (" << delete_song->singer << ", " << delete_song->releaseYear << ")" << endl;
 			if (delete_song->next == 0) //delete last song
 				tail = delete_song->prev;
 			else //other condition
@@ -144,6 +144,7 @@ void musicSystem::deleteNodesInRange(const int &start, const int &end) {
 		}
 		delete_song = delete_song->next;
 	}
+	cout << endl;
 }
 
 void musicSystem::renameSingerInNode(const string &old_name, const string &new_name) {
