@@ -1,69 +1,134 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#define SWAP(a, b) ((a) ^= (b) ^= (a) ^= (b))
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define SIZE 10
+
+int (*cmp)(const void *, const void *) = 0;
 
 struct heapTree {
 		int length;
 		int *array;
 };
 
-void print(struct heapTree *tree) {
-	/* int height = log2(length)+1; */
-	for (int i = 0; i < tree->length; i++)
-		printf("%3d", tree->array[i]);
+void setCmp(int (*)(const void *, const void *));
+void levelOrder(struct heapTree *);
+void preorder(struct heapTree *, int);
+void inorder(struct heapTree *, int);
+void postorder(struct heapTree *, int);
+void simpleCheck(struct heapTree *, int);
+void completeCheck(struct heapTree *, int);
+void push(struct heapTree *, int);
+int pop(struct heapTree *);
+struct heapTree *gen(int);
+int max(const void *, const void *);
+int min(const void *, const void *);
+void heapSort(int *, int);
+
+int main() {
+	srand(time(0));
+	setCmp(min);
+	struct heapTree tree = (struct heapTree){.array = 0, .length = 0};
+	int array[SIZE];
+	for (int i = 0; i < SIZE; i++)
+		push(&tree, rand() % 100);
+	levelOrder(&tree);
 	puts("");
+	/* preorder(&tree, 1); */
+	/* puts(""); */
+	/* inorder(&tree, 1); */
+	/* puts(""); */
+	/* postorder(&tree, 1); */
+	/* puts(""); */
+	for (int i = 0; i < SIZE; i++) {
+		array[i] = pop(&tree);
+		levelOrder(&tree);
+		puts("");
+	}
+	puts("");
+	for (int i = 0; i < SIZE; i++)
+		printf("%2d ", array[i]);
+	puts("");
+	return 0;
 }
 
-int max(const int a, const int b) {
-	return a - b;
+void setCmp(int (*f)(const void *, const void *)) {
+	cmp = f;
 }
 
-int min(const int a, const int b) {
-	return b - a;
+void levelOrder(struct heapTree *tree) {
+	/* int height = log2(length)+1; */
+	/* if (queue == 0) */
+	/* 	queue = malloc(sizeof(struct Queue)); */
+	for (int i = 0; i < tree->length; i++)
+		printf("%2d ", tree->array[i]);
 }
 
-int swap(int *array, int index1, int index2) {
-	if (max(array[index1 - 1], array[index2 - 1]) <= 0)
-		return -1;
-	int temp = array[index1 - 1];
-	array[index1 - 1] = array[index2 - 1];
-	array[index2 - 1] = temp;
-	return index2;
-}
-
-void initializedCheck(int *array, int index) { //done
-	if (index == 1)
+void preorder(struct heapTree *tree, int index) {
+	if (index > tree->length)
 		return;
-	int noSwap = swap(array, index - 1, index / 2 - 1);
-	if (noSwap)
-		return;
-	initializedCheck(array, index / 2);
+	printf("%2d ", tree->array[index - 1]);
+	preorder(tree, index * 2);
+	preorder(tree, index * 2 + 1);
 }
 
-void uninitializedCheck(int *array, int index) {
-	if (index == 1)
+void inorder(struct heapTree *tree, int index) {
+	if (index > tree->length)
 		return;
-	int noSwap = swap(array, index - 1, index / 2 - 1);
-	if (noSwap)
-		return;
-	/* lookup(array,index/2); */
+	inorder(tree, index * 2);
+	printf("%2d ", tree->array[index - 1]);
+	inorder(tree, index * 2 + 1);
 }
 
-void push(struct heapTree *tree, int element) { //done
+void postorder(struct heapTree *tree, int index) {
+	if (index > tree->length)
+		return;
+	postorder(tree, index * 2);
+	postorder(tree, index * 2 + 1);
+	printf("%2d ", tree->array[index - 1]);
+}
+
+void completeCheck(struct heapTree *tree, int index) {
+	if (index > tree->length)
+		return;
+	int *superNode = &tree->array[index - 1];
+	int *leftSubNode = 2 * index > tree->length ? 0 : &tree->array[2 * index - 1];
+	int *rightSubNode = 2 * index + 1 > tree->length ? 0 : &tree->array[2 * index];
+	if (leftSubNode != 0 && cmp(superNode, leftSubNode) < 0) {
+		SWAP(*superNode, *leftSubNode);
+		completeCheck(tree, 2 * index);
+	}
+	if (rightSubNode != 0 && cmp(superNode, rightSubNode) < 0) {
+		SWAP(*superNode, *rightSubNode);
+		completeCheck(tree, 2 * index + 1);
+	}
+}
+
+void simpleCheck(struct heapTree *tree, int index) {
+	if (index == 1 || cmp(&tree->array[index / 2 - 1], &tree->array[index - 1]) >= 0)
+		return;
+	SWAP(tree->array[index / 2 - 1], tree->array[index - 1]);
+	simpleCheck(tree, index / 2); //check father
+}
+
+void push(struct heapTree *tree, int element) {
 	tree->length++;
 	tree->array = realloc(tree->array, sizeof(int) * tree->length);
 	tree->array[tree->length - 1] = element;
-	initializedCheck(tree->array, tree->length);
+	simpleCheck(tree, tree->length);
 }
 
 int pop(struct heapTree *tree) {
-	int max = tree->array[0];
-	tree->array[0] = tree->array[tree->length - 1];
+	int index = tree->length, max = tree->array[0];
+	tree->array[0] = tree->array[index - 1];
 	tree->length--;
 	tree->array = realloc(tree->array, sizeof(int) * tree->length);
-	uninitializedCheck(tree->array, 1);
+	completeCheck(tree, 1); //check from root
+	return max;
 }
 
-struct heapTree *gen(int length) { //done
+struct heapTree *gen(int length) {
 	struct heapTree *tree = malloc(sizeof(struct heapTree));
 	tree->array = 0;
 	tree->length = 0;
@@ -72,12 +137,18 @@ struct heapTree *gen(int length) { //done
 	return tree;
 }
 
-int main() {
-	struct heapTree *tree = gen(11);
-	print(tree);
-	free(tree->array);
-	tree->array = 0;
-	free(tree);
-	tree = 0;
-	return 0;
+int max(const void *a, const void *b) {
+	return *(int *)a - *(int *)b;
+}
+
+int min(const void *a, const void *b) {
+	return *(int *)b - *(int *)a;
+}
+
+void heapSort(int *array, int size) {
+	struct heapTree tree = (struct heapTree){.array = 0, .length = 0};
+	for (int i = 0; i < size; i++)
+		push(&tree, array[i]);
+	for (int i = 0; i < size; i++)
+		array[i] = pop(&tree);
 }
