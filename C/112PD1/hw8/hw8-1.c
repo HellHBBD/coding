@@ -3,9 +3,9 @@
 
 void init(int ***mp) {
 	for (int i = 65; i <= 95; i++) {
-		mp[i] = malloc(130 * sizeof(int *));
+		mp[i] = malloc(95 * sizeof(int *));
 		for (int j = 65; j <= 95; j++) {
-			mp[i][j] = malloc(130 * sizeof(int));
+			mp[i][j] = malloc(95 * sizeof(int));
 			for (int k = 65; k <= 95; k++)
 				mp[i][j][k] = 1;
 		}
