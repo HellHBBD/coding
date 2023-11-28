@@ -1,8 +1,9 @@
 filename = input('file name: ')
-matrix = []
-nodes = {}
+title = ''
 node = 0
 arc = 0
+matrix = []
+nodes = {}
 
 with open(filename,'r',encoding='utf8') as file:
     for line in file:
@@ -13,6 +14,9 @@ with open(filename,'r',encoding='utf8') as file:
             arc = eval(command[3])
 
             matrix = [[0 for i in range(node)] for j in range(node)]
+
+        elif command[0] == 't':
+            title = command[1]
 
         elif command[0] == 'a': #add nodes
             start = eval(command[1])
@@ -31,7 +35,7 @@ with open(filename,'r',encoding='utf8') as file:
                 else:
                     nodes[start][end].append(weight)
 
-# print(nodes)
+print(f'the network name is {title} with n={node} nodes and m={arc} arcs')
 while True:
     index = eval(input('Please input the source vertex index (0 to exit): '))
     if index == 0:
