@@ -1,5 +1,5 @@
-#ifndef HW8-1_H
-#define HW8-1_H
+#ifndef HW8_1_H
+#define HW8_1_H
 
 void init(int ***mp);
 void modify(int *a, int val);
