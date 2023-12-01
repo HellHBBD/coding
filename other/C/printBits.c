@@ -1,18 +1,17 @@
 #include <stdio.h>
 
-void printBits(size_t const size, void const *const ptr) {
+void printBits(const size_t size, const void *const ptr) {
 	unsigned char *b = (unsigned char *)ptr;
-	unsigned char byte;
-	int i, j;
-	for (i = size - 1; i >= 0; i--) {
-		for (j = 7; j >= 0; j--) {
-			byte = (b[i] >> j) & 1;
-			printf("%u", byte);
-		}
+	for (int byte = size - 1; byte >= 0; byte--) {
+		for (int bit = 7; bit >= 0; bit--)
+			printf("%u", (b[byte] >> bit) & 1);
+		putchar(' ');
 	}
 	puts("");
 }
 
 int main() {
+	int x = 1234567800;
+	printBits(sizeof(x), &x);
 	return 0;
 }
