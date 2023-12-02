@@ -1,4 +1,4 @@
-filename = input('file name: ')
+filename = input('Please input network filename: ')
 title = ''
 node = 0
 arc = 0
@@ -44,6 +44,7 @@ def printList(l):
 print(f'the network name is {title} with n={node} nodes and m={arc} arcs')
 sp = [[-1 if i != j and matrix[i][j] == 0 else matrix[i][j] for j in range(node)] for i in range(node)]
 pred = [[0 for i in range(node)] for j in range(node)]
+
 for i in range(node):
     for j in range(node):
         if i == j:
@@ -56,6 +57,20 @@ for i in range(node):
             if sp[k][j] == -1 or a + b < sp[k][j]:
                 sp[k][j] = a + b
                 pred[k][j] = i+1
-printList(sp)
+# printList(sp)
 # print()
 # printList(pred)
+
+while True:
+    source = eval(input('Please input a source node [input \'0\' to stop]: '))
+    if source == 0:
+        print('-END-')
+        break
+    sink = eval(input('Please input a sink node: '))
+    print(f'{source}-{sink}: [{sp[source-1][sink-1]}]',end=' ')
+    while True:
+        print(f'{sink}<',end='')
+        sink = pred[source-1][sink-1]
+        if sink == 0:
+            print(source)
+            break
