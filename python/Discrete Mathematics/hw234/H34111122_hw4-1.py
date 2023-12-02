@@ -34,7 +34,6 @@ def printList(l):
             print(f'{j:2d}',end=' ')
         print()
 
-print(f'the network name is {title} with n={node} nodes and m={arc} arcs')
 # sp = []
 # for i in range(node):
 #     sublist = []

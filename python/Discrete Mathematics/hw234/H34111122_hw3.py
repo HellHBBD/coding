@@ -1,4 +1,4 @@
-filename = input('file name: ')
+filename = input('Please input the filename of a test network: ')
 title = ''
 node = 0
 arc = 0
