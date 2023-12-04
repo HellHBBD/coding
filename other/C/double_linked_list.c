@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #define T int
-#define MAX 99999999
+#define MAX 9999
 
 struct Node {
 		T value;
@@ -49,6 +49,7 @@ int main() {
 	for (int i = 0; i < MAX; i++)
 		append(list, i);
 	clear(list);
+	free(list);
 	return 0;
 }
 

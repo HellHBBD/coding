@@ -1,0 +1,21 @@
+CC = gcc
+OPT = -c
+DEBUG = -c -g
+HEADER = hw8-1
+MAIN = main1
+OBJ = $(HEADER).o $(MAIN).o
+EXE = a.out
+
+$(EXE): $(OBJ)
+	$(CC) -o $(EXE) $(OBJ)
+
+$(HEADER).o: $(HEADER).c $(HEADER).h
+	$(CC) $(OPT) $(HEADER).h $(HEADER).c
+
+$(MAIN).o: $(MAIN).c $(HEADER).h
+	$(CC) $(OPT) $(MAIN).c
+
+debug:
+	$(CC) $(DEBUG) $(HEADER).h $(HEADER).c
+	$(CC) $(DEBUG) $(MAIN).c
+	$(CC) -o $(EXE) $(OBJ)

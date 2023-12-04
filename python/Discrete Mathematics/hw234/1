@@ -1,0 +1,27 @@
+c random network for shortest paths problem
+c extended DIMACS format
+c
+t rd_100_400_100_l
+c
+c length -> min: 1 max: 10 k1: 0.00 k2: 0.00
+c
+p sp      8      16
+c
+n        16
+c
+a        1        2            7
+a        1        3            5
+a        1        4            1
+a        2        5            4
+a        3        2            7
+a        3        5            9
+a        3        6            9
+a        4        2            5
+a        4        7            16
+a        5        4            4
+a        5        8            1
+a        6        7            1
+a        7        1            2
+a        7        8            4
+a        8        6            2
+a        8        7            4
