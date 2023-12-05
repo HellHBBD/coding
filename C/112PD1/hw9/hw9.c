@@ -17,7 +17,7 @@ union Number {
 		struct byte bitField[4];
 };
 
-void scanBit(unsigned *bits, const size_t size) {
+void scanBit(unsigned *const bits, const size_t size) {
 	char c;
 	int bit = size * 8;
 	while ((c = getchar()) != '\n') {

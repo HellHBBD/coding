@@ -39,11 +39,12 @@ def printList(l):
 #     sublist = []
 #     for j in range(node):
 #         if i != j and matrix[i][j] == 0:
-#             sublist.append(None)
+#             sublist.append(-1)
 #         else:
 #             sublist.append(matrix[i][j])
 #     sp.append(sublist)
 sp = [[-1 if i != j and matrix[i][j] == 0 else matrix[i][j] for j in range(node)] for i in range(node)]
+
 while True:
     complete = True
     for i in range(node):
