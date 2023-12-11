@@ -25,7 +25,7 @@ double powerpower(F function, double x, int n, int m) {
 }
 
 int main(int argc, char **argv) {
-	double x = strtod(argv[1], NULL);
+	double x = atof(argv[1]);
 	int n = atoi(argv[2]);
 	int m = atoi(argv[3]);
 	printf("call powerpower() with power(): %lf\n", powerpower(power, x, n, m));
