@@ -19,12 +19,24 @@ const int length[] = {7, 3, 1, 7, 7, 6, 7, 6, 5, 2, 5, 4};
 
 struct Edge {
 		char name;
+		int length;
 		char vertex1;
 		char vertex2;
-		int length;
 };
 
-#define len(edge) (length[(edge) - 'a'])
+struct Edge edges[] = {
+  {.name = 'a', .length = 7, .vertex1 = 'A', .vertex2 = 'B'},
+  {.name = 'b', .length = 3, .vertex1 = 'A', .vertex2 = 'C'},
+  {.name = 'c', .length = 1, .vertex1 = 'A', .vertex2 = 'D'},
+  {.name = 'd', .length = 7, .vertex1 = 'B', .vertex2 = 'F'},
+  {.name = 'e', .length = 7, .vertex1 = 'C', .vertex2 = 'E'},
+  {.name = 'f', .length = 6, .vertex1 = 'D', .vertex2 = 'E'},
+  {.name = 'g', .length = 7, .vertex1 = 'D', .vertex2 = 'G'},
+  {.name = 'h', .length = 6, .vertex1 = 'E', .vertex2 = 'F'},
+  {.name = 'i', .length = 5, .vertex1 = 'E', .vertex2 = 'G'},
+  {.name = 'j', .length = 2, .vertex1 = 'E', .vertex2 = 'H'},
+  {.name = 'k', .length = 5, .vertex1 = 'F', .vertex2 = 'H'},
+  {.name = 'l', .length = 4, .vertex1 = 'G', .vertex2 = 'H'}};
 
 void swap(struct Edge *e1, struct Edge *e2) {
 	struct Edge temp = *e1;
@@ -32,7 +44,7 @@ void swap(struct Edge *e1, struct Edge *e2) {
 	*e2 = temp;
 }
 
-void quickSort(char *edges, int left, int right, int *step) {
+void quickSort(struct Edge *edges, int left, int right, int *step) {
 	if (left >= right)
 		return;
 	int pivot = right;
@@ -40,18 +52,18 @@ void quickSort(char *edges, int left, int right, int *step) {
 	int r = right;
 
 	while (1) {
-		while (len(edges[++l]) < len(edges[pivot]))
+		while (edges[++l].length < edges[pivot].length)
 			;
-		while (len(edges[--r]) > len(edges[pivot]))
+		while (edges[--r].length > edges[pivot].length)
 			;
 		if (l >= r)
 			break;
-		SWAP(edges[l], edges[r]);
+		swap(&edges[l], &edges[r]);
 	}
-	SWAP(edges[pivot], edges[l]);
+	swap(&edges[pivot], &edges[l]);
 	printf("step %d:", (*step)++);
 	for (int i = 0; i < 12; i++)
-		printf("(%c, %d)", edges[i], len(edges[i]));
+		printf("(%c, %d)", edges[i].name, edges[i].length);
 	puts("");
 	quickSort(edges, left, l - 1, step);
 	quickSort(edges, r + 1, right, step);
@@ -68,18 +80,18 @@ int main() {
 				printf("X ");
 				continue;
 			}
-			printf("%d ", len(matrix[i][j]));
+			printf("%d ", length[matrix[i][j] - 'a']);
 		}
 		puts("");
 	}
 	puts("-------------------------");
 
 	//Q2
-	char edges[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'};
+	// char edges[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'};
 	int step = 0;
 	printf("step %d:", step++);
 	for (int i = 0; i < 12; i++)
-		printf("(%c, %d)", edges[i], len(edges[i]));
+		printf("(%c, %d)", edges[i].name, edges[i].length);
 	puts("");
 	quickSort(edges, 0, 11, &step);
 	puts("-------------------------");
@@ -87,11 +99,24 @@ int main() {
 	//Q3
 	char travered[8] = {0};
 	for (int edgeCount = 0, index = 0; edgeCount < 7; index++) {
-		printf("(%c, %d)", edges[index], len(edges[index]));
-		for (char *c = travered; *c != '\0'; c++)
-			if (*c == edges[index])
+		printf("(%c, %d)", edges[index].name, edges[index].length);
+		char vertex1 = edges[index].vertex1;
+		char vertex2 = edges[index].vertex2;
+		char *c;
+		for (c = travered; *c != '\0'; c++)
+			if (*c == vertex1)
+				goto checkVertex2;
+		*c = vertex1;
+		goto nocycle;
+
+	checkVertex2:
+		for (c = travered; *c != '\0'; c++)
+			if (*c == vertex2)
 				goto cycle;
-		travered[edgeCount] = edges[index];
+		*c = vertex2;
+		goto nocycle;
+
+	nocycle:
 		edgeCount++;
 		puts("");
 		continue;
