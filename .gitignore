@@ -5,6 +5,9 @@ ignore
 *.h.gch
 *.o
 *.pdf
+*.docx
+*.xlsx
+*.pptx
 *.zip
 .ipynb_checkpoints
 test.c
