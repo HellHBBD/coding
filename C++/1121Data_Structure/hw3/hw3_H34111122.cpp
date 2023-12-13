@@ -6,14 +6,15 @@ using std::endl;
 #define SWAP(a, b) (a == b ?: (a) ^= (b) ^= (a) ^= (b))
 
 //initialize
-const char matrix[8][8] = {'X', 'a', 'b', 'c', 'X', 'X', 'X', 'X',
-						   'a', 'X', 'X', 'X', 'X', 'd', 'X', 'X',
-						   'b', 'X', 'X', 'X', 'e', 'X', 'X', 'X',
-						   'c', 'X', 'X', 'X', 'f', 'X', 'g', 'X',
-						   'X', 'X', 'e', 'f', 'X', 'h', 'i', 'j',
-						   'X', 'd', 'X', 'X', 'h', 'X', 'X', 'k',
-						   'X', 'X', 'X', 'g', 'i', 'X', 'X', 'l',
-						   'X', 'X', 'X', 'X', 'j', 'k', 'l', 'X'};
+const char matrix[8][8] = {
+  'X', 'a', 'b', 'c', 'X', 'X', 'X', 'X',
+  'a', 'X', 'X', 'X', 'X', 'd', 'X', 'X',
+  'b', 'X', 'X', 'X', 'e', 'X', 'X', 'X',
+  'c', 'X', 'X', 'X', 'f', 'X', 'g', 'X',
+  'X', 'X', 'e', 'f', 'X', 'h', 'i', 'j',
+  'X', 'd', 'X', 'X', 'h', 'X', 'X', 'k',
+  'X', 'X', 'X', 'g', 'i', 'X', 'X', 'l',
+  'X', 'X', 'X', 'X', 'j', 'k', 'l', 'X'};
 //                    a  b  c  d  e  f  g  h  i  j  k  l
 const int length[] = {7, 3, 1, 7, 7, 6, 7, 6, 5, 2, 5, 4};
 
@@ -58,9 +59,9 @@ void quickSort(struct Edge *edges, int left, int right, int *step) {
 			;
 		if (l >= r)
 			break;
-		swap(&edges[l], &edges[r]);
+		swap(edges + l, edges + r);
 	}
-	swap(&edges[pivot], &edges[l]);
+	swap(edges + pivot, edges + l);
 	printf("step %d:", (*step)++);
 	for (int i = 0; i < 12; i++)
 		printf("(%c, %d)", edges[i].name, edges[i].length);
