@@ -53,9 +53,9 @@ void quickSort(struct Edge *edges, int left, int right, int *step) {
 	int r = right;
 
 	while (1) {
-		while (edges[++l].length < edges[pivot].length)
+		while (l < r && edges[++l].length <= edges[pivot].length)
 			;
-		while (edges[--r].length > edges[pivot].length)
+		while (r > l && edges[--r].length >= edges[pivot].length)
 			;
 		if (l >= r)
 			break;
@@ -88,7 +88,6 @@ int main() {
 	puts("-------------------------");
 
 	//Q2
-	// char edges[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'};
 	int step = 0;
 	printf("step %d:", step++);
 	for (int i = 0; i < 12; i++)
