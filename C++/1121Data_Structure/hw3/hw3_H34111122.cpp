@@ -97,31 +97,35 @@ int main() {
 	puts("-------------------------");
 
 	//Q3
-	char travered[8] = {0};
+	char travered[4][8] = {0};
 	for (int edgeCount = 0, index = 0; edgeCount < 7; index++) {
 		printf("(%c, %d)", edges[index].name, edges[index].length);
 		char vertex1 = edges[index].vertex1;
 		char vertex2 = edges[index].vertex2;
-		char *c;
-		for (c = travered; *c != '\0'; c++)
-			if (*c == vertex1)
-				goto checkVertex2;
-		*c = vertex1;
-		goto nocycle;
+		char *c1, *c2;
+		for (int i = 0; i < 4; i++) {
+			if (travered[i][0] == '\0' && *c1 == '\0' && *c2 == '\0') {
+				travered[i][0] = vertex1;
+				travered[i][1] = vertex2;
+				break;
+			}
+			for (c1 = travered[i]; *c1 != '\0'; c1++)
+				if (*c1 == vertex1)
+					break;
 
-	checkVertex2:
-		for (c = travered; *c != '\0'; c++)
-			if (*c == vertex2)
-				goto cycle;
-		*c = vertex2;
-		goto nocycle;
+			for (c2 = travered[i]; *c2 != '\0'; c2++)
+				if (*c2 == vertex2)
+					break;
+			if (*c1 * *c2) { //c1 and c2 both found
+				puts(" is ignored");
+				break;
+			}
+			*c = vertex1;
+			*c = vertex2;
 
-	nocycle:
-		edgeCount++;
-		puts("");
-		continue;
-	cycle:
-		puts(" is ignored");
+			edgeCount++;
+			puts("");
+		}
 	}
 	return 0;
 }
