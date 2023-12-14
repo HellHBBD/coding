@@ -73,15 +73,15 @@ void quickSort(struct Edge *edges, int left, int right, int *step) {
 	quickSort(edges, r + 1, right, step);
 }
 
-void findVertex(Node *traversed[4], char vertex, int *index, Node **tail) {
+void findVertex(Node *traversed[4], char vertex, int *index, Node *&tail) {
 	for (int i = 0; i < 4; i++) {
 		for (Node *currentNode = traversed[i]; currentNode; currentNode = currentNode->next) {
 			if (currentNode->vertex == vertex) {
 				*index = i;
-				*tail = currentNode;
-				while (*tail)
-					if ((*tail)->next)
-						*tail = (*tail)->next;
+				tail = currentNode;
+				while (tail)
+					if (tail->next)
+						tail = tail->next;
 					else
 						return;
 			}
@@ -94,6 +94,16 @@ void print(Node *list[4]) {
 		for (Node *node = list[i]; node; node = node->next)
 			printf("%c ", node->vertex);
 		puts("0");
+	}
+}
+
+void free(Node *list[4]){
+	for (int i=0;i<4;i++){
+		for(Node *node = list[i];node;){
+			Node *deleteNode = node;
+			node = node->next;
+			delete deleteNode;
+		}
 	}
 }
 
@@ -131,8 +141,8 @@ int main() {
 		printf("(%c, %d)", edges[index].name, edges[index].length);
 		char vertex1 = edges[index].vertex1;
 		char vertex2 = edges[index].vertex2;
-		findVertex(traversed, vertex1, &index1, &tail1);
-		findVertex(traversed, vertex2, &index2, &tail2);
+		findVertex(traversed, vertex1, &index1, tail1);
+		findVertex(traversed, vertex2, &index2, tail2);
 		if (tail1) {
 			if (tail1 == tail2) {
 				puts("is ignore");
@@ -170,5 +180,6 @@ int main() {
 		puts("");
 		edgeCount++;
 	}
+	free(traversed);
 	return 0;
 }
