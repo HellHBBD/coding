@@ -125,9 +125,9 @@ int main() {
 
 	//Q3
 	Node *traversed[4] = {0};
-	int index1 = -1, index2 = -1;
 	for (int edgeCount = 0, index = 0; edgeCount < 7; index++) {
 		Node *tail1 = 0, *tail2 = 0;
+		int index1 = -1, index2 = -1;
 		printf("(%c, %d)", edges[index].name, edges[index].length);
 		char vertex1 = edges[index].vertex1;
 		char vertex2 = edges[index].vertex2;
