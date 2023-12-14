@@ -3,8 +3,6 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-#define SWAP(a, b) (a == b ?: (a) ^= (b) ^= (a) ^= (b))
-
 //initialize
 const char matrix[8][8] = {
   'X', 'a', 'b', 'c', 'X', 'X', 'X', 'X',
@@ -23,6 +21,11 @@ struct Edge {
 		int length;
 		char vertex1;
 		char vertex2;
+};
+
+struct Node {
+		char vertex;
+		Node *next;
 };
 
 struct Edge edges[] = {
@@ -70,6 +73,30 @@ void quickSort(struct Edge *edges, int left, int right, int *step) {
 	quickSort(edges, r + 1, right, step);
 }
 
+void findVertex(Node *traversed[4], char vertex, int *index, Node **tail) {
+	for (int i = 0; i < 4; i++) {
+		for (Node *currentNode = traversed[i]; currentNode; currentNode = currentNode->next) {
+			if (currentNode->vertex == vertex) {
+				*index = i;
+				*tail = currentNode;
+				while (*tail)
+					if ((*tail)->next)
+						*tail = (*tail)->next;
+					else
+						return;
+			}
+		}
+	}
+}
+
+void print(Node *list[4]) {
+	for (int i = 0; i < 4; i++) {
+		for (Node *node = list[i]; node; node = node->next)
+			printf("%c ", node->vertex);
+		puts("0");
+	}
+}
+
 int main() {
 
 	//Q1
@@ -97,35 +124,56 @@ int main() {
 	puts("-------------------------");
 
 	//Q3
-	char travered[4][8] = {0};
+	Node *traversed[4] = {0};
+	int index1 = -1, index2 = -1;
 	for (int edgeCount = 0, index = 0; edgeCount < 7; index++) {
+		Node *tail1 = 0, *tail2 = 0;
 		printf("(%c, %d)", edges[index].name, edges[index].length);
 		char vertex1 = edges[index].vertex1;
 		char vertex2 = edges[index].vertex2;
-		char *c1, *c2;
-		for (int i = 0; i < 4; i++) {
-			if (travered[i][0] == '\0' && *c1 == '\0' && *c2 == '\0') {
-				travered[i][0] = vertex1;
-				travered[i][1] = vertex2;
-				break;
+		if (tail1 == 0)
+			findVertex(traversed, vertex1, &index1, &tail1);
+		if (tail2 == 0)
+			findVertex(traversed, vertex2, &index2, &tail2);
+		if (tail1) {
+			if (index1 == index2) {
+				puts("is ignore");
+				// print(traversed);
+				continue;
 			}
-			for (c1 = travered[i]; *c1 != '\0'; c1++)
-				if (*c1 == vertex1)
-					break;
 
-			for (c2 = travered[i]; *c2 != '\0'; c2++)
-				if (*c2 == vertex2)
-					break;
-			if (*c1 * *c2) { //c1 and c2 both found
-				puts(" is ignored");
-				break;
+			else if (tail2) {
+				tail1->next = traversed[index2];
+				traversed[index2] = 0;
+			} else {
+				Node *new_node = new Node;
+				tail1->next = new_node;
+				new_node->vertex = vertex2;
+				new_node->next = 0;
 			}
-			*c = vertex1;
-			*c = vertex2;
-
-			edgeCount++;
-			puts("");
+		} else {
+			if (tail2) {
+				Node *new_node = new Node;
+				tail2->next = new_node;
+				new_node->vertex = vertex1;
+				new_node->next = 0;
+			} else {
+				for (int i = 0; i < 4; i++) {
+					if (traversed[i] == 0) {
+						traversed[i] = new Node;
+						traversed[i]->vertex = vertex1;
+						traversed[i]->next = new Node;
+						traversed[i]->next->vertex = vertex2;
+						traversed[i]->next->next = 0;
+						break;
+					}
+				}
+			}
 		}
+		puts("");
+		edgeCount++;
+		// print(traversed);
 	}
+
 	return 0;
 }
