@@ -42,10 +42,10 @@ struct Edge edges[] = {
   {.name = 'k', .length = 5, .vertex1 = 'F', .vertex2 = 'H'},
   {.name = 'l', .length = 4, .vertex1 = 'G', .vertex2 = 'H'}};
 
-void swap(struct Edge *e1, struct Edge *e2) {
-	struct Edge temp = *e1;
-	*e1 = *e2;
-	*e2 = temp;
+void swap(struct Edge &e1, struct Edge &e2) {
+	struct Edge temp = e1;
+	e1 = e2;
+	e2 = temp;
 }
 
 void quickSort(struct Edge *edges, int left, int right, int *step) {
@@ -62,9 +62,9 @@ void quickSort(struct Edge *edges, int left, int right, int *step) {
 			;
 		if (l >= r)
 			break;
-		swap(edges + l, edges + r);
+		swap(edges[l],edges[r]);
 	}
-	swap(edges + pivot, edges + l);
+	swap(edges[pivot],edges[l]);
 	printf("step %d:", (*step)++);
 	for (int i = 0; i < 12; i++)
 		printf("(%c, %d)", edges[i].name, edges[i].length);
@@ -131,14 +131,11 @@ int main() {
 		printf("(%c, %d)", edges[index].name, edges[index].length);
 		char vertex1 = edges[index].vertex1;
 		char vertex2 = edges[index].vertex2;
-		if (tail1 == 0)
-			findVertex(traversed, vertex1, &index1, &tail1);
-		if (tail2 == 0)
-			findVertex(traversed, vertex2, &index2, &tail2);
+		findVertex(traversed, vertex1, &index1, &tail1);
+		findVertex(traversed, vertex2, &index2, &tail2);
 		if (tail1) {
-			if (index1 == index2) {
+			if (tail1 == tail2) {
 				puts("is ignore");
-				// print(traversed);
 				continue;
 			}
 
@@ -172,8 +169,6 @@ int main() {
 		}
 		puts("");
 		edgeCount++;
-		// print(traversed);
 	}
-
 	return 0;
 }
