@@ -81,12 +81,12 @@ void findVertex(Node *traversed[4], char vertex, int &index, Node *&tail) {
 					if (tail->next)
 						tail = tail->next;
 					else
-						return; //if found return current index and tail
+						return; //if found assign current index and tail
 			}
 		}
 	}
 	index = -1;
-	tail = 0; //if not found return index -1 and tail 0
+	tail = 0; //if not found assign index -1 and tail 0
 }
 
 void print(Node *list[4]) {
@@ -108,7 +108,6 @@ void free(Node *list[4]) {
 }
 
 int main() {
-
 	//Q1
 	puts("  A B C D E F G H");
 	for (int i = 0; i < 8; i++) {
