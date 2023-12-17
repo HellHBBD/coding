@@ -1,33 +1,35 @@
-#include<stdlib.h>
-#include<stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
 
+unsigned long long int begin, end;
 
-unsigned long long int begin,end;
-
-inline unsigned long long int rdtsc()//32-bit
-{
+//32-bit
+inline unsigned long long int rdtsc() {
 	unsigned long long int x;
-	asm   volatile ("rdtsc" : "=A" (x));
+	__asm__ volatile("rdtsc"
+					 : "=A"(x));
 	return x;
 }
 
-inline unsigned long long int rdtsc_64bits()//64-bit
-{
-   unsigned long long int x;
-   unsigned a, d;
+//64-bit
+inline unsigned long long int rdtsc_64bits() {
+	unsigned long long int x;
+	unsigned a, d;
 
-   __asm__ volatile("rdtsc" : "=a" (a), "=d" (d));
+	__asm__ volatile("rdtsc"
+					 : "=a"(a), "=d"(d));
 
-   return ((unsigned long long)a) | (((unsigned long long)d) << 32);;
+	return ((unsigned long long)a) | (((unsigned long long)d) << 32);
+	;
 }
 
-int main(){
+int main() {
 
 	begin = rdtsc();
 	/*---------------------------
 	your function
 	---------------------------*/
 	end = rdtsc();
-	
-	printf("Execute cycles %llu \n",(end-begin));
+
+	printf("Execute cycles %llu \n", (end - begin));
 }
