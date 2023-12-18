@@ -51,20 +51,20 @@ for i in range(node):
             if sp[k][j] == -1 or a + b < sp[k][j]:
                 sp[k][j] = a + b
                 pred[k][j] = i+1
-printList(sp)
-print()
-printList(pred)
+# printList(sp)
+# print()
+# printList(pred)
 
-# while True:
-#     source = eval(input('Please input a source node [input \'0\' to stop]: '))
-#     if source == 0:
-#         print('-END-')
-#         break
-#     sink = eval(input('Please input a sink node: '))
-#     print(f'{source}-{sink}: [{sp[source-1][sink-1]}]',end=' ')
-#     while True:
-#         print(f'{sink}<',end='')
-#         sink = pred[source-1][sink-1]
-#         if sink == 0:
-#             print(source)
-#             break
+while True:
+    source = eval(input('Please input a source node [input \'0\' to stop]: '))
+    if source == 0:
+        print('-END-')
+        break
+    sink = eval(input('Please input a sink node: '))
+    print(f'{source}-{sink}: [{sp[source-1][sink-1]}]',end=' ')
+    while True:
+        print(f'{sink}<',end='')
+        sink = pred[source-1][sink-1]
+        if sink == 0:
+            print(source)
+            break
