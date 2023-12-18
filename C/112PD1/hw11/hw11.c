@@ -23,7 +23,11 @@ void input(const char *file) {
 		memset(temp, 0, 5);
 		int scanCount = fscanf(init, "%hhu.%hhu.%hhu.%hhu/%hhu", temp, temp + 1, temp + 2, temp + 3, temp + 4);
 		if (scanCount == 4) {
-			temp[4] = (temp[0] ? 8 : 0) + (temp[1] ? 8 : 0) + (temp[2] ? 8 : 0) + (temp[3] ? 8 : 0);
+			/* temp[4] = (temp[0] ? 8 : 0) + (temp[1] ? 8 : 0) + (temp[2] ? 8 : 0) + (temp[3] ? 8 : 0); */
+			temp[4] = temp[3] ? 32 : temp[2] ? 24
+								   : temp[1] ? 16
+								   : temp[0] ? 8
+											 : 0;
 		} else if (scanCount == -1) {
 			printf("%d\n", count);
 			fclose(init);
