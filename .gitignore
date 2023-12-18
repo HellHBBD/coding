@@ -1,5 +1,7 @@
 ignore
+input
 *.in
+output
 *.out
 *.exe
 *.h.gch
@@ -15,3 +17,4 @@ test.h
 test.cpp
 test.hpp
 test.py
+test.txt
