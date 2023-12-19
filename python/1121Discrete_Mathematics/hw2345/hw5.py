@@ -1,3 +1,4 @@
+import pdb
 filename = input('file name: ')
 title = ''
 node = 0
@@ -38,34 +39,45 @@ with open(filename,'r',encoding='utf8') as file:
 print(f'the network name is {title} with n={node} nodes and m={arc} arcs')
 
 while 1:
-    d = [-1] * node
-    pred = [-1] * node
-    queue = []
-    used = []
     s = eval(input('Please input a origin node [input \'0\' to stop]: '))
     if s == 0:
         print('-END-')
         break
-    t = eval(input('Please input a destination node: '))
-    queue.append(s)
+    d = [-1] * node
+    pred = [-1] * node
     d[s-1] = 0
-    while queue != []:
-        tail = queue.pop(0)
-        if tail not in nodes or tail in used:
-        # if tail not in nodes:
-            continue
-        for head,length in nodes[tail].items():
-            if head == s:
-                continue
-            queue.append(head)
-            distance = d[tail-1] + min(length)
-            if d[head-1] == -1 or distance < d[head-1]:
-                d[head-1] = distance
-                pred[head-1] = tail
-        used.append(tail)
-    if d[t-1] == -1:
-        print(f'{s}-{t}: no posible path')
-        continue
+    # for t,length in nodes[s].items():
+    #     d[t-1] = min(length)
+    #     pred[t-1] = s
+    queue = []
+    used = []
+    source = s
+    while True:
+        # if source == 57:
+        #     breakpoint()
+        if source in nodes:
+            for t,length in nodes[source].items():
+                temp = [source,t,min(length)]
+                if temp not in used:
+                    queue.append(temp)
+                    used.append(temp)
+            queue.sort(key = lambda x : x[2])
+        minEdge = queue.pop(0)
+        if d[minEdge[1]-1] == -1 or d[minEdge[1]-1] > d[minEdge[0]-1] + minEdge[2]:
+            d[minEdge[1]-1] = d[minEdge[0]-1] + minEdge[2]
+            pred[minEdge[1]-1] = minEdge[0]
+            complete = False
+        source = minEdge[1]
+        if queue == []:
+            break
+
+    # print(f'd[56]: {d[55]}')
+    # print(f'd[57]: {d[56]}')
+    # print(f'd[84]: {d[83]}')
+    # print(f'd[19]: {d[18]}')
+    # print(f'd[20]: {d[19]}')
+
+    t = eval(input('Please input a destination node: '))
     print(f'{s}-{t}: [{d[t-1]}]',end=' ')
     while True:
         print(f'{t}<',end='')
