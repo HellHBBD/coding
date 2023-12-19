@@ -56,7 +56,7 @@ while True:
                 print(f'{index:4d} -> {outNode:4d} ({weight})')
 
         for arcs in range(1,node+1):
-            if index not in nodes[arcs]:
+            if arcs not in nodes or index not in nodes[arcs]:
                 continue
             for weight in nodes[arcs][index]:
                 print(f'{arcs:4d} -> {index:4d} ({weight})')
