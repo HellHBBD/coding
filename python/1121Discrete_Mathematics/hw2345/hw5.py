@@ -1,5 +1,6 @@
 import pdb
-filename = input('file name: ')
+# filename = input('file name: ')
+filename = input('Please input network filename: ')
 title = ''
 node = 0
 arc = 0
@@ -36,39 +37,35 @@ with open(filename,'r',encoding='utf8') as file:
                 else:
                     nodes[start][end].append(weight)
 
-print(f'the network name is {title} with n={node} nodes and m={arc} arcs')
+# print(f'the network name is {title} with n={node} nodes and m={arc} arcs')
 
 while 1:
-    s = eval(input('Please input a origin node [input \'0\' to stop]: '))
+    # s = eval(input('Please input a origin node [input \'0\' to stop]: '))
+    s = eval(input('Please input a source node [input \'0\' to stop]: '))
     if s == 0:
         print('-END-')
         break
-    d = [-1] * node
-    pred = [-1] * node
+    d = [float('inf')] * node
     d[s-1] = 0
-    # for t,length in nodes[s].items():
-    #     d[t-1] = min(length)
-    #     pred[t-1] = s
-    queue = []
-    used = []
-    source = s
+    pred = [-1] * node
+    heap = {k:d[k-1] for k in range(node)}
+    heap = dict(sorted(heap.items(), key=lambda item: item[1], reverse=True))
+    heap = dict(sorted(heap.items(), key=lambda item: item[1], reverse=True))
+    # minEdge = heap.popitem()
+    # print(minEdge)
+
     while True:
-        # if source == 57:
-        #     breakpoint()
-        if source in nodes:
-            for t,length in nodes[source].items():
-                temp = [source,t,min(length)]
-                if temp not in used:
-                    queue.append(temp)
-                    used.append(temp)
-            queue.sort(key = lambda x : x[2])
-        minEdge = queue.pop(0)
-        if d[minEdge[1]-1] == -1 or d[minEdge[1]-1] > d[minEdge[0]-1] + minEdge[2]:
-            d[minEdge[1]-1] = d[minEdge[0]-1] + minEdge[2]
-            pred[minEdge[1]-1] = minEdge[0]
-            complete = False
-        source = minEdge[1]
-        if queue == []:
+        heap = dict(sorted(heap.items(), key=lambda item: item[1], reverse=True))
+        minEdge = heap.popitem()
+        if minEdge[0] not in nodes:
+            pass
+        else:
+            for t,length in nodes[minEdge[0]].items():
+                if d[t-1] > minEdge[1] + min(length):
+                    d[t-1] = minEdge[1] + min(length)
+                    pred[t-1] = minEdge[0]
+                    heap[t] = d[t-1]
+        if heap == {}:
             break
 
     # print(f'd[56]: {d[55]}')
@@ -77,7 +74,8 @@ while 1:
     # print(f'd[19]: {d[18]}')
     # print(f'd[20]: {d[19]}')
 
-    t = eval(input('Please input a destination node: '))
+    # t = eval(input('Please input a destination node: '))
+    t = eval(input('Please input a sink node: '))
     print(f'{s}-{t}: [{d[t-1]}]',end=' ')
     while True:
         print(f'{t}<',end='')
