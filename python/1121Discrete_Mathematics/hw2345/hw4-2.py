@@ -1,3 +1,4 @@
+import pdb
 filename = input('Please input network filename: ')
 title = ''
 node = 0
@@ -34,26 +35,24 @@ def printList(l):
             print(f'{j:2d}',end=' ')
         print()
 
-sp = [[-1 if i != j and matrix[i][j] == 0 else matrix[i][j] for j in range(node)] for i in range(node)]
+sp = [[float('inf') if i != j and matrix[i][j] == 0 else matrix[i][j] for j in range(node)] for i in range(node)]
 # pred = [[0 for i in range(node)] for j in range(node)]
-pred = [[0] * node for j in range(node)]
+pred = [[-1] * node for j in range(node)]
 # pred = [[0] * node] * node
 
 for i in range(node):
     for j in range(node):
-        if i == j:
-            continue
         for k in range(node):
-            if i == k or sp[i][j] == -1 or sp[k][i] == -1:
-                continue
+            # if k == 97 and j == 19:
+            #     breakpoint()
             a = sp[i][j]
             b = sp[k][i]
-            if sp[k][j] == -1 or a + b < sp[k][j]:
+            if a + b < sp[k][j]:
                 sp[k][j] = a + b
                 pred[k][j] = i+1
-# printList(sp)
+# print(sp[97])
 # print()
-# printList(pred)
+# print()
 
 while True:
     source = eval(input('Please input a source node [input \'0\' to stop]: '))
@@ -65,6 +64,7 @@ while True:
     while True:
         print(f'{sink}<',end='')
         sink = pred[source-1][sink-1]
-        if sink == 0:
+        if sink == -1:
             print(source)
             break
+print(pred[97])

@@ -39,6 +39,7 @@ with open(filename,'r',encoding='utf8') as file:
 
 # print(f'the network name is {title} with n={node} nodes and m={arc} arcs')
 
+pred = []
 while 1:
     # s = eval(input('Please input a origin node [input \'0\' to stop]: '))
     s = eval(input('Please input a source node [input \'0\' to stop]: '))
@@ -51,8 +52,6 @@ while 1:
     heap = {k:d[k-1] for k in range(node)}
     heap = dict(sorted(heap.items(), key=lambda item: item[1], reverse=True))
     heap = dict(sorted(heap.items(), key=lambda item: item[1], reverse=True))
-    # minEdge = heap.popitem()
-    # print(minEdge)
 
     while True:
         heap = dict(sorted(heap.items(), key=lambda item: item[1], reverse=True))
@@ -68,12 +67,6 @@ while 1:
         if heap == {}:
             break
 
-    # print(f'd[56]: {d[55]}')
-    # print(f'd[57]: {d[56]}')
-    # print(f'd[84]: {d[83]}')
-    # print(f'd[19]: {d[18]}')
-    # print(f'd[20]: {d[19]}')
-
     # t = eval(input('Please input a destination node: '))
     t = eval(input('Please input a sink node: '))
     print(f'{s}-{t}: [{d[t-1]}]',end=' ')
@@ -83,3 +76,4 @@ while 1:
         if t == s:
             print(s)
             break
+print(pred)
