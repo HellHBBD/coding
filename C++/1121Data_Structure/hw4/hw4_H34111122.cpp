@@ -1,8 +1,10 @@
 #include <iostream>
+#include <iomanip>
 using std::cin;
 using std::cout;
 using std::endl;
 using std::string;
+using std::setw;
 #define SWAP(a, b) ((a) ^= (b) ^= (a) ^= (b))
 
 class Edge {
@@ -32,8 +34,9 @@ class PriorityQueue {
 };
 
 Edge *list[8] = {0};
-
 int d[8];
+const string name_list[] = {"Amy", "Jim", "Olivia", "Noah", "Ava", "Roger", "Sophie", "Jackson", "Lucas", "Mia"};
+string bucket[26];
 
 void read_file() {
 	FILE *file = fopen("Graph.txt", "r");
@@ -71,7 +74,7 @@ void Dijkstra() {
 		priority_queue.push('A' + i);
 	char source;
 	printf("starting node: ");
-	scanf("%c",&source);
+	scanf("%c", &source);
 	d[source - 'A'] = 0;
 	while (priority_queue.length) {
 		char node = priority_queue.pop();
@@ -98,6 +101,17 @@ void free_list() {
 	}
 }
 
+int H1(string name) {
+	return name[0] % 26;
+}
+
+int H2(string name) {
+	int y = 0;
+	for (int i = 0; i < name.length(); i++)
+		y += name[i];
+	return y % 26;
+}
+
 int main() {
 	read_file();
 	//Q1
@@ -107,11 +121,27 @@ int main() {
 			printf(" %c(%d)", current->endNode, current->length);
 		puts("");
 	}
+	puts("------------------------------------");
 	//Q2
 	for (int i = 0; i < 8; i++)
 		d[i] = -1;
 	Dijkstra();
 	free_list();
+	puts("------------------------------------");
+	//Q3
+	for (int i = 0; i < 10; i++) {
+		int index = H1(name_list[i]);
+		if (bucket[index] != "")
+			index = H2(name_list[i]);
+		bucket[index] = name_list[i];
+	}
+	for (int i = 0; i < 26; i++) {
+		printf(" %2d:", i);
+		cout << setw(7) << bucket[i] << " |";
+		if ((i + 1) % 5 == 0)
+			puts("");
+	}
+	puts("");
 	return 0;
 }
 
