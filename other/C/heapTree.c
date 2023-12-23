@@ -17,8 +17,8 @@ void levelOrder(struct heapTree *);
 void preorder(struct heapTree *, int);
 void inorder(struct heapTree *, int);
 void postorder(struct heapTree *, int);
-void simpleCheck(struct heapTree *, int);
-void completeCheck(struct heapTree *, int);
+void levitate(struct heapTree *, int);
+void sink(struct heapTree *, int);
 void push(struct heapTree *, int);
 int pop(struct heapTree *);
 struct heapTree *gen(int);
@@ -89,7 +89,7 @@ void postorder(struct heapTree *tree, int index) {
 	printf("%2d ", tree->array[index - 1]);
 }
 
-void completeCheck(struct heapTree *tree, int index) {
+void sink(struct heapTree *tree, int index) {
 	if (index > tree->length)
 		return;
 	int *superNode = &tree->array[index - 1];
@@ -97,26 +97,26 @@ void completeCheck(struct heapTree *tree, int index) {
 	int *rightSubNode = 2 * index + 1 > tree->length ? 0 : &tree->array[2 * index];
 	if (leftSubNode != 0 && cmp(superNode, leftSubNode) < 0) {
 		SWAP(*superNode, *leftSubNode);
-		completeCheck(tree, 2 * index);
+		sink(tree, 2 * index);
 	}
 	if (rightSubNode != 0 && cmp(superNode, rightSubNode) < 0) {
 		SWAP(*superNode, *rightSubNode);
-		completeCheck(tree, 2 * index + 1);
+		sink(tree, 2 * index + 1);
 	}
 }
 
-void simpleCheck(struct heapTree *tree, int index) {
+void levitate(struct heapTree *tree, int index) {
 	if (index == 1 || cmp(&tree->array[index / 2 - 1], &tree->array[index - 1]) >= 0)
 		return;
 	SWAP(tree->array[index / 2 - 1], tree->array[index - 1]);
-	simpleCheck(tree, index / 2); //check father
+	levitate(tree, index / 2); //check father
 }
 
 void push(struct heapTree *tree, int element) {
 	tree->length++;
 	tree->array = realloc(tree->array, sizeof(int) * tree->length);
 	tree->array[tree->length - 1] = element;
-	simpleCheck(tree, tree->length);
+	levitate(tree, tree->length);
 }
 
 int pop(struct heapTree *tree) {
@@ -124,7 +124,7 @@ int pop(struct heapTree *tree) {
 	tree->array[0] = tree->array[index - 1];
 	tree->length--;
 	tree->array = realloc(tree->array, sizeof(int) * tree->length);
-	completeCheck(tree, 1); //check from root
+	sink(tree, 1); //check from root
 	return max;
 }
 
