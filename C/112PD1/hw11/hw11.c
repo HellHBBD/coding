@@ -22,14 +22,14 @@ void input() {
 	struct prefix *current = 0;
 	while (1) {
 		memset(temp, 0, 5);
-		int scanCount = fscanf(init, "%hhu.%hhu.%hhu.%hhu/%hhu", temp+3, temp + 2, temp + 1, temp , temp + 4);
+		int scanCount = fscanf(init, "%hhu.%hhu.%hhu.%hhu/%hhu", temp + 3, temp + 2, temp + 1, temp, temp + 4);
 		if (scanCount == 4) {
 			temp[4] = temp[3] ? 32 : temp[2] ? 24
 								   : temp[1] ? 16
 								   : temp[0] ? 8
 											 : 0;
 		} else if (scanCount == -1) {
-			printf("The total number of prefixes in the input file is : %d.\n", count);
+			/* printf("The total number of prefixes in the input file is : %d.\n", count); */
 			fclose(init);
 			return;
 		}
@@ -94,6 +94,45 @@ void segment(int d) {
 }
 
 void prefix_insert() {
+	FILE *insert = fopen(insert_file, "r");
+	unsigned char temp[5];
+	int count = 0;
+	int size = (1 << d);
+	while (1) {
+		memset(temp, 0, 5);
+		unsigned long long begin = rdtsc();
+		int scanCount = fscanf(insert, "%hhu.%hhu.%hhu.%hhu/%hhu", temp + 3, temp + 2, temp + 1, temp, temp + 4);
+		if (scanCount == 4) {
+			temp[4] = temp[3] ? 32 : temp[2] ? 24
+								   : temp[1] ? 16
+								   : temp[0] ? 8
+											 : 0;
+		} else if (scanCount == -1) {
+			fclose(insert);
+			return;
+		}
+		struct prefix *current = malloc(sizeof(struct prefix));
+		memcpy(&current->ip, temp, 4);
+		current->len = temp[4];
+		current->next = 0;
+
+		int i = 0;
+		if (current->len < d)
+			i = size;
+
+		else
+			while (firstBits(group[i]->ip, d) != firstBits(current->ip, d))
+				i++;
+
+		struct prefix *currentPrefix = group[i];
+		while (currentPrefix->next && currentPrefix->next->ip < current->ip)
+			currentPrefix = currentPrefix->next;
+		current->next = currentPrefix->next;
+		currentPrefix->next = current;
+
+		unsigned long long end = rdtsc();
+		printf("%llu\n", (end - begin));
+	}
 }
 
 void prefix_delete() {
@@ -154,26 +193,26 @@ void clear() {
 unsigned long long begin, end;
 
 int main(int arvc, char **argv) {
-	input_file = argv[1];
-	insert_file = argv[2];
-	delete_file = argv[3];
-	search_file = argv[4];
-	d = atoi(argv[5]);
-	/* input_file = "data/routing_table.txt"; */
-	/* insert_file = "data/inserted_prefixes.txt"; */
-	/* delete_file = "data/deleted_prefixes.txt"; */
-	/* search_file = "data/trace_file.txt"; */
-	/* d = 8; */
-	/* begin = rdtsc(); */
+	/* input_file = argv[1]; */
+	/* insert_file = argv[2]; */
+	/* delete_file = argv[3]; */
+	/* search_file = argv[4]; */
+	/* d = atoi(argv[5]); */
+	input_file = "data/routing_table.txt";
+	insert_file = "data/inserted_prefixes.txt";
+	delete_file = "data/deleted_prefixes.txt";
+	search_file = "data/trace_file.txt";
+	d = 8;
+
 	input();
-	/* end = rdtsc(); */
-	/* printf("Execute cycles %llu \n", (end - begin)); */
 
 	/* for (int i = 0; i <= 32; i++) */
 	/* 	length_distribution(i); */
 
 	segment(d);
-	print();
+	/* print(); */
+
+	prefix_insert();
 
 	clear();
 	return 0;
