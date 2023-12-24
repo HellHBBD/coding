@@ -110,28 +110,37 @@ void prefix_delete() {
 void search() {
 }
 
-/* | 00001001 | ---> | 9.1.0.0 | */
+/* void print() { */
+/* 	int size = (1 << d); */
+/* 	for (int i = 0; i < size; i++) { */
+/* 		printf("| "); */
+/* 		for (int j = 0; j < d; j++) */
+/* 			printf("%d", group[i]->ip >> (31 - j) & 1); */
+/* 		printf(" |"); */
+/* 		for (struct prefix *printNode = group[i]->next; printNode; printNode = printNode->next){ */
+/* 			printf(" ---> | %d.%d.%d.%d |", printNode->ip >> 24 & 255, printNode->ip >> 16 & 255, printNode->ip >> 8 & 255, printNode->ip & 255); */
+/* 			#<{(| unsigned char *bytes = (unsigned char *)printNode->ip; |)}># */
+/* 			#<{(| printf(" ---> | %d.%d.%d.%d |", bytes[0], bytes[1], bytes[2], bytes[3]); |)}># */
+/* 		} */
+/* 		puts(""); */
+/* 	} */
+/* 	puts("--------special group--------"); */
+/* 	for (struct prefix *printNode = group[size]->next; printNode; printNode = printNode->next){ */
+/* 		printf("%d.%d.%d.%d\n", printNode->ip >> 24 & 255, printNode->ip >> 16 & 255, printNode->ip >> 8 & 255, printNode->ip & 255); */
+/* 		#<{(| unsigned char *bytes = (unsigned char *)printNode->ip; |)}># */
+/* 		#<{(| printf("%d.%d.%d.%d\n", bytes[0], bytes[1], bytes[2], bytes[3]); |)}># */
+/* 	} */
+/* 	puts("-----------------------------"); */
+/* } */
+
 void print() {
 	int size = (1 << d);
 	for (int i = 0; i < size; i++) {
-		printf("| ");
-		for (int j = 0; j < d; j++)
-			printf("%d", group[i]->ip >> (31 - j) & 1);
-		printf(" |");
-		for (struct prefix *printNode = group[i]->next; printNode; printNode = printNode->next){
-			printf(" ---> | %d.%d.%d.%d |", printNode->ip >> 24 & 255, printNode->ip >> 16 & 255, printNode->ip >> 8 & 255, printNode->ip & 255);
-			/* unsigned char *bytes = (unsigned char *)printNode->ip; */
-			/* printf(" ---> | %d.%d.%d.%d |", bytes[0], bytes[1], bytes[2], bytes[3]); */
-		}
-		puts("");
+		int count = 0;
+		for (struct prefix *printNode = group[i]->next; printNode; printNode = printNode->next)
+			count++;
+		printf("The number of prefixes in group %d = %d.\n", i, count);
 	}
-	puts("--------special group--------");
-	for (struct prefix *printNode = group[size]; printNode; printNode = printNode->next){
-		printf("%d.%d.%d.%d\n", printNode->ip >> 24 & 255, printNode->ip >> 16 & 255, printNode->ip >> 8 & 255, printNode->ip & 255);
-		/* unsigned char *bytes = (unsigned char *)printNode->ip; */
-		/* printf("%d.%d.%d.%d\n", bytes[0], bytes[1], bytes[2], bytes[3]); */
-	}
-	puts("-----------------------------");
 }
 
 void clear() {
@@ -141,7 +150,7 @@ void clear() {
 	}
 	head = 0;
 	int size = (1 << d);
-	for (int i = 0; i < size+1 && group; i++) {
+	for (int i = 0; i < size + 1 && group; i++) {
 		for (struct prefix *deleteNode = group[i]; deleteNode; deleteNode = group[i]) {
 			group[i] = group[i]->next;
 			free(deleteNode);
@@ -162,7 +171,7 @@ int main(int arvc, char **argv) {
 	insert_file = "inserted_prefixes.txt";
 	delete_file = "deleted_prefixes.txt";
 	search_file = "trace_file.txt";
-	d = 24;
+	d = 8;
 	/* begin = rdtsc(); */
 	input();
 	/* end = rdtsc(); */
