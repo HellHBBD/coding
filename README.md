@@ -1,22 +1,4 @@
-## DM course video
-
-- [DM2301 Chap01](https://reurl.cc/p52Wyl)
-
-- [DM2301 Chap02](https://reurl.cc/5OQyGq)
-
-- [DM2201 Chap02](https://reurl.cc/blgjk3)
-
-- [DM2101 Chap02](https://reurl.cc/Rygljg)
-
-- [DM2301 Chap04](https://reurl.cc/5OQy5q)
-
-- [DM2201 Chap04](https://reurl.cc/edg43Q)
-
-- [DM2101 Chap04](https://reurl.cc/x62jQZ)
-
-- [DM2002 Chap04](https://reurl.cc/dmgjWy)
-  
-  ## "hark link" commands
+## "hark link" commands
 
 - Windows
   
