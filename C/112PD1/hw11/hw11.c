@@ -14,6 +14,7 @@ struct prefix *head = 0;
 struct prefix **group = 0;
 int d = 0;
 char *input_file, *insert_file, *delete_file, *search_file;
+unsigned long long begin, end;
 
 void input() {
 	FILE *init = fopen(input_file, "r");
@@ -100,7 +101,7 @@ void prefix_insert() {
 	int size = (1 << d);
 	while (1) {
 		memset(temp, 0, 5);
-		unsigned long long begin = rdtsc();
+		begin = rdtsc();
 		int scanCount = fscanf(insert, "%hhu.%hhu.%hhu.%hhu/%hhu", temp + 3, temp + 2, temp + 1, temp, temp + 4);
 		if (scanCount == 4) {
 			temp[4] = temp[3] ? 32 : temp[2] ? 24
@@ -130,15 +131,95 @@ void prefix_insert() {
 		current->next = currentPrefix->next;
 		currentPrefix->next = current;
 
-		unsigned long long end = rdtsc();
-		printf("%llu\n", (end - begin));
+		end = rdtsc();
+		/* printf("%llu\n", (end - begin)); */
 	}
 }
 
 void prefix_delete() {
+	FILE *delete = fopen(delete_file, "r");
+	unsigned char temp[5];
+	int count = 0;
+	int size = (1 << d);
+	while (1) {
+		count++;
+		memset(temp, 0, 5);
+		begin = rdtsc();
+		int scanCount = fscanf(delete, "%hhu.%hhu.%hhu.%hhu/%hhu", temp + 3, temp + 2, temp + 1, temp, temp + 4);
+		if (scanCount == 4) {
+			temp[4] = temp[3] ? 32 : temp[2] ? 24
+								   : temp[1] ? 16
+								   : temp[0] ? 8
+											 : 0;
+		} else if (scanCount == -1) {
+			fclose(delete);
+			return;
+		}
+		if (count == 146)
+			count = 513;
+		unsigned ip;
+		memcpy(&ip, temp, 4);
+		unsigned char len = temp[4];
+		int i = 0;
+		if (len < d)
+			i = size;
+		else
+			while (firstBits(group[i]->ip, d) != firstBits(ip, d))
+				i++;
+
+		struct prefix *previous;
+		struct prefix *current = group[i]->next;
+		while (current && current->ip != ip) {
+			previous = current;
+			current = current->next;
+		}
+		previous->next = current->next;
+		free(current);
+		current = 0;
+
+		end = rdtsc();
+		/* printf("%llu\n", (end - begin)); */
+	}
 }
 
 void search() {
+	FILE *search = fopen(search_file, "r");
+	unsigned char temp[5];
+	int size = (1 << d);
+	while (1) {
+		memset(temp, 0, 5);
+		begin = rdtsc();
+		int scanCount = fscanf(search, "%hhu.%hhu.%hhu.%hhu/%hhu", temp + 3, temp + 2, temp + 1, temp, temp + 4);
+		if (scanCount == 4) {
+			temp[4] = temp[3] ? 32 : temp[2] ? 24
+								   : temp[1] ? 16
+								   : temp[0] ? 8
+											 : 0;
+		} else if (scanCount == -1) {
+			fclose(search);
+			return;
+		}
+		unsigned ip;
+		memcpy(&ip, temp, 4);
+		unsigned char len = temp[4];
+		int i = 0;
+		if (len < d)
+			i = size;
+		else
+			while (firstBits(group[i]->ip, d) != firstBits(ip, d))
+				i++;
+
+		struct prefix *current = group[i]->next;
+		while (current && current->ip != ip)
+			current = current->next;
+		/* if (current) */
+		/* 	puts("successful"); */
+		/* else */
+		/* 	puts("failed"); */
+
+		end = rdtsc();
+		printf("%llu\n", (end - begin));
+	}
 }
 
 /* void print() { */
@@ -183,14 +264,13 @@ void clear() {
 	int size = (1 << d);
 	for (int i = 0; i < size + 1 && group; i++) {
 		for (struct prefix *deleteNode = group[i]; deleteNode; deleteNode = group[i]) {
+			/* printf("%d.%d.%d.%d/%d\n", deleteNode->ip >> 24 & 255, deleteNode->ip >> 16 & 255, deleteNode->ip >> 8 & 255, deleteNode->ip & 255, deleteNode->len); */
 			group[i] = group[i]->next;
 			free(deleteNode);
 		}
 	}
 	free(group);
 }
-
-unsigned long long begin, end;
 
 int main(int arvc, char **argv) {
 	/* input_file = argv[1]; */
@@ -213,6 +293,9 @@ int main(int arvc, char **argv) {
 	/* print(); */
 
 	prefix_insert();
+	/* print(); */
+	/* prefix_delete(); */
+	search();
 
 	clear();
 	return 0;
