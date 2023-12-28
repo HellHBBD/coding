@@ -13,9 +13,9 @@ int main() {
 #define TEST(condition, ...) ((condition) ? printf("Pass test: %s\n", #condition) : printf(__VA_ARGS__))
 	TEST(3 < 4, "not pass at line %d\n", __LINE__);
 	TEST(3 > 4, "not pass at line %d\n", __LINE__);
-#if defined(WIN32)
+#if defined(_WIN32)
 	puts("System: Windows");
-#elif defined(LINUX)
+#elif defined(__linux__)
 	puts("System: Linux");
 #endif
 /* #if 3<4 */
