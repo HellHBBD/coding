@@ -1,23 +1,21 @@
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 using std::cin;
 using std::cout;
 using std::endl;
-using std::string;
 using std::setw;
+using std::string;
 #define SWAP(a, b) ((a) ^= (b) ^= (a) ^= (b))
 
 class Edge {
 	public:
-		char name;
 		char endNode;
 		int length;
 		Edge *next;
 
-		Edge(char endNode, int length, char name) {
+		Edge(char endNode, int length) {
 			this->endNode = endNode;
 			this->length = length;
-			this->name = name;
 			next = 0;
 		}
 };
@@ -42,14 +40,14 @@ void read_file() {
 	FILE *file = fopen("Graph.txt", "r");
 	char start, end, name;
 	int length;
-	while (fscanf(file, "%*d, %*d, '%c', '%c', %d, '%c'", &start, &end, &length, &name) != EOF) {
+	while (fscanf(file, "%*d, %*d, '%c', '%c', %d, '%*c'", &start, &end, &length) != EOF) {
 		Edge *current = list[start - 'A'];
 		if (current) {
 			for (; current->next && current->next->endNode < end; current = current->next)
 				;
-			current->next = new Edge(end, length, name);
+			current->next = new Edge(end, length);
 		} else {
-			list[start - 'A'] = new Edge(end, length, name);
+			list[start - 'A'] = new Edge(end, length);
 		}
 	}
 	fclose(file);
@@ -73,8 +71,9 @@ void Dijkstra() {
 	for (int i = 0; i < 8; i++)
 		priority_queue.push('A' + i);
 	char source;
-	printf("starting node: ");
-	scanf("%c", &source);
+	// printf("starting node: ");
+	// scanf("%c", &source);
+	source = 'A';
 	d[source - 'A'] = 0;
 	while (priority_queue.length) {
 		char node = priority_queue.pop();
