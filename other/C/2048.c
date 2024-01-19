@@ -1,39 +1,62 @@
 #include <stdio.h>
-#include <string.h>
-#define KEY_UP 65
-#define KEY_DOWN 66
-#define KEY_RIGHT 67
-#define KEY_LEFT 68
-#define ESC 0
+#include <stdlib.h>
+#include <unistd.h>
 
-int main() {
-	/* for (int i = 0; i < 4; i++) { */
-	while (1) {
-		char s[8] = {0};
-		scanf("%s", s);
+#define SIZE 4
+#define CLEAR() printf("\033[2J") //clear screen
+#define SAVE() printf("\033[2s")  //save cursor position
+#define SET(x, y) printf("\033[%d;%dH", x, y)
 
-		/* for (int j = 0; j < strlen(s); j++) */
-		/* 	printf("%d ", s[j]); */
-		/* puts(""); */
+int score = 0;
+int array[SIZE][SIZE] = {0};
 
-		switch (s[2]) {
-			case KEY_UP:
-				puts("up");
-				break;
-			case KEY_DOWN:
-				puts("down");
-				break;
-			case KEY_LEFT:
-				puts("left");
-				break;
-			case KEY_RIGHT:
-				puts("right");
-				break;
-			case ESC:
-				puts("esc");
-				goto exit;
+char getCommand()
+{
+		char command = getchar();
+		char c;
+		while ((c = getchar()) != '\n')
+				;
+		return command;
+}
+
+void print()
+{
+		CLEAR();
+		SET(0, 0);
+		printf("Score: %d\n", score);
+		puts("|-----|-----|-----|-----|");
+		for (int i = 0; i < SIZE; i++) {
+				printf("|");
+				for (int j = 0; j < SIZE; j++)
+						if (array[i][j] == 0)
+								printf("     |");
+						else
+								printf("%5d|", array[i][j]);
+				puts("");
+				puts("|-----|-----|-----|-----|");
 		}
-	}
-exit:
-	return 0;
+		printf("command: ");
+}
+
+int main()
+{
+		CLEAR();
+		while (1) {
+				print();
+				char command = getCommand();
+				switch (command) {
+				case 'w':
+						break;
+				case 'a':
+						break;
+				case 's':
+						break;
+				case 'd':
+						break;
+				case 'q':
+						CLEAR();
+						SET(0, 0);
+						return 0;
+				}
+		}
 }
