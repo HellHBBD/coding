@@ -7,8 +7,9 @@
 #include <string> // C++ standard string class
 using namespace std;
 
-class Employee {
-	public:
+class Employee
+{
+		public:
 		Employee(const string &, const string &, const string &, int, int, int);
 		virtual ~Employee(){};
 
@@ -29,7 +30,7 @@ class Employee {
 		static void setCurrentDate(int, int, int);
 		static Date getCurrentDate();
 
-	private:
+		private:
 		string firstName;
 		string lastName;
 		string socialSecurityNumber;

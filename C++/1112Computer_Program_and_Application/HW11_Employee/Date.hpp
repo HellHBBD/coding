@@ -4,11 +4,12 @@
 #define DATE_H
 using namespace std;
 
-class Date {
+class Date
+{
 		friend ostream &operator<<(ostream &, const Date &);
 		friend bool operator==(const Date &, const Date &);
 
-	public:
+		public:
 		Date(int m = 1, int d = 1, int y = 1900); // default constructor
 		void setDate(int, int, int);			  // set month, day, year
 		Date &operator++();						  // prefix increment operator
@@ -20,7 +21,7 @@ class Date {
 		int getDay() const;
 		int getYear() const;
 
-	private:
+		private:
 		int month;
 		int day;
 		int year;

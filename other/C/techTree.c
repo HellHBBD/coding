@@ -6,21 +6,25 @@ struct techTree {
 		struct techTree **next;
 };
 
-int read_line(char *string) {
-	int length = 0;
-	string = 0;
+int read_line(char *string)
+{
+		int length = 0;
+		string = 0;
 }
 
-void create(struct techTree *start) {
-	char c;
-	int length = 0;
-	while (1)
-		c = getchar();
+void create(struct techTree *start)
+{
+		char c;
+		int length = 0;
+		while (1)
+				c = getchar();
 }
 
-void print(struct techTree *start) {
+void print(struct techTree *start)
+{
 }
 
-int main() {
-	return 0;
+int main()
+{
+		return 0;
 }

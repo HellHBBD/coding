@@ -8,31 +8,36 @@ using namespace std;
 BasePlusCommissionEmployee::BasePlusCommissionEmployee(
   const string &first, const string &last, const string &ssn,
   double sales, double rate, double salary, int month, int day, int year)
-	: CommissionEmployee(first, last, ssn, sales, rate, month, day, year) {
-	setBaseSalary(salary); // validate and store base salary
+	: CommissionEmployee(first, last, ssn, sales, rate, month, day, year)
+{
+		setBaseSalary(salary); // validate and store base salary
 } // end BasePlusCommissionEmployee constructor
 
 // set base salary
-void BasePlusCommissionEmployee::setBaseSalary(double salary) {
-	baseSalary = ((salary < 0.0) ? 0.0 : salary);
+void BasePlusCommissionEmployee::setBaseSalary(double salary)
+{
+		baseSalary = ((salary < 0.0) ? 0.0 : salary);
 } // end function setBaseSalary
 
 // return base salary
-double BasePlusCommissionEmployee::getBaseSalary() const {
-	return baseSalary;
+double BasePlusCommissionEmployee::getBaseSalary() const
+{
+		return baseSalary;
 } // end function getBaseSalary
 
 // calculate earnings;
 // override virtual function earnings in CommissionEmployee
-double BasePlusCommissionEmployee::earnings() const {
-	return getBaseSalary() + CommissionEmployee::earnings();
+double BasePlusCommissionEmployee::earnings() const
+{
+		return getBaseSalary() + CommissionEmployee::earnings();
 } // end function earnings
 
 // print BasePlusCommissionEmployee's information
-void BasePlusCommissionEmployee::print() const {
-	cout << "base-salaried ";
-	CommissionEmployee::print(); // code reuse
-	cout << "; base salary: " << getBaseSalary();
+void BasePlusCommissionEmployee::print() const
+{
+		cout << "base-salaried ";
+		CommissionEmployee::print(); // code reuse
+		cout << "; base salary: " << getBaseSalary();
 } // end function print
 
 /**************************************************************************

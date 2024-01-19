@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 
-void say() {
-	cout << "changing again" << endl;
+void say()
+{
+		cout << "changing again" << endl;
 }

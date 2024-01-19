@@ -1,5 +1,6 @@
 #include "Base.hpp"
 
-void Base::hello() {
-	say();
+void Base::hello()
+{
+		say();
 }

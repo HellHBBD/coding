@@ -1,29 +1,34 @@
 #include <iostream>
 using namespace std;
 
-class Count {
+class Count
+{
 		friend void setX(Count &, int); //not member function
-	public:
+		public:
 		Count()
-			: x(0) {
+			: x(0)
+		{
 		}
 
-		void print() const {
-			cout << x << endl;
+		void print() const
+		{
+				cout << x << endl;
 		}
 
-	private:
+		private:
 		int x;
 };
 
-void setX(Count &self, int x) {
-	self.x = x;
+void setX(Count &self, int x)
+{
+		self.x = x;
 }
 
-int main() {
-	Count c;
-	c.print();
-	setX(c, 100);
-	c.print();
-	return 0;
+int main()
+{
+		Count c;
+		c.print();
+		setX(c, 100);
+		c.print();
+		return 0;
 }

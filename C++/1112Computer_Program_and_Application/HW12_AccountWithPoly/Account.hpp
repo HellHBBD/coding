@@ -3,8 +3,9 @@
 
 #include <iostream>
 
-class Account {
-	public:
+class Account
+{
+		public:
 		Account(double = 0);
 		virtual ~Account();
 		double getBalance() const;
@@ -15,7 +16,7 @@ class Account {
 		virtual void printOption() const = 0;
 		virtual bool choose(int) = 0;
 
-	private:
+		private:
 		double balance;
 		bool setBalance(double);
 };

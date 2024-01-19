@@ -5,8 +5,9 @@
 
 #include "Employee.hpp" // Employee class definition
 
-class SalariedEmployee: public Employee {
-	public:
+class SalariedEmployee: public Employee
+{
+		public:
 		SalariedEmployee(const string &, const string &,
 						 const string &, double = 0.0, int = 1, int = 1, int = 1900);
 
@@ -16,7 +17,7 @@ class SalariedEmployee: public Employee {
 		// keyword virtual signals intent to override
 		virtual double earnings() const; // calculate earnings
 		virtual void print() const;		 // print SalariedEmployee object
-	private:
+		private:
 		double weeklySalary; // salary per week
 };							 // end class SalariedEmployee
 

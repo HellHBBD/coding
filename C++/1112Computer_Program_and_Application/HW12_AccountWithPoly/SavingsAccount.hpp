@@ -4,8 +4,9 @@
 #include "Account.hpp"
 #include <iostream>
 
-class SavingsAccount: public Account {
-	public:
+class SavingsAccount: public Account
+{
+		public:
 		SavingsAccount(double = 0, double = 0);
 		bool setInterestRate(double);
 		double getInterestRate() const;
@@ -14,7 +15,7 @@ class SavingsAccount: public Account {
 		void printOption() const override;
 		bool choose(int) override;
 
-	private:
+		private:
 		double interestRate;
 };
 

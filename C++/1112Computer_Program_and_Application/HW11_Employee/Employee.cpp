@@ -8,61 +8,73 @@ using namespace std;
 // constructor
 Employee::Employee(const string &first, const string &last,
 				   const string &ssn, int month, int day, int year)
-	: firstName(first), lastName(last), socialSecurityNumber(ssn), birthDate(month, day, year) {
-	// empty body
+	: firstName(first), lastName(last), socialSecurityNumber(ssn), birthDate(month, day, year)
+{
+		// empty body
 } // end Employee constructor
 
 // set first name
-void Employee::setFirstName(const string &first) {
-	firstName = first;
+void Employee::setFirstName(const string &first)
+{
+		firstName = first;
 } // end function setFirstName
 
 // return first name
-string Employee::getFirstName() const {
-	return firstName;
+string Employee::getFirstName() const
+{
+		return firstName;
 } // end function getFirstName
 
 // set last name
-void Employee::setLastName(const string &last) {
-	lastName = last;
+void Employee::setLastName(const string &last)
+{
+		lastName = last;
 } // end function setLastName
 
 // return last name
-string Employee::getLastName() const {
-	return lastName;
+string Employee::getLastName() const
+{
+		return lastName;
 } // end function getLastName
 
 // set social security number
-void Employee::setSocialSecurityNumber(const string &ssn) {
-	socialSecurityNumber = ssn; // should validate
+void Employee::setSocialSecurityNumber(const string &ssn)
+{
+		socialSecurityNumber = ssn; // should validate
 } // end function setSocialSecurityNumber
 
 // return social security number
-string Employee::getSocialSecurityNumber() const {
-	return socialSecurityNumber;
+string Employee::getSocialSecurityNumber() const
+{
+		return socialSecurityNumber;
 } // end function getSocialSecurityNumber
 
-void Employee::setBirthDate(int month, int day, int year) {
-	birthDate.setDate(month, day, year);
+void Employee::setBirthDate(int month, int day, int year)
+{
+		birthDate.setDate(month, day, year);
 }
 
-Date Employee::getBirthDate() const {
-	return birthDate;
+Date Employee::getBirthDate() const
+{
+		return birthDate;
 }
 
 // print Employee's information (virtual, but not pure virtual)
-void Employee::print() const {
-	cout << getFirstName() << ' ' << getLastName()
-		 << "\nsocial security number: " << getSocialSecurityNumber() << endl;
-	cout << "Birthday: " << birthDate;
+void Employee::print() const
+{
+		cout << getFirstName() << ' ' << getLastName()
+			 << "\nsocial security number: " << getSocialSecurityNumber() << endl;
+		cout << "Birthday: " << birthDate;
 } // end function print
 
-void Employee::setCurrentDate(int month, int day, int year) {
-	Employee::currentDate.setDate(month, day, year);
+void Employee::setCurrentDate(int month, int day, int year)
+{
+		Employee::currentDate.setDate(month, day, year);
 }
 
-Date Employee::getCurrentDate() {
-	return currentDate;
+Date Employee::getCurrentDate()
+{
+		return currentDate;
 }
 
 Date Employee::currentDate(1, 1, 1900);

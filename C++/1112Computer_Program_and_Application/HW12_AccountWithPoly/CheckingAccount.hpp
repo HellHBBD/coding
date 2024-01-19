@@ -4,8 +4,9 @@
 #include "Account.hpp"
 #include <iostream>
 
-class CheckingAccount: public Account {
-	public:
+class CheckingAccount: public Account
+{
+		public:
 		CheckingAccount(double = 0, double = 0);
 		void setFee(double);
 		double getFee() const;
@@ -15,7 +16,7 @@ class CheckingAccount: public Account {
 		void printOption() const;
 		bool choose(int);
 
-	private:
+		private:
 		double fee;
 };
 
