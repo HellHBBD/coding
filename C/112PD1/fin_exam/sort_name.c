@@ -1,3 +1,3 @@
 #include "prototype.h"
 
-void sort_name(char target[40]){}
+void sort_name(char target[40]) {}

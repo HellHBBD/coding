@@ -19,7 +19,7 @@ void Reverse(struct LinkedList **head) {
 	struct LinkedList *next = curr->next;
 	prev->next = 0;
 	curr->next = prev;
-	while (next){
+	while (next) {
 		prev = curr;
 		curr = next;
 		next = next->next;

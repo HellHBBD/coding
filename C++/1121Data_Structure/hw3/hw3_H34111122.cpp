@@ -90,12 +90,12 @@ void findVertex(Node *traversed[4], char vertex, int &index, Node *&tail) {
 }
 
 void print(Node *list[4]) {
-    for (int i = 0; i < 4; i++) {
-        printf("component %d: ", i + 1);
-        for (Node *node = list[i]; node; node = node->next)
-            printf("%c ", node->vertex);
-        puts("0");
-    }
+	for (int i = 0; i < 4; i++) {
+		printf("component %d: ", i + 1);
+		for (Node *node = list[i]; node; node = node->next)
+			printf("%c ", node->vertex);
+		puts("0");
+	}
 }
 
 void free(Node *list[4]) {
