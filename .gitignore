@@ -11,6 +11,7 @@ output
 *.xlsx
 *.pptx
 *.zip
+*.log
 .ipynb_checkpoints
 test.c
 test.h
