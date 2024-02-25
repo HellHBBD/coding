@@ -2,8 +2,8 @@
 
 int main()
 {
-		long long a, b, c, d, e;
-		scanf("NCKU%lld%*c%lld%*c%lld%*c%lld%*c%lld", &a, &b, &c, &d, &e);
-		printf("%lld    %lld    %lld    %lld    %lld", a, b, c, d, e);
-		return 0;
+	long long a, b, c, d, e;
+	scanf("NCKU%lld%*c%lld%*c%lld%*c%lld%*c%lld", &a, &b, &c, &d, &e);
+	printf("%lld    %lld    %lld    %lld    %lld", a, b, c, d, e);
+	return 0;
 }

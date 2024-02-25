@@ -16,29 +16,29 @@ typedef int Obedience;
 
 int main()
 {
-		char cmdChar;
-		int count = 0;
-		int Strength = INIT_STRENGTH;
-		int Obedience = INIT_OBEDIENCE;
-		while (1) {
-				scanf("%c", &cmdChar);
-				if (cmdChar == '\n')
-						break;
-				if (cmdChar == 'e') {
-						Strength += STRENGTH_EAT;
-						Obedience -= OBEDIENCE_EAT;
-				} else if (cmdChar == 't') {
-						Obedience += OBEDIENCE_TRAIN;
-						Strength -= STRENGTH_TRAIN;
-				}
-				if (Obedience >= LEARN_OBEDIENCE && Strength <= LEARN_STRENGTH) {
-						count += 1;
-						Obedience = INIT_OBEDIENCE;
-				}
+	char cmdChar;
+	int count = 0;
+	int Strength = INIT_STRENGTH;
+	int Obedience = INIT_OBEDIENCE;
+	while (1) {
+		scanf("%c", &cmdChar);
+		if (cmdChar == '\n')
+			break;
+		if (cmdChar == 'e') {
+			Strength += STRENGTH_EAT;
+			Obedience -= OBEDIENCE_EAT;
+		} else if (cmdChar == 't') {
+			Obedience += OBEDIENCE_TRAIN;
+			Strength -= STRENGTH_TRAIN;
 		}
-		if (count >= 5)
-				printf("Yes");
-		else
-				printf("No");
-		return 0;
+		if (Obedience >= LEARN_OBEDIENCE && Strength <= LEARN_STRENGTH) {
+			count += 1;
+			Obedience = INIT_OBEDIENCE;
+		}
+	}
+	if (count >= 5)
+		printf("Yes");
+	else
+		printf("No");
+	return 0;
 }

@@ -5,8 +5,8 @@ using namespace std;
 
 int main()
 {
-		SalesPerson Paul;
-		Paul.getSaleFromUser();
-		Paul.printAnnualSales();
-		return 0;
+	SalesPerson Paul;
+	Paul.getSaleFromUser();
+	Paul.printAnnualSales();
+	return 0;
 }

@@ -5,62 +5,59 @@
 using namespace std;
 
 // constructor
-HourlyEmployee::HourlyEmployee(const string &first, const string &last,
-							   const string &ssn, double hourlyWage, double hoursWorked, int month, int day, int year)
+HourlyEmployee::HourlyEmployee(const string &first, const string &last, const string &ssn,
+			       double hourlyWage, double hoursWorked, int month, int day, int year)
 	: Employee(first, last, ssn, month, day, year)
 {
-		setWage(hourlyWage);   // validate hourly wage
-		setHours(hoursWorked); // validate hours worked
+	setWage(hourlyWage); // validate hourly wage
+	setHours(hoursWorked); // validate hours worked
 } // end HourlyEmployee constructor
 
 // set wage
 void HourlyEmployee::setWage(double hourlyWage)
 {
-		wage = (hourlyWage < 0.0 ? 0.0 : hourlyWage);
+	wage = (hourlyWage < 0.0 ? 0.0 : hourlyWage);
 } // end function setWage
 
 // return wage
 double HourlyEmployee::getWage() const
 {
-		return wage;
+	return wage;
 } // end function getWage
 
 // set hours worked
 void HourlyEmployee::setHours(double hoursWorked)
 {
-		hours = (((hoursWorked >= 0.0) &&
-				  (hoursWorked <= hoursPerWeek))
-				   ? hoursWorked
-				   : 0.0);
+	hours = (((hoursWorked >= 0.0) && (hoursWorked <= hoursPerWeek)) ? hoursWorked : 0.0);
 } // end function setHours
 
 // return hours worked
 double HourlyEmployee::getHours() const
 {
-		return hours;
+	return hours;
 } // end function getHours
 
 // calculate earnings;
 // override pure virtual function earnings in Employee
 double HourlyEmployee::earnings() const
 {
-		int bonus;
-		if (getBirthDate() == getCurrentDate())
-				bonus = 100;
-		else
-				bonus = 0;
-		if (getHours() <= 40) // no overtime
-				return getWage() * getHours() + bonus;
-		else
-				return 40 * getWage() + ((getHours() - 40) * getWage() * 1.5) + bonus;
+	int bonus;
+	if (getBirthDate() == getCurrentDate())
+		bonus = 100;
+	else
+		bonus = 0;
+	if (getHours() <= 40) // no overtime
+		return getWage() * getHours() + bonus;
+	else
+		return 40 * getWage() + ((getHours() - 40) * getWage() * 1.5) + bonus;
 } // end function earnings
 
 // print HourlyEmployee's information
 void HourlyEmployee::print() const
 {
-		cout << "hourly employee: ";
-		Employee::print(); // code reuse
-		cout << "\nhourly wage: " << getWage() << "; hours worked: " << getHours();
+	cout << "hourly employee: ";
+	Employee::print(); // code reuse
+	cout << "\nhourly wage: " << getWage() << "; hours worked: " << getHours();
 } // end function print
 
 /**************************************************************************

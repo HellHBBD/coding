@@ -4,6 +4,6 @@ using namespace std;
 
 void Derive::hello()
 {
-		Base::hello();
-		cout << "inheritance!" << endl;
+	Base::hello();
+	cout << "inheritance!" << endl;
 }
