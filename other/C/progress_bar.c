@@ -1,20 +1,6 @@
 #include <stdio.h>
+#include "progress_bar.h"
 #define MAX 9999999
-
-void progress_bar(unsigned long long i, unsigned long long max)
-{
-	if (i == max)
-		puts("[====================]100%");
-	int percent = i * 100 / MAX;
-	printf("\e[?25l[");
-	for (int j = 0; j < 20; j++)
-		if (j < percent / 5)
-			printf("=");
-		else
-			printf(" ");
-	printf("]");
-	printf("%3d\%\r\e[?25h", percent);
-}
 
 int main()
 {

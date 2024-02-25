@@ -8,6 +8,6 @@ unsigned long long int hanoi(unsigned long long int n)
 int main()
 {
 	for (int i = 1; i < 64; i++)
-		printf("%d\n", hanoi(i));
+		printf("%lld\n", hanoi(i));
 	return 0;
 }
