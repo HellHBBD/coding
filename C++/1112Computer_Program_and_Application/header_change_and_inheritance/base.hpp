@@ -2,9 +2,8 @@
 #define BASE_H
 #include "header.hpp"
 
-class Base
-{
-		public:
-		void hello();
+class Base {
+    public:
+	void hello();
 };
 #endif

@@ -8,8 +8,8 @@ extern int errno;
 
 int main()
 {
-		int *p;
-		*p = 0;
-		printf("%s\n", strerror(errno));
-		return 0;
+	int *p;
+	*p = 0;
+	printf("%s\n", strerror(errno));
+	return 0;
 }

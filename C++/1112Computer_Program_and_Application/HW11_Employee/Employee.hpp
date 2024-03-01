@@ -7,35 +7,34 @@
 #include <string> // C++ standard string class
 using namespace std;
 
-class Employee
-{
-		public:
-		Employee(const string &, const string &, const string &, int, int, int);
-		virtual ~Employee(){};
+class Employee {
+    public:
+	Employee(const string &, const string &, const string &, int, int, int);
+	virtual ~Employee(){};
 
-		void setFirstName(const string &); // set first name
-		string getFirstName() const;	   // return first name
+	void setFirstName(const string &); // set first name
+	string getFirstName() const; // return first name
 
-		void setLastName(const string &); // set last name
-		string getLastName() const;		  // return last name
+	void setLastName(const string &); // set last name
+	string getLastName() const; // return last name
 
-		void setSocialSecurityNumber(const string &); // set SSN
-		string getSocialSecurityNumber() const;		  // return SSN
+	void setSocialSecurityNumber(const string &); // set SSN
+	string getSocialSecurityNumber() const; // return SSN
 
-		void setBirthDate(int month, int day, int year);
-		Date getBirthDate() const;
-		// pure virtual function makes Employee abstract base class
-		virtual double earnings() const = 0; // pure virtual
-		virtual void print() const;			 // virtual
-		static void setCurrentDate(int, int, int);
-		static Date getCurrentDate();
+	void setBirthDate(int month, int day, int year);
+	Date getBirthDate() const;
+	// pure virtual function makes Employee abstract base class
+	virtual double earnings() const = 0; // pure virtual
+	virtual void print() const; // virtual
+	static void setCurrentDate(int, int, int);
+	static Date getCurrentDate();
 
-		private:
-		string firstName;
-		string lastName;
-		string socialSecurityNumber;
-		Date birthDate;
-		static Date currentDate;
+    private:
+	string firstName;
+	string lastName;
+	string socialSecurityNumber;
+	Date birthDate;
+	static Date currentDate;
 }; // end class Employee
 
 #endif // EMPLOYEE_H

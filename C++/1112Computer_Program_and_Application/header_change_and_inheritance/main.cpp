@@ -2,8 +2,8 @@
 
 int main()
 {
-		Base Alex;
-		Alex.hello();
-		Derive Paul;
-		Paul.hello();
+	Base Alex;
+	Alex.hello();
+	Derive Paul;
+	Paul.hello();
 }

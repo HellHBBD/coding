@@ -6,12 +6,11 @@ unsigned long long int begin, end;
 
 int main()
 {
-
-		begin = rdtsc();
-		/*---------------------------
+	begin = rdtsc();
+	/*---------------------------
 	your function
 	---------------------------*/
-		end = rdtsc();
+	end = rdtsc();
 
-		printf("Execute cycles %llu \n", (end - begin));
+	printf("Execute cycles %llu \n", (end - begin));
 }

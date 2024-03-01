@@ -4,19 +4,18 @@
 #include "Account.hpp"
 #include <iostream>
 
-class SavingsAccount: public Account
-{
-		public:
-		SavingsAccount(double = 0, double = 0);
-		bool setInterestRate(double);
-		double getInterestRate() const;
-		double calculateInterest();
-		std::string getType() const;
-		void printOption() const override;
-		bool choose(int) override;
+class SavingsAccount : public Account {
+    public:
+	SavingsAccount(double = 0, double = 0);
+	bool setInterestRate(double);
+	double getInterestRate() const;
+	double calculateInterest();
+	std::string getType() const;
+	void printOption() const override;
+	bool choose(int) override;
 
-		private:
-		double interestRate;
+    private:
+	double interestRate;
 };
 
 #endif

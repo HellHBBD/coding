@@ -3,11 +3,11 @@
 #include <string.h>
 
 struct LinkedList {
-		char name[20];
-		int passwd_public[10][10][10][10];
-		int ***passwd_private;
-		struct LinkedList *back_head;
-		struct LinkedList *next;
+	char name[20];
+	int passwd_public[10][10][10][10];
+	int ***passwd_private;
+	struct LinkedList *back_head;
+	struct LinkedList *next;
 };
 
 struct LinkedList *create(char *, int, int, int, int, int);

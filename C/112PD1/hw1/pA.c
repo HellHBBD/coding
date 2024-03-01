@@ -2,6 +2,6 @@
 
 int main()
 {
-		puts("Welcome to NCKU Program Design I");
-		return 0;
+	puts("Welcome to NCKU Program Design I");
+	return 0;
 }

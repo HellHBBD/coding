@@ -5,46 +5,46 @@
 using namespace std;
 
 // constructor
-SalariedEmployee::SalariedEmployee(const string &first,
-								   const string &last, const string &ssn, double salary, int month, int day, int year)
+SalariedEmployee::SalariedEmployee(const string &first, const string &last, const string &ssn,
+				   double salary, int month, int day, int year)
 	: Employee(first, last, ssn, month, day, year)
 {
-		setWeeklySalary(salary);
+	setWeeklySalary(salary);
 } // end SalariedEmployee constructor
 
 // set salary
 void SalariedEmployee::setWeeklySalary(double salary)
 {
-		weeklySalary = (salary < 0.0) ? 0.0 : salary;
+	weeklySalary = (salary < 0.0) ? 0.0 : salary;
 } // end function setWeeklySalary
 
 // return salary
 double SalariedEmployee::getWeeklySalary() const
 {
-		return weeklySalary;
+	return weeklySalary;
 } // end function getWeeklySalary
 
 // calculate earnings;
 // override pure virtual function earnings in Employee
 double SalariedEmployee::earnings() const
 {
-		int bonus;
-		if (getBirthDate() == getCurrentDate())
-				bonus = 100;
-		else
-				bonus = 0;
-		if (getBirthDate() == getCurrentDate())
-				return getWeeklySalary() + bonus;
-		else
-				return getWeeklySalary() + bonus;
+	int bonus;
+	if (getBirthDate() == getCurrentDate())
+		bonus = 100;
+	else
+		bonus = 0;
+	if (getBirthDate() == getCurrentDate())
+		return getWeeklySalary() + bonus;
+	else
+		return getWeeklySalary() + bonus;
 } // end function earnings
 
 // print SalariedEmployee's information
 void SalariedEmployee::print() const
 {
-		cout << "salaried employee: ";
-		Employee::print(); // reuse abstract base-class print function
-		cout << "\nweekly salary: " << getWeeklySalary();
+	cout << "salaried employee: ";
+	Employee::print(); // reuse abstract base-class print function
+	cout << "\nweekly salary: " << getWeeklySalary();
 } // end function print
 
 /**************************************************************************
