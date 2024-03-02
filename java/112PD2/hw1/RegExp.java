@@ -65,35 +65,24 @@ class Regex {
 
 	public void containAB()
 	{
-		// int a = 0, aMax = 0, b = 0, bMax = 0;
-		// int aIndex = 0, bIndex = 0;
-		// for (int i = 0; i < string.length(); i++) {
-		// 	switch (string.charAt(i)) {
-		// 	case 'a':
-		// 		a++;
-		// 		b = 0;
-		// 		break;
-		// 	case 'b':
-		// 		b++;
-		// 		a = 0;
-		// 		break;
-		// 	default:
-		// 		a = b = 0;
-		// 	}
-		// 	if (a > aMax) {
-		// 		aMax = a;
-		// 		aIndex = i;
-		// 	}
-		// 	if (b > bMax) {
-		// 		bMax = b;
-		// 		bIndex = i;
-		// 	}
-		// }
-		// if (aMax >= 1 && aIndex < bIndex && aMax * 2 <= bMax)
-		// 	System.out.print('Y');
-		// else
-		// 	System.out.print('N');
-		if (contain("a") < contain("bb"))
+		int aIndex = -1, bIndex = -1;
+		for (int i = 0; i < string.length(); i++) {
+			if (string.charAt(i) == 'a') {
+				aIndex = i;
+				break;
+			}
+		}
+		if (aIndex == -1) {
+			System.out.print('N');
+			return;
+		}
+		for (int i = string.length() - 1; i > 0; i--) {
+			if (string.charAt(i) == 'b' && string.charAt(i - 1) == 'b') {
+				bIndex = i;
+				break;
+			}
+		}
+		if (bIndex > aIndex)
 			System.out.print('Y');
 		else
 			System.out.print('N');
