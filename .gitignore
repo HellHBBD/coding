@@ -6,6 +6,7 @@ output
 *.exe
 *.h.gch
 *.o
+*.class
 *.pdf
 *.docx
 *.xlsx
@@ -18,4 +19,5 @@ test.h
 test.cpp
 test.hpp
 test.py
+test.java
 test.txt
