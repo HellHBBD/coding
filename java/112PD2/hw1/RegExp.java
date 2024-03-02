@@ -21,13 +21,18 @@ class Regex {
 		System.out.print('Y');
 	}
 
-	public int contain(String str1)
+	public void contain(String str1)
 	{
 		int startIndex = 0;
 		int index = 0;
-		while (startIndex + index < string.length()) {
+		while (true) {
 			if (index == str1.length()) {
-				return startIndex;
+				System.out.print('Y');
+				return;
+			}
+			else if (startIndex + index == string.length()){
+				System.out.print('N');
+				return;
 			}
 			if (string.charAt(startIndex + index) == str1.charAt(index)) {
 				index++;
@@ -36,7 +41,6 @@ class Regex {
 				index = 0;
 			}
 		}
-		return -1;
 	}
 
 	public void containN(String str2, int n)
@@ -93,10 +97,7 @@ class Regex {
 		setString(string);
 		palindrome();
 		System.out.print(',');
-		if (contain(str1) != -1)
-			System.out.print('Y');
-		else
-			System.out.print('N');
+		contain(str1);
 		System.out.print(',');
 		containN(str2, n);
 		System.out.print(',');
