@@ -21,14 +21,13 @@ class Regex {
 		System.out.print('Y');
 	}
 
-	public void contain(String str1)
+	public int contain(String str1)
 	{
 		int startIndex = 0;
 		int index = 0;
 		while (startIndex + index < string.length()) {
 			if (index == str1.length()) {
-				System.out.print('Y');
-				return;
+				return startIndex;
 			}
 			if (string.charAt(startIndex + index) == str1.charAt(index)) {
 				index++;
@@ -37,7 +36,7 @@ class Regex {
 				index = 0;
 			}
 		}
-		System.out.print('N');
+		return -1;
 	}
 
 	public void containN(String str2, int n)
@@ -66,26 +65,35 @@ class Regex {
 
 	public void containAB()
 	{
-		int a = 0, aMax = 0, b = 0, bMax = 0;
-		for (int i = 0; i < string.length(); i++) {
-			switch (string.charAt(i)) {
-			case 'a':
-				a++;
-				b = 0;
-				break;
-			case 'b':
-				b++;
-				a = 0;
-				break;
-			default:
-				a = b = 0;
-			}
-			if (a > aMax)
-				aMax = a;
-			if (b > bMax)
-				bMax = b;
-		}
-		if (aMax * 2 <= bMax)
+		// int a = 0, aMax = 0, b = 0, bMax = 0;
+		// int aIndex = 0, bIndex = 0;
+		// for (int i = 0; i < string.length(); i++) {
+		// 	switch (string.charAt(i)) {
+		// 	case 'a':
+		// 		a++;
+		// 		b = 0;
+		// 		break;
+		// 	case 'b':
+		// 		b++;
+		// 		a = 0;
+		// 		break;
+		// 	default:
+		// 		a = b = 0;
+		// 	}
+		// 	if (a > aMax) {
+		// 		aMax = a;
+		// 		aIndex = i;
+		// 	}
+		// 	if (b > bMax) {
+		// 		bMax = b;
+		// 		bIndex = i;
+		// 	}
+		// }
+		// if (aMax >= 1 && aIndex < bIndex && aMax * 2 <= bMax)
+		// 	System.out.print('Y');
+		// else
+		// 	System.out.print('N');
+		if (contain("a") < contain("bb"))
 			System.out.print('Y');
 		else
 			System.out.print('N');
@@ -96,7 +104,10 @@ class Regex {
 		setString(string);
 		palindrome();
 		System.out.print(',');
-		contain(str1);
+		if (contain(str1) != -1)
+			System.out.print('Y');
+		else
+			System.out.print('N');
 		System.out.print(',');
 		containN(str2, n);
 		System.out.print(',');
