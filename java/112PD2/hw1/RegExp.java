@@ -47,7 +47,7 @@ class Regex {
 	{
 		int startIndex = 0;
 		int index = 0;
-		while (startIndex + index < string.length()) {
+		while (true) {
 			if (index == str2.length()) {
 				n--;
 				startIndex++;
@@ -57,6 +57,10 @@ class Regex {
 				System.out.print('Y');
 				return;
 			}
+			if (startIndex + index == string.length()){
+				System.out.print('N');
+				return;
+			}
 			if (string.charAt(startIndex + index) == str2.charAt(index)) {
 				index++;
 			} else {
@@ -64,7 +68,6 @@ class Regex {
 				index = 0;
 			}
 		}
-		System.out.print('N');
 	}
 
 	public void containAB()
