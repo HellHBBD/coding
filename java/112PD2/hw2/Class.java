@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 class Attribute {
 	String visibility;
@@ -10,7 +12,7 @@ class Attribute {
 		type = null;
 		name = null;
 	}
-	public void print()
+	public void print(BufferedWriter bw) throws IOException
 	{
 	}
 }
@@ -27,9 +29,10 @@ class Variable extends Attribute {
 		this.type = type;
 		this.name = name;
 	}
-	@Override public void print()
+	@Override public void print(BufferedWriter bw) throws IOException
 	{
-		System.out.println(visibility + " " + type + " " + name + ";");
+		// System.out.println(visibility + " " + type + " " + name + ";");
+		bw.write(visibility + " " + type + " " + name + ";\n");
 	}
 }
 
@@ -47,28 +50,41 @@ class Function extends Attribute {
 		Variable variable = new Variable(type, name);
 		arguments.add(variable);
 	}
-	@Override public void print()
+	@Override public void print(BufferedWriter bw) throws IOException
 	{
-		System.out.print(visibility + " " + type + " " + name + "(");
+		bw.write(visibility + " " + type + " " + name + "(");
 		if (arguments.size() != 0) {
-			System.out.print(arguments.get(0).type + " " + arguments.get(0).name);
+			bw.write(arguments.get(0).type + " " + arguments.get(0).name);
 			for (int i = 1; i < arguments.size(); i++) {
-				System.out.print(", ");
-				System.out.print(arguments.get(i).type + " " +
+				bw.write(", ");
+				bw.write(arguments.get(i).type + " " +
 						 arguments.get(i).name);
 			}
 		}
-		System.out.println(") {;}");
+		bw.write(") {");
+		if (name.contains("set")) {
+			String temp = name.split("set")[1].toLowerCase();
+			bw.write("\n        this." + temp + " = " + temp + ";\n    }\n");
+		} else if (name.contains("get")) {
+			String temp = name.split("get")[1].toLowerCase();
+			bw.write("\n        return " + temp + ";\n    }\n");
+		} else if (type.equals("void")) {
+			bw.write(";}\n");
+		} else if (type.equals("int")) {
+			bw.write("return 0;}\n");
+		} else if (type.equals("String")) {
+			bw.write("return \"\";}\n");
+		} else if (type.equals("boolean")) {
+			bw.write("return false;}\n");
+		}
 	}
 }
 
 public class Class {
 	ArrayList<Attribute> attributes;
-	String visibility;
 	String name;
-	public Class(String visibility, String name)
+	public Class(String name)
 	{
-		this.visibility = visibility;
 		this.name = name;
 		attributes = new ArrayList<Attribute>();
 	}
@@ -82,13 +98,13 @@ public class Class {
 		Function function = new Function(visibility, type, name);
 		attributes.add(function);
 	}
-	public void print()
+	public void print(BufferedWriter bw) throws IOException
 	{
-		System.out.println(visibility + " class " + name + " {");
+		bw.write("public class " + name + " {\n");
 		for (Attribute attribute : attributes) {
-			System.out.print("    ");
-			attribute.print();
+			bw.write("    ");
+			attribute.print(bw);
 		}
-		System.out.print("}");
+		bw.write("}");
 	}
 }
