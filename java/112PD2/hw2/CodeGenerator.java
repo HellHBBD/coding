@@ -27,12 +27,12 @@ public class CodeGenerator {
 							 .replaceFirst("^\\s+", "")
 							 .split("\\s+");
 				length = words.length;
-				// System.out.println(Arrays.toString(words));
 				if (length >= 2 && words[0].equals("class")) { //declare class
-					currentClass = new Class(words[1]);
-					classes.put(words[1], currentClass);
-					// if (length == 3 && words[2].equals("{")) { //still in class scope
-					if (length == 3) { //still in class scope
+					if (!classes.containsKey(words[1])) {
+						currentClass = new Class(words[1]);
+						classes.put(words[1], currentClass);
+					}
+					if (length == 3 && words[2].equals("{")) { //still in class scope
 						currentClass = classes.get(words[1]);
 					}
 				} else if (length >= 2 &&
@@ -58,7 +58,7 @@ public class CodeGenerator {
 						currentClass.addVariable(visibility, words[3],
 									 words[4]);
 					}
-				} else if (length >= 3) {
+				} else if (length >= 3) { //implicit specify class
 					String visibility = words[0].equals("+") ? "public" :
 										   "private";
 					if (words[2].equals("(")) { //function

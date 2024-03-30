@@ -57,17 +57,18 @@ class Function extends Attribute {
 			bw.write(arguments.get(0).type + " " + arguments.get(0).name);
 			for (int i = 1; i < arguments.size(); i++) {
 				bw.write(", ");
-				bw.write(arguments.get(i).type + " " +
-						 arguments.get(i).name);
+				bw.write(arguments.get(i).type + " " + arguments.get(i).name);
 			}
 		}
 		bw.write(") {");
 		if (name.contains("set")) {
-			String temp = name.split("set")[1].toLowerCase();
-			bw.write("\n        this." + temp + " = " + temp + ";\n    }\n");
+			String temp = name.split("set")[1];
+			String result = Character.toString(temp.charAt(0)).toLowerCase() + temp.substring(1);
+			bw.write("\n        this." + result + " = " + result + ";\n    }\n");
 		} else if (name.contains("get")) {
-			String temp = name.split("get")[1].toLowerCase();
-			bw.write("\n        return " + temp + ";\n    }\n");
+			String temp = name.split("get")[1];
+			String result = Character.toString(temp.charAt(0)).toLowerCase() + temp.substring(1);
+			bw.write("\n        return " + result + ";\n    }\n");
 		} else if (type.equals("void")) {
 			bw.write(";}\n");
 		} else if (type.equals("int")) {
