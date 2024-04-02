@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
-class Attribute {
+abstract class Attribute {
 	String visibility;
 	String type;
 	String name;
@@ -12,9 +12,7 @@ class Attribute {
 		type = null;
 		name = null;
 	}
-	public void print(BufferedWriter bw) throws IOException
-	{
-	}
+	abstract public void print(BufferedWriter bw) throws IOException;
 }
 
 class Variable extends Attribute {
