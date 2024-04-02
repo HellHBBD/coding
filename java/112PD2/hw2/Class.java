@@ -31,7 +31,6 @@ class Variable extends Attribute {
 	}
 	@Override public void print(BufferedWriter bw) throws IOException
 	{
-		// System.out.println(visibility + " " + type + " " + name + ";");
 		bw.write(visibility + " " + type + " " + name + ";\n");
 	}
 }
@@ -43,26 +42,12 @@ class Function extends Attribute {
 		this.visibility = visibility;
 		this.type = type;
 		this.name = name;
-		// arguments = new ArrayList<Variable>();
 		this.arguments = arguments;
 	}
-	// public void add(String type, String name)
-	// {
-	// 	Variable variable = new Variable(type, name);
-	// 	arguments.add(variable);
-	// }
 	@Override public void print(BufferedWriter bw) throws IOException
 	{
 		bw.write(visibility + " " + type + " " + name + arguments);
-		// if (arguments.size() != 0) {
-		// 	bw.write(arguments.get(0).type + " " + arguments.get(0).name);
-		// 	for (int i = 1; i < arguments.size(); i++) {
-		// 		bw.write(", ");
-		// 		bw.write(arguments.get(i).type + " " + arguments.get(i).name);
-		// 	}
-		// }
 		bw.write(" {");
-		// bw.write(") {");
 		if (name.contains("set")) {
 			String temp = name.split("set")[1];
 			String result = Character.toString(temp.charAt(0)).toLowerCase() + temp.substring(1);
