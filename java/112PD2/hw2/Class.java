@@ -6,26 +6,19 @@ abstract class Attribute {
 	String visibility;
 	String type;
 	String name;
-	public Attribute()
+	public Attribute(String visibility, String type, String name)
 	{
-		visibility = null;
-		type = null;
-		name = null;
+		this.visibility = visibility;
+		this.type = type;
+		this.name = name;
 	}
 	abstract public void print(BufferedWriter bw) throws IOException;
 }
 
 class Variable extends Attribute {
-	public Variable(String type, String name)
-	{
-		this.type = type;
-		this.name = name;
-	}
 	public Variable(String visibility, String type, String name)
 	{
-		this.visibility = visibility;
-		this.type = type;
-		this.name = name;
+		super(visibility, type, name);
 	}
 	@Override public void print(BufferedWriter bw) throws IOException
 	{
@@ -37,9 +30,7 @@ class Function extends Attribute {
 	String arguments;
 	public Function(String visibility, String type, String name, String arguments)
 	{
-		this.visibility = visibility;
-		this.type = type;
-		this.name = name;
+		super(visibility, type, name);
 		this.arguments = arguments;
 	}
 	@Override public void print(BufferedWriter bw) throws IOException
