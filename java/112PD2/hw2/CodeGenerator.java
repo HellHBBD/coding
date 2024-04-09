@@ -61,6 +61,20 @@ public class CodeGenerator {
 					continue;
 				}
 
+				match = Pattern.compile("\\s*(?<class>\\w+)\\s*:\\s*(?<visibility>[+-])\\s*(?<name>\\w+)(?<arguments>\\(.*\\))\\s*").matcher(line);
+				if (match.find()) {
+					String Class = match.group("class");
+					String visibility = match.group("visibility").equals("+") ?
+								    "public" :
+								    "private";
+					String name = match.group("name");
+					String arguments = match.group("arguments");
+					String type = "void";
+					currentClass = classes.get(Class);
+					currentClass.addFunction(visibility, type, name, arguments);
+					continue;
+				}
+
 				match = Pattern.compile("\\s*(?<class>\\w+)\\s*:\\s*(?<visibility>[+-])\\s*(?<type>.*)\\s+(?<name>\\w+)").matcher(line);
 				if (match.find()) {
 					String Class = match.group("class");
@@ -82,6 +96,18 @@ public class CodeGenerator {
 					String name = match.group("name");
 					String arguments = match.group("arguments");
 					String type = match.group("type");
+					currentClass.addFunction(visibility, type, name, arguments);
+					continue;
+				}
+
+				match = Pattern.compile("\\s*(?<visibility>[+-])\\s*(?<name>\\w+)(?<arguments>\\(.*\\))\\s+").matcher(line);
+				if (match.find()) {
+					String visibility = match.group("visibility").equals("+") ?
+								    "public" :
+								    "private";
+					String name = match.group("name");
+					String arguments = match.group("arguments");
+					String type = "void";
 					currentClass.addFunction(visibility, type, name, arguments);
 					continue;
 				}
