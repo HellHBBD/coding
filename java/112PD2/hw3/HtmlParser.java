@@ -99,17 +99,16 @@ public class HtmlParser {
 	public static void printDouble(BufferedWriter bw, double number) throws IOException
 	{
 		String temp = String.format("%.2f", number);
-		for (int i = 0;i < temp.length();i++){
-			if (temp.charAt(i) == '.'){
-				if (temp.charAt(i+2) != '0'){
-					bw.write(String.format(".%c%c",temp.charAt(i+1),temp.charAt(i+2)));
-				}
-				else if (temp.charAt(i+1) != '0'){
-					bw.write(String.format(".%c",temp.charAt(i+1)));
+		for (int i = 0; i < temp.length(); i++) {
+			if (temp.charAt(i) == '.') {
+				if (temp.charAt(i + 2) != '0') {
+					bw.write(String.format(".%c%c", temp.charAt(i + 1),
+							       temp.charAt(i + 2)));
+				} else if (temp.charAt(i + 1) != '0') {
+					bw.write(String.format(".%c", temp.charAt(i + 1)));
 				}
 				return;
-			}
-			else{
+			} else {
 				bw.write(temp.charAt(i));
 			}
 		}
@@ -138,22 +137,63 @@ public class HtmlParser {
 			}
 			bw.write(String.format("%s,%d,%d\n", stock, start, end));
 			printDouble(bw, result.get(0));
-			// System.out.print(String.format("%s,%d,%d\n%.2f", stock, start, end, result.get(0)));
 			for (int i = 1; i < result.size(); i++) {
 				bw.write(",");
 				printDouble(bw, result.get(i));
-				// System.out.print(String.format(",%.2f", result.get(i)));
 			}
 			bw.write("\n");
-			// System.out.print("\n");
 			bw.close();
 		} catch (IOException e) {
 		}
 	}
 
+	public static double sqrt(double number)
+	{
+		double guess = number;
+		while (true) {
+			guess = (guess + number / guess) / 2.0;
+			double test = guess * guess;
+			if (test - number > 0 && test - number < 0.0001) {
+				return guess;
+			}
+			if (number - test > 0 && number - test < 0.0001) {
+				return guess;
+			}
+		}
+	}
+
 	public static void SD(String stock, int start, int end)
 	{
-		ArrayList<Double> data = new ArrayList<Double>();
+		ArrayList<Double> data = read(stock, start, end);
+		double squareTotal = 0;
+		double total = 0;
+		int n = data.size();
+		for (double element : data) {
+			// System.out.println(element);
+			squareTotal += (element * element);
+			total += element;
+		}
+		total /= n;
+		// System.out.println(squareTotal);
+		// System.out.println(total);
+		// System.out.println(n);
+		double sd = sqrt(squareTotal / (n - 1) - total * total * n / (n - 1));
+		// double sd = (squareTotal / n - total * total);
+		try {
+			File file = new File("output.csv");
+			BufferedWriter bw;
+			if (file.exists()) {
+				bw = new BufferedWriter(new FileWriter(file, true));
+			} else {
+				file.createNewFile();
+				bw = new BufferedWriter(new FileWriter(file, true));
+			}
+			bw.write(String.format("%s,%d,%d\n", stock, start, end));
+			printDouble(bw, sd);
+			bw.write("\n");
+			bw.close();
+		} catch (IOException e) {
+		}
 	}
 
 	public static void top(int start, int end)
