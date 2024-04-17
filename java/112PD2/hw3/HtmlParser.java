@@ -14,34 +14,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class HtmlParser {
-	public static void crawl()
+	public static void crawl() throws IOException
 	{
-		try {
-			Document document =
-				Jsoup.connect("https://pd2-hw3.netdb.csie.ncku.edu.tw/").get();
-			File file = new File("data.csv");
-			BufferedWriter bw;
-			if (file.exists()) {
-				bw = new BufferedWriter(new FileWriter(file, true));
-			} else {
-				file.createNewFile();
-				bw = new BufferedWriter(new FileWriter(file, true));
-				Elements stocks = document.select("th");
-				for (Element element : stocks) {
-					if (element.elementSiblingIndex() == 0) {
-						bw.write(element.text());
-						// System.out.print(element.text());
-					} else {
-						bw.write("," + element.text());
-						// System.out.print("," + element.text());
-					}
-				}
-				bw.write("\n");
-				// System.out.print('\n');
-			}
-
-			Elements prices = document.select("td");
-			for (Element element : prices) {
+		Document document = Jsoup.connect("https://pd2-hw3.netdb.csie.ncku.edu.tw/").get();
+		File file = new File("data.csv");
+		BufferedWriter bw;
+		if (file.exists()) {
+			bw = new BufferedWriter(new FileWriter(file, true));
+		} else {
+			file.createNewFile();
+			bw = new BufferedWriter(new FileWriter(file, true));
+			Elements stocks = document.select("th");
+			for (Element element : stocks) {
 				if (element.elementSiblingIndex() == 0) {
 					bw.write(element.text());
 					// System.out.print(element.text());
@@ -51,48 +35,53 @@ public class HtmlParser {
 				}
 			}
 			bw.write("\n");
-			bw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+			// System.out.print('\n');
 		}
+
+		Elements prices = document.select("td");
+		for (Element element : prices) {
+			if (element.elementSiblingIndex() == 0) {
+				bw.write(element.text());
+				// System.out.print(element.text());
+			} else {
+				bw.write("," + element.text());
+				// System.out.print("," + element.text());
+			}
+		}
+		bw.write("\n");
+		bw.close();
 	}
 
-	public static void copy()
+	public static void copy() throws IOException
 	{
-		try {
-			File data = new File("data.csv");
-			File output = new File("output.csv");
-			Files.copy(data.toPath(), output.toPath());
-		} catch (IOException e) {
-		}
+		File data = new File("data.csv");
+		File output = new File("output.csv");
+		Files.copy(data.toPath(), output.toPath());
 	}
 
-	public static ArrayList<Double> read(String stock, int start, int end)
+	public static ArrayList<Double> read(String stock, int start, int end) throws IOException
 	{
 		ArrayList<Double> data = new ArrayList<Double>();
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader("data.csv"));
-			String[] stocks = reader.readLine().split(",");
+		BufferedReader reader = new BufferedReader(new FileReader("data.csv"));
+		String[] stocks = reader.readLine().split(",");
 
-			int index = -1;
-			for (int i = 0; i < stocks.length; i++) {
-				if (stocks[i].equals(stock)) {
-					index = i;
-					break;
-				}
+		int index = -1;
+		for (int i = 0; i < stocks.length; i++) {
+			if (stocks[i].equals(stock)) {
+				index = i;
+				break;
 			}
-
-			String line;
-			int count = 0;
-			while ((line = reader.readLine()) != null) {
-				count++;
-				if (count >= start && count <= end) {
-					data.add(Double.valueOf(line.split(",")[index]));
-				}
-			}
-			reader.close();
-		} catch (IOException e) {
 		}
+
+		String line;
+		int count = 0;
+		while ((line = reader.readLine()) != null && count <= end) {
+			count++;
+			if (count >= start) {
+				data.add(Double.valueOf(line.split(",")[index]));
+			}
+		}
+		reader.close();
 		return data;
 	}
 
@@ -114,7 +103,7 @@ public class HtmlParser {
 		}
 	}
 
-	public static void average(String stock, int start, int end)
+	public static void average(String stock, int start, int end) throws IOException
 	{
 		ArrayList<Double> data = read(stock, start, end);
 		ArrayList<Double> result = new ArrayList<Double>();
@@ -126,28 +115,25 @@ public class HtmlParser {
 			}
 			result.add(total / 5);
 		}
-		try {
-			File file = new File("output.csv");
-			BufferedWriter bw;
-			if (file.exists()) {
-				bw = new BufferedWriter(new FileWriter(file, true));
-			} else {
-				file.createNewFile();
-				bw = new BufferedWriter(new FileWriter(file, true));
-			}
-			bw.write(String.format("%s,%d,%d\n", stock, start, end));
-			printDouble(bw, result.get(0));
-			for (int i = 1; i < result.size(); i++) {
-				bw.write(",");
-				printDouble(bw, result.get(i));
-			}
-			bw.write("\n");
-			bw.close();
-		} catch (IOException e) {
+		File file = new File("output.csv");
+		BufferedWriter bw;
+		if (file.exists()) {
+			bw = new BufferedWriter(new FileWriter(file, true));
+		} else {
+			file.createNewFile();
+			bw = new BufferedWriter(new FileWriter(file, true));
 		}
+		bw.write(String.format("%s,%d,%d\n", stock, start, end));
+		printDouble(bw, result.get(0));
+		for (int i = 1; i < result.size(); i++) {
+			bw.write(",");
+			printDouble(bw, result.get(i));
+		}
+		bw.write("\n");
+		bw.close();
 	}
 
-	public static double sqrt(double number)
+	public static double squareRoot(double number)
 	{
 		double guess = number;
 		while (true) {
@@ -162,50 +148,115 @@ public class HtmlParser {
 		}
 	}
 
-	public static void SD(String stock, int start, int end)
+	public static void SD(String stock, int start, int end) throws IOException
 	{
 		ArrayList<Double> data = read(stock, start, end);
 		double squareTotal = 0;
 		double total = 0;
 		int n = data.size();
 		for (double element : data) {
-			// System.out.println(element);
 			squareTotal += (element * element);
 			total += element;
 		}
 		total /= n;
-		// System.out.println(squareTotal);
-		// System.out.println(total);
-		// System.out.println(n);
-		double sd = sqrt(squareTotal / (n - 1) - total * total * n / (n - 1));
-		// double sd = (squareTotal / n - total * total);
-		try {
-			File file = new File("output.csv");
-			BufferedWriter bw;
-			if (file.exists()) {
-				bw = new BufferedWriter(new FileWriter(file, true));
-			} else {
-				file.createNewFile();
-				bw = new BufferedWriter(new FileWriter(file, true));
-			}
-			bw.write(String.format("%s,%d,%d\n", stock, start, end));
-			printDouble(bw, sd);
-			bw.write("\n");
-			bw.close();
-		} catch (IOException e) {
+		double sd = squareRoot(squareTotal / (n - 1) - total * total * n / (n - 1));
+		File file = new File("output.csv");
+		BufferedWriter bw;
+		if (file.exists()) {
+			bw = new BufferedWriter(new FileWriter(file, true));
+		} else {
+			file.createNewFile();
+			bw = new BufferedWriter(new FileWriter(file, true));
 		}
+		bw.write(String.format("%s,%d,%d\n", stock, start, end));
+		printDouble(bw, sd);
+		bw.write("\n");
+		bw.close();
 	}
 
-	public static void top(int start, int end)
+	public static void top(int start, int end) throws IOException
 	{
+		ArrayList<Object[]> list = new ArrayList<Object[]>();
+		BufferedReader reader = new BufferedReader(new FileReader("data.csv"));
+		String[] stocks = reader.readLine().split(",");
+
+		for (String stock : stocks) {
+			Object[] temp = new Object[3];
+			temp[0] = new String(stock);
+			temp[1] = 0.0;
+			temp[2] = 0.0;
+			list.add(temp);
+		}
+
+		String line;
+		int count = 0;
+		int n = end - start + 1;
+		while ((line = reader.readLine()) != null && count <= end) {
+			count++;
+			if (count >= start) {
+				stocks = line.split(",");
+				for (int i = 0; i < stocks.length; i++) {
+					double element = Double.valueOf(stocks[i]);
+					Object[] temp = new Object[3];
+					temp[0] = list.get(i)[0];
+					temp[1] = (double)list.get(i)[1] + element * element;
+					temp[2] = (double)list.get(i)[2] + element;
+					list.set(i, temp);
+				}
+			}
+		}
+		reader.close();
+		Object[][] top3 = new Object[3][2];
+		top3[0][1] = 0.0;
+		top3[1][1] = 0.0;
+		top3[2][1] = 0.0;
+		for (Object[] element : list) {
+			double squareTotal = (double)element[1];
+			double total = (double)element[2];
+			System.out.println(squareTotal);
+			System.out.println(total);
+			double sd = squareRoot(squareTotal / (n - 1) - total * total / n / (n - 1));
+			if (sd > (double)top3[0][1]) {
+				top3[2][0] = top3[1][0]; //move 2nd to 3rd
+				top3[2][1] = top3[1][1];
+				top3[1][0] = top3[0][0]; //move 1st to 2nd
+				top3[1][1] = top3[0][1];
+				top3[0][0] = (String)element[0]; //assign new 1st
+				top3[0][1] = sd;
+			} else if (sd > (double)top3[1][1]) {
+				top3[2][0] = top3[1][0]; //move 2nd to 3rd
+				top3[2][1] = top3[1][1];
+				top3[1][0] = (String)element[0]; //assign new 2nd
+				top3[1][1] = sd;
+			} else if (sd > (double)top3[2][1]) {
+				top3[2][0] = (String)element[0]; //assign new 3rd
+				top3[2][1] = sd;
+			}
+		}
+		File file = new File("output.csv");
+		BufferedWriter bw;
+		if (file.exists()) {
+			bw = new BufferedWriter(new FileWriter(file, true));
+		} else {
+			file.createNewFile();
+			bw = new BufferedWriter(new FileWriter(file, true));
+		}
+		bw.write(String.format("%s,%s,%s,%d,%d\n", (String)top3[0][0], (String)top3[1][0], (String)top3[2][0], start, end));
+		printDouble(bw, (double)top3[0][1]);
+		bw.write(",");
+		printDouble(bw, (double)top3[1][1]);
+		bw.write(",");
+		printDouble(bw, (double)top3[2][1]);
+		bw.write("\n");
+		bw.close();
 	}
 
-	public static void LR(String stock, int start, int end)
+	public static void LR(String stock, int start, int end) throws IOException
 	{
 		ArrayList<Double> data = new ArrayList<Double>();
 	}
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
 		int mode = Integer.parseInt(args[0]);
 		int task, start, end;
