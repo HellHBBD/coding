@@ -212,8 +212,6 @@ public class HtmlParser {
 		for (Object[] element : list) {
 			double squareTotal = (double)element[1];
 			double total = (double)element[2];
-			System.out.println(squareTotal);
-			System.out.println(total);
 			double sd = squareRoot(squareTotal / (n - 1) - total * total / n / (n - 1));
 			if (sd > (double)top3[0][1]) {
 				top3[2][0] = top3[1][0]; //move 2nd to 3rd
