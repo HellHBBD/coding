@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.nio.file.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class HtmlParser {
 	public static void crawl() throws IOException
@@ -75,7 +74,7 @@ public class HtmlParser {
 
 		String line;
 		int count = 0;
-		while ((line = reader.readLine()) != null && count <= end) {
+		while ((line = reader.readLine()) != null && count < end) {
 			count++;
 			if (count >= start) {
 				data.add(Double.valueOf(line.split(",")[index]));
@@ -191,7 +190,7 @@ public class HtmlParser {
 		String line;
 		int count = 0;
 		int n = end - start + 1;
-		while ((line = reader.readLine()) != null && count <= end) {
+		while ((line = reader.readLine()) != null && count < end) {
 			count++;
 			if (count >= start) {
 				stocks = line.split(",");
