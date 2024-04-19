@@ -250,7 +250,44 @@ public class HtmlParser {
 
 	public static void LR(String stock, int start, int end) throws IOException
 	{
-		ArrayList<Double> data = new ArrayList<Double>();
+		ArrayList<Double> data = read(stock, start, end);
+		int n = data.size();
+
+		double Sx = 0;
+		double Sy = 0;
+		double Sxx = 0;
+		double Sxy = 0;
+		int day = start;
+		for (double element : data) {
+			Sy += day;
+			Sx += element;
+			Sxx += (element * element);
+			Sxy += (element * day);
+			day++;
+		}
+		double b1 = (Sxy - Sx * Sy / n) / (Sxx - Sx * Sx / n);
+		double b0 = Sy / n - b1 * Sx / n;
+
+		// double time = (start + end) * n / 2;
+		// double price = 0;
+		// for (double element : data) {
+		// 	price += element;
+		// }
+		
+		File file = new File("output.csv");
+		BufferedWriter bw;
+		if (file.exists()) {
+			bw = new BufferedWriter(new FileWriter(file, true));
+		} else {
+			file.createNewFile();
+			bw = new BufferedWriter(new FileWriter(file, true));
+		}
+		bw.write(String.format("%s,%d,%d\n", stock, start, end));
+		printDouble(bw, b1);
+		bw.write(",");
+		printDouble(bw, b0);
+		bw.write("\n");
+		bw.close();
 	}
 
 	public static void main(String[] args) throws IOException
