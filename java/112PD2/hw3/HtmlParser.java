@@ -259,9 +259,9 @@ public class HtmlParser {
 		double Sxy = 0;
 		int day = start;
 		for (double element : data) {
-			Sy += day;
-			Sx += element;
-			Sxx += (element * element);
+			Sy += element;
+			Sx += day;
+			Sxx += (day * day);
 			Sxy += (element * day);
 			day++;
 		}
