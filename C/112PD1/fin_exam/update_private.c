@@ -10,7 +10,8 @@ struct LinkedList {
 	struct LinkedList *next;
 };
 
-int update_private(struct LinkedList *head, char target[20], int idx1, int idx2, int idx3, int val)
+int update_private(struct LinkedList *head, char target[20], int idx1, int idx2,
+		   int idx3, int val)
 {
 	struct LinkedList *person = find(head, target);
 	if (person == 0)

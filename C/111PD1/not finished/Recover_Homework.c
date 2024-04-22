@@ -25,7 +25,8 @@ void recovery(char *result)
 			char c = word[i];
 			if (isalpha(c))
 				continue;
-			else if ((c == ',' || c == '.' || c == '?' || c == '!')) {
+			else if ((c == ',' || c == '.' || c == '?' ||
+				  c == '!')) {
 				if (i == 0)
 					cat = true;
 				else if (i == (strlen(word) - 1))

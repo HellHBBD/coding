@@ -70,7 +70,8 @@ char read(FILE *file, char **result)
 			return c;
 		default:
 			if (*result) {
-				*result = realloc(*result, sizeof(char) * (length + 1));
+				*result = realloc(*result,
+						  sizeof(char) * (length + 1));
 				(*result)[length++] = c;
 			} else {
 				length++;
@@ -85,7 +86,8 @@ char read(FILE *file, char **result)
 void command(char *name, char *path)
 {
 	char *str = "gcc -o ";
-	char *msg = malloc(sizeof(char) * (strlen(str) + strlen(path) + strlen(name) + 4));
+	char *msg = malloc(sizeof(char) *
+			   (strlen(str) + strlen(path) + strlen(name) + 4));
 	strcpy(msg, str);
 	strcat(msg, path);
 	strcat(msg, " ");

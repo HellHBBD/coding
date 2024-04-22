@@ -38,12 +38,13 @@ void Time::setTime(int h, int m, int s)
 
 void Time::printUniversal()
 {
-	cout << setfill('0') << setw(2) << hour << ":" << setw(2) << minute << ":" << setw(2)
-	     << second;
+	cout << setfill('0') << setw(2) << hour << ":" << setw(2) << minute
+	     << ":" << setw(2) << second;
 }
 
 void Time::printStandard()
 {
-	cout << setfill('0') << setw(2) << (hour > 12 ? hour : hour % 12) << ":" << setw(2)
-	     << minute << ":" << setw(2) << second << " " << (hour > 12 ? "P.M." : "A.M.");
+	cout << setfill('0') << setw(2) << (hour > 12 ? hour : hour % 12) << ":"
+	     << setw(2) << minute << ":" << setw(2) << second << " "
+	     << (hour > 12 ? "P.M." : "A.M.");
 }

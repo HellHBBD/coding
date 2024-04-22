@@ -26,7 +26,7 @@ void append(struct node **list, int value)
 	}
 }
 
-void delete (struct node **list)
+void delete(struct node **list)
 {
 	struct node *newNode = (*list)->next;
 	free(*list);

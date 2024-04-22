@@ -3,7 +3,8 @@ using namespace std;
 
 size_t getSize(int *ptr)
 { //array pass an address to function, declare a pointer variable
-	return sizeof(ptr); //size_t is a data type compartable between 32bit and 64bit
+	return sizeof(
+		ptr); //size_t is a data type compartable between 32bit and 64bit
 }
 
 int main()

@@ -7,8 +7,9 @@
 
 class BasePlusCommissionEmployee : public CommissionEmployee {
     public:
-	BasePlusCommissionEmployee(const string &, const string &, const string &, double = 0.0,
-				   double = 0.0, double = 0.0, int = 1, int = 1, int = 1900);
+	BasePlusCommissionEmployee(const string &, const string &,
+				   const string &, double = 0.0, double = 0.0,
+				   double = 0.0, int = 1, int = 1, int = 1900);
 
 	void setBaseSalary(double); // set base salary
 	double getBaseSalary() const; // return base salary

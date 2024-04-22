@@ -11,6 +11,7 @@ int main()
 	cout << "the size of aPtr is " << sizeof(aPtr) << " bit"
 	     << endl; //the position of memory store as 8 bit
 	cout << "b has value " << *bPtr << " at " << bPtr << endl;
-	cout << "the size of bPtr is " << sizeof(bPtr) << " bit" << endl; //any type is the same
+	cout << "the size of bPtr is " << sizeof(bPtr) << " bit"
+	     << endl; //any type is the same
 	return 0;
 }

@@ -21,10 +21,12 @@ int main()
 
 	// create derived-class objects
 	SalariedEmployee salariedEmployee("John", "Smith", "111-11-1111", 800);
-	HourlyEmployee hourlyEmployee("Karen", "Price", "222-22-2222", 16.75, 40);
-	CommissionEmployee commissionEmployee("Sue", "Jones", "333-33-3333", 10000, .06);
-	BasePlusCommissionEmployee basePlusCommissionEmployee("Bob", "Lewis", "444-44-4444", 5000,
-							      .04, 300);
+	HourlyEmployee hourlyEmployee("Karen", "Price", "222-22-2222", 16.75,
+				      40);
+	CommissionEmployee commissionEmployee("Sue", "Jones", "333-33-3333",
+					      10000, .06);
+	BasePlusCommissionEmployee basePlusCommissionEmployee(
+		"Bob", "Lewis", "444-44-4444", 5000, .04, 300);
 
 	cout << "Employees processed individually using static binding:\n\n";
 

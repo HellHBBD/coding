@@ -18,7 +18,8 @@ int main()
 			c = getchar();
 			if (c == '\\')
 				break;
-			if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) { //character
+			if ((c >= 'a' && c <= 'z') ||
+			    (c >= 'A' && c <= 'Z')) { //character
 				printf("%c", c);
 				isNumber = false;
 				digit = 0;

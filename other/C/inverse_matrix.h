@@ -9,7 +9,7 @@ void swap(void *, void *, const size_t);
 double **input(size_t);
 double **inverse(double **, const size_t);
 void print(double **, const size_t);
-void delete (double **, const size_t);
+void delete(double **, const size_t);
 
 void swap(void *a, void *b, const size_t size)
 {
@@ -50,8 +50,10 @@ double **inverse(double **matrix, const size_t size)
 		if (!copy[i][i]) {
 			for (int j = i; j < size; j++) {
 				if (copy[j][i]) {
-					swap(&copy[i], &copy[j], sizeof(double *));
-					swap(&result[i], &result[j], sizeof(double *));
+					swap(&copy[i], &copy[j],
+					     sizeof(double *));
+					swap(&result[i], &result[j],
+					     sizeof(double *));
 					goto find;
 				}
 			}
@@ -91,7 +93,7 @@ void print(double **matrix, const size_t size)
 	}
 }
 
-void delete (double **matrix, const size_t size)
+void delete(double **matrix, const size_t size)
 {
 	for (int i = 0; i < size; i++) {
 		free(matrix[i]);

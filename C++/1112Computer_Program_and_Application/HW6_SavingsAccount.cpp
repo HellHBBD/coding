@@ -19,16 +19,22 @@ double SavingsAccount::annualInterestRate = 0.0;
 int main()
 {
 	SavingsAccount saver1(2000), saver2(3000);
-	cout << "set interest rate to " << SavingsAccount::modifyInterestRate(3) << "%" << endl;
-	cout << "saver1 monthly interest: " << saver1.calculateMonthlyInterest() << endl;
+	cout << "set interest rate to " << SavingsAccount::modifyInterestRate(3)
+	     << "%" << endl;
+	cout << "saver1 monthly interest: " << saver1.calculateMonthlyInterest()
+	     << endl;
 	cout << "saver1 new balance: " << saver1.getBalance() << endl;
-	cout << "saver2 monthly interest: " << saver2.calculateMonthlyInterest() << endl;
+	cout << "saver2 monthly interest: " << saver2.calculateMonthlyInterest()
+	     << endl;
 	cout << "saver2 new balance: " << saver2.getBalance() << endl;
 	cout << endl;
-	cout << "set interest rate to " << SavingsAccount::modifyInterestRate(4) << "%" << endl;
-	cout << "saver1 monthly interest: " << saver1.calculateMonthlyInterest() << endl;
+	cout << "set interest rate to " << SavingsAccount::modifyInterestRate(4)
+	     << "%" << endl;
+	cout << "saver1 monthly interest: " << saver1.calculateMonthlyInterest()
+	     << endl;
 	cout << "saver1 new balance: " << saver1.getBalance() << endl;
-	cout << "saver2 monthly interest: " << saver2.calculateMonthlyInterest() << endl;
+	cout << "saver2 monthly interest: " << saver2.calculateMonthlyInterest()
+	     << endl;
 	cout << "saver2 new balance: " << saver2.getBalance() << endl;
 	return 0;
 }

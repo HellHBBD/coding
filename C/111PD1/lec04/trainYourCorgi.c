@@ -31,7 +31,8 @@ int main()
 			Obedience += OBEDIENCE_TRAIN;
 			Strength -= STRENGTH_TRAIN;
 		}
-		if (Obedience >= LEARN_OBEDIENCE && Strength <= LEARN_STRENGTH) {
+		if (Obedience >= LEARN_OBEDIENCE &&
+		    Strength <= LEARN_STRENGTH) {
 			count += 1;
 			Obedience = INIT_OBEDIENCE;
 		}

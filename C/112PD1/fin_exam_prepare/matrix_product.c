@@ -13,7 +13,8 @@ void matrixProduct(int A[N][N], int b[N][N], int result[N][N])
 {
 	for (int i = 0; i < N; i++)
 		for (int j = 0; j < N; j++)
-			result[i][j] = innerProduct(A[i], (int(*)[N]) & b[0][j]);
+			result[i][j] =
+				innerProduct(A[i], (int(*)[N]) & b[0][j]);
 }
 
 int main()

@@ -23,10 +23,12 @@ int main()
 {
 	//wall=1
 	//road=0
-	int maze[8][12] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1,
-			    1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1,
-			    1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1,
-			    1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+	int maze[8][12] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
+			    1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0,
+			    1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1,
+			    1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+			    0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0,
+			    0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
 	int startX = 1;
 	int startY = 1;
@@ -52,25 +54,29 @@ int main()
 			nextPos.xPos = nowPos.xPos - 1;
 			nextPos.yPos = nowPos.yPos;
 			mouse.push(nextPos);
-			maze[nowPos.xPos - 1][nowPos.yPos] = 2; //mark the route passed by as 2
+			maze[nowPos.xPos - 1][nowPos.yPos] =
+				2; //mark the route passed by as 2
 		} else if (maze[nowPos.xPos][nowPos.yPos + 1] == 0) //right
 		{
 			nextPos.xPos = nowPos.xPos;
 			nextPos.yPos = nowPos.yPos + 1;
 			mouse.push(nextPos);
-			maze[nowPos.xPos][nowPos.yPos + 1] = 2; //mark the route passed by as 2
+			maze[nowPos.xPos][nowPos.yPos + 1] =
+				2; //mark the route passed by as 2
 		} else if (maze[nowPos.xPos + 1][nowPos.yPos] == 0) //down
 		{
 			nextPos.xPos = nowPos.xPos + 1;
 			nextPos.yPos = nowPos.yPos;
 			mouse.push(nextPos);
-			maze[nowPos.xPos + 1][nowPos.yPos] = 2; //mark the route passed by as 2
+			maze[nowPos.xPos + 1][nowPos.yPos] =
+				2; //mark the route passed by as 2
 		} else if (maze[nowPos.xPos][nowPos.yPos - 1] == 0) //left
 		{
 			nextPos.xPos = nowPos.xPos;
 			nextPos.yPos = nowPos.yPos - 1;
 			mouse.push(nextPos);
-			maze[nowPos.xPos][nowPos.yPos - 1] = 2; //mark the route passed by as 2
+			maze[nowPos.xPos][nowPos.yPos - 1] =
+				2; //mark the route passed by as 2
 		} else //dead end
 		{
 			mouse.pop();

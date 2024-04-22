@@ -109,16 +109,20 @@ void Date::helpIncrement()
 // overloaded output operator
 ostream &operator<<(ostream &output, const Date &d)
 {
-	static string monthName[13] = { "",	   "January",  "February", "March",  "April",
-					"May",	   "June",     "July",	   "August", "September",
-					"October", "November", "December" };
-	output << monthName[d.getMonth()] << ' ' << d.getDay() << ", " << d.getYear();
+	static string monthName[13] = { "",	     "January", "February",
+					"March",     "April",	"May",
+					"June",	     "July",	"August",
+					"September", "October", "November",
+					"December" };
+	output << monthName[d.getMonth()] << ' ' << d.getDay() << ", "
+	       << d.getYear();
 	return output; // enables cascading
 } // end function operator<<
 
 bool operator==(const Date &date1, const Date &date2)
 {
-	if (date1.getMonth() == date2.getMonth() && date1.getYear() == date2.getYear())
+	if (date1.getMonth() == date2.getMonth() &&
+	    date1.getYear() == date2.getYear())
 		return true;
 	else
 		return false;

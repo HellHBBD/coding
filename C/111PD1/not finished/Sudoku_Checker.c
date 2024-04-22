@@ -45,7 +45,8 @@ void check_sudoku(int (*grid_p)[NUM])
 				checkList[number][0] = index1;
 				checkList[number][1] = index2;
 			} else {
-				addPoint(&unsatisfied, &unsatisfiedCount, index1, index2);
+				addPoint(&unsatisfied, &unsatisfiedCount,
+					 index1, index2);
 			}
 		}
 		reset(checkList);
@@ -57,7 +58,8 @@ void check_sudoku(int (*grid_p)[NUM])
 				checkList[number][0] = index1;
 				checkList[number][1] = index2;
 			} else {
-				addPoint(&unsatisfied, &unsatisfiedCount, index1, index2);
+				addPoint(&unsatisfied, &unsatisfiedCount,
+					 index1, index2);
 			}
 		}
 		reset(checkList);
@@ -69,7 +71,8 @@ void check_sudoku(int (*grid_p)[NUM])
 				checkList[number][0] = index1;
 				checkList[number][1] = index2;
 			} else {
-				addPoint(&unsatisfied, &unsatisfiedCount, index1, index2);
+				addPoint(&unsatisfied, &unsatisfiedCount,
+					 index1, index2);
 			}
 		}
 		reset(checkList);

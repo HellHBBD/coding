@@ -17,8 +17,8 @@ int check(int index)
 	return 0;
 }
 
-int update_public(struct LinkedList *head, char target[20], int idx1, int idx2, int idx3, int idx4,
-		  int *val)
+int update_public(struct LinkedList *head, char target[20], int idx1, int idx2,
+		  int idx3, int idx4, int *val)
 {
 	if (check(idx1) || check(idx2) || check(idx3) || check(idx4))
 		return -2;

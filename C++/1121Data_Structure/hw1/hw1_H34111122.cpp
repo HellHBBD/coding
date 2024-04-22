@@ -13,7 +13,8 @@ void print(std::string[][13]);
 
 void print(std::string, std::string[]);
 
-void deal(std::string[][13], std::string[], std::string[], std::string[], std::string[]);
+void deal(std::string[][13], std::string[], std::string[], std::string[],
+	  std::string[]);
 
 int compare(const std::string &, const std::string &);
 
@@ -27,10 +28,12 @@ int main()
 {
 	std::string poker[4][13] = {
 		//use "std::string" to store each card is more efficient
-		"SA", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "ST", "SJ", "SQ", "SK",
-		"HA", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "HT", "HJ", "HQ", "HK",
-		"DA", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "DT", "DJ", "DQ", "DK",
-		"CA", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "CT", "CJ", "CQ", "CK"
+		"SA", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9",
+		"ST", "SJ", "SQ", "SK", "HA", "H2", "H3", "H4", "H5",
+		"H6", "H7", "H8", "H9", "HT", "HJ", "HQ", "HK", "DA",
+		"D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "DT",
+		"DJ", "DQ", "DK", "CA", "C2", "C3", "C4", "C5", "C6",
+		"C7", "C8", "C9", "CT", "CJ", "CQ", "CK"
 	};
 	std::string East[13], Sorth[13], West[13],
 		North[13]; //use one dimensional array to store each player's hand cards
@@ -52,10 +55,14 @@ int main()
 	print(getName(West), West);
 
 	//calculate and output max & min sum for each player
-	std::cout << "North's MAX_MIN_Sum Value: " << calculateValue(North) << std::endl;
-	std::cout << "East's MAX_MIN_Sum Value: " << calculateValue(East) << std::endl;
-	std::cout << "Sorth's MAX_MIN_Sum Value: " << calculateValue(Sorth) << std::endl;
-	std::cout << "West's MAX_MIN_Sum Value: " << calculateValue(West) << std::endl;
+	std::cout << "North's MAX_MIN_Sum Value: " << calculateValue(North)
+		  << std::endl;
+	std::cout << "East's MAX_MIN_Sum Value: " << calculateValue(East)
+		  << std::endl;
+	std::cout << "Sorth's MAX_MIN_Sum Value: " << calculateValue(Sorth)
+		  << std::endl;
+	std::cout << "West's MAX_MIN_Sum Value: " << calculateValue(West)
+		  << std::endl;
 	return 0;
 }
 
@@ -73,7 +80,8 @@ void shuffle(std::string poker[4][13])
 	while (switchTime--) { //while (0) stop
 		int card1 = rand() % 52; //take random two cards and swap
 		int card2 = rand() % 52;
-		swap(poker[card1 / 13][card1 % 13], poker[card2 / 13][card2 % 13]);
+		swap(poker[card1 / 13][card1 % 13],
+		     poker[card2 / 13][card2 % 13]);
 	}
 }
 
@@ -83,9 +91,10 @@ void print(std::string poker[4][13])
 		for (int j = 0; j < 13; j++)
 			std::cout << poker[i][j] << " | ";
 		std::cout << std::endl;
-		std::cout << "-----------------------------------------------------------------"
-			  << std::endl
-			  << std::endl;
+		std::cout
+			<< "-----------------------------------------------------------------"
+			<< std::endl
+			<< std::endl;
 	}
 }
 
@@ -111,14 +120,17 @@ void print(std::string playerName, std::string player[13])
 	std::cout << std::endl << std::endl;
 }
 
-void deal(std::string poker[4][13], std::string player1[13], std::string player2[13],
-	  std::string player3[13], std::string player4[13])
+void deal(std::string poker[4][13], std::string player1[13],
+	  std::string player2[13], std::string player3[13],
+	  std::string player4[13])
 {
 	for (int i = 0; i < 13; i++) {
 		player1[i] = poker[i % 4][i / 4 * 4];
 		player2[i] = poker[i % 4 + i / 12][i / 4 * 4 + 1 - i / 12];
-		player3[i] = poker[i % 4 + i / 12 * 2][i / 4 * 4 + 2 - i / 12 * 2];
-		player4[i] = poker[i % 4 + i / 12 * 3][i / 4 * 4 + 3 - i / 12 * 3];
+		player3[i] =
+			poker[i % 4 + i / 12 * 2][i / 4 * 4 + 2 - i / 12 * 2];
+		player4[i] =
+			poker[i % 4 + i / 12 * 3][i / 4 * 4 + 3 - i / 12 * 3];
 	}
 }
 
@@ -208,7 +220,8 @@ int compare(const int &a, const int &b)
 template <class T> void InsertionSort(T arr[], int n)
 {
 	for (int unsortIndex = 1; unsortIndex < n; unsortIndex++) {
-		for (int currentIndex = unsortIndex; currentIndex > 0; currentIndex--)
+		for (int currentIndex = unsortIndex; currentIndex > 0;
+		     currentIndex--)
 			if (compare(arr[currentIndex], arr[currentIndex - 1]) <
 			    0) //if (current < current-1) then swap()
 				swap(arr[currentIndex], arr[currentIndex - 1]);

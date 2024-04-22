@@ -45,11 +45,13 @@ void selectionSort(void *base, size_t memberCount, size_t memberSize,
 	char *array = (char *)base;
 	for (int swapIndex = 0; swapIndex < memberCount - 1; swapIndex++) {
 		int minIndex = swapIndex;
-		for (int findIndex = swapIndex; findIndex < memberCount; findIndex++)
-			if (compare(array + findIndex * memberSize, array + minIndex * memberSize) <
-			    0)
+		for (int findIndex = swapIndex; findIndex < memberCount;
+		     findIndex++)
+			if (compare(array + findIndex * memberSize,
+				    array + minIndex * memberSize) < 0)
 				minIndex = findIndex;
-		swap(array + swapIndex * memberSize, array + minIndex * memberSize, memberSize);
+		swap(array + swapIndex * memberSize,
+		     array + minIndex * memberSize, memberSize);
 	}
 }
 
@@ -58,12 +60,13 @@ void insertionSort(void *base, size_t memberCount, size_t memberSize,
 {
 	char *array = (char *)base;
 	for (int selectIndex = 1; selectIndex < memberCount; selectIndex++) {
-		for (int currentIndex = selectIndex - 1; currentIndex >= 0; currentIndex--) {
+		for (int currentIndex = selectIndex - 1; currentIndex >= 0;
+		     currentIndex--) {
 			if (compare(array + selectIndex * memberSize,
 				    array + currentIndex * memberSize) > 0)
 				break;
-			swap(array + selectIndex * memberSize, array + currentIndex * memberSize,
-			     memberSize);
+			swap(array + selectIndex * memberSize,
+			     array + currentIndex * memberSize, memberSize);
 		}
 	}
 }
@@ -101,7 +104,17 @@ void insertionSort(void *base, size_t memberCount, size_t memberSize,
 /* 	int *array = (int *)base; // */
 /* } */
 
-enum Algorithm { selection, insertion, buble, shell, shaker, quick, merge, heap, radix };
+enum Algorithm {
+	selection,
+	insertion,
+	buble,
+	shell,
+	shaker,
+	quick,
+	merge,
+	heap,
+	radix
+};
 
 void sort(enum Algorithm algorithm, void *base, size_t length, size_t size,
 	  int (*cmp)(const void *, const void *))

@@ -47,10 +47,10 @@ int main()
 		.update('P', 210)
 		.update('S', 943);
 	Bookstore Tainan, NCKU(2), IIM(4);
-	cout << Tainan.addBook(Cplusplus) << Tainan.addBook(Calculus) << Tainan.addBook(Economics)
-	     << endl;
-	cout << NCKU.addBook(Cplusplus) << NCKU.addBook(Calculus) << NCKU.addBook(Economics)
-	     << endl;
+	cout << Tainan.addBook(Cplusplus) << Tainan.addBook(Calculus)
+	     << Tainan.addBook(Economics) << endl;
+	cout << NCKU.addBook(Cplusplus) << NCKU.addBook(Calculus)
+	     << NCKU.addBook(Economics) << endl;
 	IIM.addBook(Calculus);
 	IIM.addBook(Cplusplus);
 	IIM.addBook(Economics);
@@ -59,7 +59,8 @@ int main()
 	cout << endl;
 	IIM.print();
 	cout << endl;
-	cout << NCKU.update("Essential Calculus") << NCKU.update("Principle of Economics") << endl;
+	cout << NCKU.update("Essential Calculus")
+	     << NCKU.update("Principle of Economics") << endl;
 	return 0;
 }
 

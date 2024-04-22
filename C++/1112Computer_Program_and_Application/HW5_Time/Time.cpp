@@ -21,8 +21,9 @@ void Time::setTime(int h, int m, int s)
 
 void Time::printStandard(char display)
 {
-	cout << ((Hour == 0 || Hour == 12) ? 12 : Hour % 12) << ":" << setfill('0') << setw(2)
-	     << Minute << ":" << setw(2) << Second << (Hour < 12 ? " AM" : " PM") << display;
+	cout << ((Hour == 0 || Hour == 12) ? 12 : Hour % 12) << ":"
+	     << setfill('0') << setw(2) << Minute << ":" << setw(2) << Second
+	     << (Hour < 12 ? " AM" : " PM") << display;
 }
 
 void Time::tick()

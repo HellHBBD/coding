@@ -59,7 +59,8 @@ template <class T> class DoubleLinkedList {
 		for (int p = 0; p < pos && target != NULL; p++)
 			target = target->next;
 		if (target == NULL)
-			cout << "cannot find the node at this position: " << pos << "\n";
+			cout << "cannot find the node at this position: " << pos
+			     << "\n";
 		return target;
 	}
 

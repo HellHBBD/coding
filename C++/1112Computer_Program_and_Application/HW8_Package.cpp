@@ -79,9 +79,13 @@ int main()
 	return 0;
 }
 
-Package::Package(string sender[], string recipient[], double weight, double costPerOunce)
+Package::Package(string sender[], string recipient[], double weight,
+		 double costPerOunce)
 {
-	setSender(sender).setRecipient(recipient).setWeight(weight).setCostPerOunce(costPerOunce);
+	setSender(sender)
+		.setRecipient(recipient)
+		.setWeight(weight)
+		.setCostPerOunce(costPerOunce);
 }
 
 Package &Package::setSender(string sender[])
@@ -247,19 +251,19 @@ void Package::info()
 	cout << "Package" << endl;
 	cout << "Sender       " << getSenderName() << endl;
 	cout << "             " << getSenderAddress() << endl;
-	cout << "             " << getSenderCity() << " " << getSenderState() << " "
-	     << getSenderZIP() << endl;
+	cout << "             " << getSenderCity() << " " << getSenderState()
+	     << " " << getSenderZIP() << endl;
 	cout << endl;
 	cout << "Recipient    " << getRecipientName() << endl;
 	cout << "             " << getRecipientAddress() << endl;
-	cout << "             " << getRecipientCity() << " " << getRecipientState() << " "
-	     << getRecipientZIP() << endl;
+	cout << "             " << getRecipientCity() << " "
+	     << getRecipientState() << " " << getRecipientZIP() << endl;
 	cout << "Cost         $ " << setprecision(5) << calculateCost() << endl;
 	cout << "#######################################" << endl;
 }
 
-TwoDayPackage::TwoDayPackage(string sender[], string recipient[], double weight, double cost,
-			     double flatFee)
+TwoDayPackage::TwoDayPackage(string sender[], string recipient[], double weight,
+			     double cost, double flatFee)
 	: Package::Package(sender, recipient, weight, cost)
 {
 	setFlatFee(flatFee);
@@ -286,18 +290,20 @@ void TwoDayPackage::info()
 	cout << "2 Day Delivery" << endl;
 	cout << "Sender       " << getSenderName() << endl;
 	cout << "             " << getSenderAddress() << endl;
-	cout << "             " << getSenderCity() << " " << getSenderState() << " "
-	     << getSenderZIP() << endl;
+	cout << "             " << getSenderCity() << " " << getSenderState()
+	     << " " << getSenderZIP() << endl;
 	cout << endl;
 	cout << "Recipient    " << getRecipientName() << endl;
 	cout << "             " << getRecipientAddress() << endl;
-	cout << "             " << getRecipientCity() << " " << getRecipientState() << " "
-	     << getRecipientZIP() << endl;
-	cout << "Cost         $ " << fixed << setprecision(2) << calculateCost() << endl;
+	cout << "             " << getRecipientCity() << " "
+	     << getRecipientState() << " " << getRecipientZIP() << endl;
+	cout << "Cost         $ " << fixed << setprecision(2) << calculateCost()
+	     << endl;
 	cout << "#######################################" << endl;
 }
 
-OvernightPackage::OvernightPackage(string sender[], string recipient[], double weight, double cost,
+OvernightPackage::OvernightPackage(string sender[], string recipient[],
+				   double weight, double cost,
 				   double additionalFee)
 	: Package::Package(sender, recipient, weight, cost)
 {
@@ -325,13 +331,14 @@ void OvernightPackage::info()
 	cout << "Overnight Delivery" << endl;
 	cout << "Sender       " << getSenderName() << endl;
 	cout << "             " << getSenderAddress() << endl;
-	cout << "             " << getSenderCity() << " " << getSenderState() << " "
-	     << getSenderZIP() << endl;
+	cout << "             " << getSenderCity() << " " << getSenderState()
+	     << " " << getSenderZIP() << endl;
 	cout << endl;
 	cout << "Recipient    " << getRecipientName() << endl;
 	cout << "             " << getRecipientAddress() << endl;
-	cout << "             " << getRecipientCity() << " " << getRecipientState() << " "
-	     << getRecipientZIP() << endl;
-	cout << "Cost         $ " << fixed << setprecision(2) << calculateCost() << endl;
+	cout << "             " << getRecipientCity() << " "
+	     << getRecipientState() << " " << getRecipientZIP() << endl;
+	cout << "Cost         $ " << fixed << setprecision(2) << calculateCost()
+	     << endl;
 	cout << "#######################################" << endl;
 }

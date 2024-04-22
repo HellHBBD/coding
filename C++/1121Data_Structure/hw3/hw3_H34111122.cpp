@@ -13,27 +13,33 @@ struct Node {
 };
 
 //initialize global variable
-const char matrix[8][8] = { 'X', 'a', 'b', 'c', 'X', 'X', 'X', 'X', 'a', 'X', 'X', 'X', 'X',
-			    'd', 'X', 'X', 'b', 'X', 'X', 'X', 'e', 'X', 'X', 'X', 'c', 'X',
-			    'X', 'X', 'f', 'X', 'g', 'X', 'X', 'X', 'e', 'f', 'X', 'h', 'i',
-			    'j', 'X', 'd', 'X', 'X', 'h', 'X', 'X', 'k', 'X', 'X', 'X', 'g',
-			    'i', 'X', 'X', 'l', 'X', 'X', 'X', 'X', 'j', 'k', 'l', 'X' };
+const char matrix[8][8] = { 'X', 'a', 'b', 'c', 'X', 'X', 'X', 'X', 'a', 'X',
+			    'X', 'X', 'X', 'd', 'X', 'X', 'b', 'X', 'X', 'X',
+			    'e', 'X', 'X', 'X', 'c', 'X', 'X', 'X', 'f', 'X',
+			    'g', 'X', 'X', 'X', 'e', 'f', 'X', 'h', 'i', 'j',
+			    'X', 'd', 'X', 'X', 'h', 'X', 'X', 'k', 'X', 'X',
+			    'X', 'g', 'i', 'X', 'X', 'l', 'X', 'X', 'X', 'X',
+			    'j', 'k', 'l', 'X' };
 
 //                    a  b  c  d  e  f  g  h  i  j  k  l
-const int length[] = { 7, 3, 1, 7, 7, 6, 7, 6, 5, 2, 5, 4 }; //a array table to query
+const int length[] = {
+	7, 3, 1, 7, 7, 6, 7, 6, 5, 2, 5, 4
+}; //a array table to query
 
-struct Edge edges[] = { { .name = 'a', .length = 7, .vertex1 = 'A', .vertex2 = 'B' },
-			{ .name = 'b', .length = 3, .vertex1 = 'A', .vertex2 = 'C' },
-			{ .name = 'c', .length = 1, .vertex1 = 'A', .vertex2 = 'D' },
-			{ .name = 'd', .length = 7, .vertex1 = 'B', .vertex2 = 'F' },
-			{ .name = 'e', .length = 7, .vertex1 = 'C', .vertex2 = 'E' },
-			{ .name = 'f', .length = 6, .vertex1 = 'D', .vertex2 = 'E' },
-			{ .name = 'g', .length = 7, .vertex1 = 'D', .vertex2 = 'G' },
-			{ .name = 'h', .length = 6, .vertex1 = 'E', .vertex2 = 'F' },
-			{ .name = 'i', .length = 5, .vertex1 = 'E', .vertex2 = 'G' },
-			{ .name = 'j', .length = 2, .vertex1 = 'E', .vertex2 = 'H' },
-			{ .name = 'k', .length = 5, .vertex1 = 'F', .vertex2 = 'H' },
-			{ .name = 'l', .length = 4, .vertex1 = 'G', .vertex2 = 'H' } };
+struct Edge edges[] = {
+	{ .name = 'a', .length = 7, .vertex1 = 'A', .vertex2 = 'B' },
+	{ .name = 'b', .length = 3, .vertex1 = 'A', .vertex2 = 'C' },
+	{ .name = 'c', .length = 1, .vertex1 = 'A', .vertex2 = 'D' },
+	{ .name = 'd', .length = 7, .vertex1 = 'B', .vertex2 = 'F' },
+	{ .name = 'e', .length = 7, .vertex1 = 'C', .vertex2 = 'E' },
+	{ .name = 'f', .length = 6, .vertex1 = 'D', .vertex2 = 'E' },
+	{ .name = 'g', .length = 7, .vertex1 = 'D', .vertex2 = 'G' },
+	{ .name = 'h', .length = 6, .vertex1 = 'E', .vertex2 = 'F' },
+	{ .name = 'i', .length = 5, .vertex1 = 'E', .vertex2 = 'G' },
+	{ .name = 'j', .length = 2, .vertex1 = 'E', .vertex2 = 'H' },
+	{ .name = 'k', .length = 5, .vertex1 = 'F', .vertex2 = 'H' },
+	{ .name = 'l', .length = 4, .vertex1 = 'G', .vertex2 = 'H' }
+};
 
 void swap(struct Edge &e1, struct Edge &e2)
 {
@@ -73,7 +79,8 @@ void findVertex(Node *traversed[4], char vertex, int &index, Node *&tail)
 	for (int i = 0; i < 4; i++) {
 		for (Node *currentNode = traversed[i]; currentNode;
 		     currentNode = currentNode->next) {
-			if (currentNode->vertex == vertex) { //find the vertex traversed
+			if (currentNode->vertex ==
+			    vertex) { //find the vertex traversed
 				index = i;
 				tail = currentNode;
 				while (tail) //move tail to the end of linked list and return
@@ -147,7 +154,8 @@ int main()
 		findVertex(traversed, vertex2, index2, tail2);
 
 		if (tail1) { //if vertex1 found
-			if (tail1 == tail2) { //if vertex1 and vertex2 belong to same component
+			if (tail1 ==
+			    tail2) { //if vertex1 and vertex2 belong to same component
 				puts(" is ignored");
 				continue; //if cycle occured, edgeCount won't count
 			}

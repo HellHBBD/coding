@@ -33,8 +33,9 @@ void printDate(struct Date date)
 	const char *wday[] = { "Mon", "Tue", "Wed", "Thr", "Fri", "Sat", "Sun" };
 	const char *month[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun",
 				"Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-	printf("%s %s %d %02d:%02d:%02d %llu\n", wday[date.weekday - 1], month[date.month - 1],
-	       date.day, date.hour, date.minute, date.second, (unsigned long long)date.year);
+	printf("%s %s %d %02d:%02d:%02d %llu\n", wday[date.weekday - 1],
+	       month[date.month - 1], date.day, date.hour, date.minute,
+	       date.second, (unsigned long long)date.year);
 }
 
 #endif

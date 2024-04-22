@@ -8,7 +8,8 @@ int main()
 	int &cr = c; //reference variable
 	int &crr = cr;
 	cout << c << " " << cr << " " << crr << endl;
-	cout << &c << " " << &cr << " " << &crr << endl; //reference represent the same address
+	cout << &c << " " << &cr << " " << &crr
+	     << endl; //reference represent the same address
 	cout << *cp << " stored at " << cp << endl;
 	*cp = 2; // change value by pointer
 	cout << c << " " << cr << " " << crr << endl;

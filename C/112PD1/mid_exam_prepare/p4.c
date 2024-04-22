@@ -6,7 +6,8 @@ int pureRecursive(int n)
 	if (n <= 2)
 		return n;
 	else
-		return pureRecursive(n - 1) + pureRecursive(n - 2) + pureRecursive(n - 3);
+		return pureRecursive(n - 1) + pureRecursive(n - 2) +
+		       pureRecursive(n - 3);
 }
 
 int iterative(int n)
@@ -30,7 +31,8 @@ int tempRecursive(int n)
 	if (record & (1 << n))
 		;
 	else {
-		temp[n] = tempRecursive(n - 1) + tempRecursive(n - 2) + tempRecursive(n - 3);
+		temp[n] = tempRecursive(n - 1) + tempRecursive(n - 2) +
+			  tempRecursive(n - 3);
 		record |= (1 << n);
 	}
 	return temp[n];

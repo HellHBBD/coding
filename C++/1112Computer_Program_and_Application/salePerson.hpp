@@ -51,7 +51,8 @@ double SalesPerson::totalAnnualSales()
 
 void SalesPerson::printAnnualSales()
 {
-	cout << setprecision(2) << "Average: " << totalAnnualSales() / monthsPerYear << endl;
+	cout << setprecision(2)
+	     << "Average: " << totalAnnualSales() / monthsPerYear << endl;
 }
 
 #endif

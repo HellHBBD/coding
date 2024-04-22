@@ -7,9 +7,12 @@ void bubblesort(int array[][4], int n, int index)
 		for (int j = 0; j < n - 1 - i; j++) {
 			if (array[j][index] > array[j + 1][index]) {
 				for (int k = 0; k < 4; k++) {
-					array[j][k] = array[j][k] ^ array[j + 1][k];
-					array[j + 1][k] = array[j][k] ^ array[j + 1][k];
-					array[j][k] = array[j][k] ^ array[j + 1][k];
+					array[j][k] = array[j][k] ^
+						      array[j + 1][k];
+					array[j + 1][k] = array[j][k] ^
+							  array[j + 1][k];
+					array[j][k] = array[j][k] ^
+						      array[j + 1][k];
 				}
 			}
 		}

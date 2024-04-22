@@ -39,7 +39,8 @@ long int *fucn(short int *array)
 
 int main()
 {
-	short array[] = { 0x1050, 0x0000, 0x0000, 0x0000, 0x0005, 0x0600, 0x300c, 0x326b };
+	short array[] = { 0x1050, 0x0000, 0x0000, 0x0000,
+			  0x0005, 0x0600, 0x300c, 0x326b };
 	unsigned long long x, y;
 	a(array, &x, &y);
 	printf("%llu %llu\n", x, y);

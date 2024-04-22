@@ -5,8 +5,9 @@
 using namespace std;
 
 // constructor
-HourlyEmployee::HourlyEmployee(const string &first, const string &last, const string &ssn,
-			       double hourlyWage, double hoursWorked, int month, int day, int year)
+HourlyEmployee::HourlyEmployee(const string &first, const string &last,
+			       const string &ssn, double hourlyWage,
+			       double hoursWorked, int month, int day, int year)
 	: Employee(first, last, ssn, month, day, year)
 {
 	setWage(hourlyWage); // validate hourly wage
@@ -28,7 +29,9 @@ double HourlyEmployee::getWage() const
 // set hours worked
 void HourlyEmployee::setHours(double hoursWorked)
 {
-	hours = (((hoursWorked >= 0.0) && (hoursWorked <= hoursPerWeek)) ? hoursWorked : 0.0);
+	hours = (((hoursWorked >= 0.0) && (hoursWorked <= hoursPerWeek)) ?
+			 hoursWorked :
+			 0.0);
 } // end function setHours
 
 // return hours worked
@@ -49,7 +52,8 @@ double HourlyEmployee::earnings() const
 	if (getHours() <= 40) // no overtime
 		return getWage() * getHours() + bonus;
 	else
-		return 40 * getWage() + ((getHours() - 40) * getWage() * 1.5) + bonus;
+		return 40 * getWage() + ((getHours() - 40) * getWage() * 1.5) +
+		       bonus;
 } // end function earnings
 
 // print HourlyEmployee's information
@@ -57,7 +61,8 @@ void HourlyEmployee::print() const
 {
 	cout << "hourly employee: ";
 	Employee::print(); // code reuse
-	cout << "\nhourly wage: " << getWage() << "; hours worked: " << getHours();
+	cout << "\nhourly wage: " << getWage()
+	     << "; hours worked: " << getHours();
 } // end function print
 
 /**************************************************************************

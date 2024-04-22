@@ -28,7 +28,8 @@ void mul_mat(const struct mat *m1, const struct mat *m2, struct mat *result)
 		for (int j = 0; j < result->col; j++) {
 			result->value[i][j] = 0;
 			for (int k = 0; k < m1->col; k++)
-				result->value[i][j] += (m1->value[i][k] * m2->value[k][j]);
+				result->value[i][j] +=
+					(m1->value[i][k] * m2->value[k][j]);
 		}
 	}
 }

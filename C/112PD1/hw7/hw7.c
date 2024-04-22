@@ -23,9 +23,9 @@ int Cnr(int n, int r)
 	return result;
 }
 
-void optimizeDelete(struct File **disk, const int n, const int r, int expectSize,
-		    struct FileList *currentChoice, int *index, int currentSize,
-		    struct FileList *bestChoice, int *bestSize)
+void optimizeDelete(struct File **disk, const int n, const int r,
+		    int expectSize, struct FileList *currentChoice, int *index,
+		    int currentSize, struct FileList *bestChoice, int *bestSize)
 {
 	if (r == 1) {
 		for (int i = 0; i < n; i++) {
@@ -33,7 +33,8 @@ void optimizeDelete(struct File **disk, const int n, const int r, int expectSize
 			currentChoice->disk[*index] = disk[i];
 			(*index)++;
 
-			if (abs(expectSize, currentSize) < abs(expectSize, *bestSize) ||
+			if (abs(expectSize, currentSize) <
+				    abs(expectSize, *bestSize) ||
 			    *bestSize == 0) {
 				*bestSize = currentSize;
 				*bestChoice = *currentChoice;
@@ -48,8 +49,8 @@ void optimizeDelete(struct File **disk, const int n, const int r, int expectSize
 		currentSize += disk[i]->size;
 		currentChoice->disk[*index] = disk[i];
 		(*index)++;
-		optimizeDelete(disk, i, r - 1, expectSize, currentChoice, index, currentSize,
-			       bestChoice, bestSize);
+		optimizeDelete(disk, i, r - 1, expectSize, currentChoice, index,
+			       currentSize, bestChoice, bestSize);
 		currentSize -= disk[i]->size;
 		(*index)--;
 	}
@@ -62,7 +63,8 @@ void add(struct FileList *fileList)
 		if (fileList->disk[i] == 0) {
 			fileList->disk[i] = malloc(sizeof(struct File));
 			printf("Please input file name and file size: ");
-			scanf("%d%d", &fileList->disk[i]->name, &fileList->disk[i]->size);
+			scanf("%d%d", &fileList->disk[i]->name,
+			      &fileList->disk[i]->size);
 			fileList->count++;
 			break;
 		}
@@ -71,11 +73,13 @@ void add(struct FileList *fileList)
 		int fileCount, fileSize;
 		printf("Hard drive exceeds its capacity, please enter the number of files to be deleted: ");
 		scanf("%d%d", &fileCount, &fileSize);
-		struct FileList currentChoice = { .disk = {}, .count = fileCount };
+		struct FileList currentChoice = { .disk = {},
+						  .count = fileCount };
 		struct FileList bestChoice = { .disk = {}, .count = fileCount };
 		int index = 0, bestSize = 0;
-		optimizeDelete(fileList->disk, 21, fileCount, fileSize, &currentChoice, &index, 0,
-			       &bestChoice, &bestSize);
+		optimizeDelete(fileList->disk, 21, fileCount, fileSize,
+			       &currentChoice, &index, 0, &bestChoice,
+			       &bestSize);
 		for (int i = 0; i < fileCount; i++)
 			if (i == 0)
 				printf("%d", bestChoice.disk[i]->name);
@@ -87,9 +91,11 @@ void add(struct FileList *fileList)
 			for (int j = 0; j < fileCount; j++) {
 				if (bestChoice.disk[j] != 0) {
 					allDelete = false;
-					if (bestChoice.disk[j] == fileList->disk[i]) {
+					if (bestChoice.disk[j] ==
+					    fileList->disk[i]) {
 						free(fileList->disk[i]);
-						bestChoice.disk[j] = fileList->disk[i] = 0;
+						bestChoice.disk[j] =
+							fileList->disk[i] = 0;
 					}
 				}
 			}
@@ -116,7 +122,7 @@ void query(const struct FileList *fileList)
 	puts("NO");
 }
 
-void delete (struct FileList *fileList)
+void delete(struct FileList *fileList)
 {
 	for (int i = 0; i < 21; i++) {
 		if (fileList->disk[i] != 0) {

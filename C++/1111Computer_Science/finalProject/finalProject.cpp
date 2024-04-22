@@ -33,7 +33,8 @@ void randomNumberGenerator(int randomArray[], int digit)
 	int randomNumber;
 	while (generatedDigit < digit) {
 		randomNumber = rand() % 10;
-		if (repeatNumberCheck(randomArray, generatedDigit, randomNumber))
+		if (repeatNumberCheck(randomArray, generatedDigit,
+				      randomNumber))
 			continue;
 		randomArray[generatedDigit] = randomNumber;
 		generatedDigit += 1;
@@ -120,8 +121,8 @@ void hint(int ansArray[], int digit, int hint)
 { // 提供提示
 	int randomDigit = rand() % digit;
 	if (hint == 1)
-		cout << "\033[33mThe " << randomDigit + 1 << " digit is " << ansArray[randomDigit]
-		     << " !\033[37m";
+		cout << "\033[33mThe " << randomDigit + 1 << " digit is "
+		     << ansArray[randomDigit] << " !\033[37m";
 }
 
 bool input_repeat_NumberCheck(int array[], int digit)
@@ -176,7 +177,8 @@ void randomLetterGenerator(int randomArray[], int digit)
 	int randomNumber;
 	while (generatedDigit < digit) {
 		randomNumber = rand() % 26 + 97;
-		if (repeatNumberCheck(randomArray, generatedDigit, randomNumber))
+		if (repeatNumberCheck(randomArray, generatedDigit,
+				      randomNumber))
 			continue;
 		randomArray[generatedDigit] = randomNumber;
 		generatedDigit += 1;
@@ -241,7 +243,8 @@ int main()
 			if (player == 1 || player == 2)
 				break;
 			if (player != 1 || player != 2) {
-				cout << "\033[31mPlease try again !\033[30m" << endl;
+				cout << "\033[31mPlease try again !\033[30m"
+				     << endl;
 				continue;
 			}
 		}
@@ -252,7 +255,8 @@ int main()
 			if (number_set == 1 || number_set == 2)
 				break;
 			if (number_set != 1 || number_set != 2) {
-				cout << "\033[31mPlease try again !\033[30m" << endl;
+				cout << "\033[31mPlease try again !\033[30m"
+				     << endl;
 				continue;
 			}
 		}
@@ -263,7 +267,8 @@ int main()
 			cout << "\033[34mPlease input the number of rounds you want to play: \033[37m";
 			cin >> round; // 單人或雙人模式
 			if (round <= 0) {
-				cout << "\033[31mPlease try again !\033[30m" << endl;
+				cout << "\033[31mPlease try again !\033[30m"
+				     << endl;
 				continue;
 			} else {
 				break;
@@ -292,7 +297,8 @@ int main()
 			Letter_to_num_Array(guessArray, digit);
 			int A = 0, B = 0;
 			Letter_check(guessArray, ansArray, digit, A, B);
-			if ((guessArray[0] == '-' && guessArray[1] == '1') || A == digit) {
+			if ((guessArray[0] == '-' && guessArray[1] == '1') ||
+			    A == digit) {
 				if (A == digit) {
 					cout << "\033[32mYou got it!\033[0m";
 					counter++;
@@ -314,18 +320,22 @@ int main()
 			cout << "\n\033[30m";
 			system("taskkill /F /T /IM timer.exe");
 		}
-		cout << "\n\033[35mYou have guess \033[0m" << counter << "\033[35m time(s)\033[0m";
+		cout << "\n\033[35mYou have guess \033[0m" << counter
+		     << "\033[35m time(s)\033[0m";
 	}
 
 	// 一般猜數字模式+單人模式
 	if (mode == 1 && player == 1) {
 		while (true) {
 			digit = 4; // default digit
-			cout << endl << "\033[34mHow many digits?(default=4): \033[0m";
+			cout << endl
+			     << "\033[34mHow many digits?(default=4): \033[0m";
 			cin >> digit;
 			if (digit > 0 and digit <= 10)
 				break;
-			cout << "\033[31mplease intput valid digit!(1~10)" << endl << endl;
+			cout << "\033[31mplease intput valid digit!(1~10)"
+			     << endl
+			     << endl;
 		}
 		int ansArray[digit];
 		int suggestArray[digit];
@@ -361,19 +371,23 @@ int main()
 		char guessArray[digit] = {};
 		int counter = 0;
 		while (true) { // 確認玩家所猜測的數字不重複
-			cout << endl << "guess ( or input -1 to quit ): \033[37m";
+			cout << endl
+			     << "guess ( or input -1 to quit ): \033[37m";
 			cin >> guessArray;
 			while (true) {
-				if (guess_input_repeat_NumberCheck(guessArray, digit))
+				if (guess_input_repeat_NumberCheck(guessArray,
+								   digit))
 					break;
 				cout << "\033[31mWrong Input! You cannot enter repeated numbers!\033[30m"
 				     << endl;
-				cout << endl << "guess ( or input -1 to quit ): \033[37m";
+				cout << endl
+				     << "guess ( or input -1 to quit ): \033[37m";
 				cin >> guessArray;
 			}
 			int A = 0, B = 0;
 			check(guessArray, ansArray, digit, A, B); // 幾A幾A
-			if ((guessArray[0] == '-' && guessArray[1] == '1') || A == digit) {
+			if ((guessArray[0] == '-' && guessArray[1] == '1') ||
+			    A == digit) {
 				if (A == digit) {
 					cout << "\033[32mYou got it!\033[0m";
 					counter++;
@@ -387,7 +401,8 @@ int main()
 			cout << "\033[32m" << A << "\033[0m"
 			     << "\033[32mA\033[0m"
 			     << "\033[31m" << B << "\033[0m"
-			     << "\033[31mB\033[0m" << endl; // change output color這是換顏色的亂碼
+			     << "\033[31mB\033[0m"
+			     << endl; // change output color這是換顏色的亂碼
 			counter = counter + 1;
 			// cout<<endl<<"counter: "<<counter;
 			if (counter % 5 == 0) { // 是否需要提供提示
@@ -407,27 +422,33 @@ int main()
 			cout << "\n\033[30m";
 			system("taskkill /F /T /IM timer.exe");
 		}
-		cout << "\n\033[35mYou have guess \033[0m" << counter << "\033[35m time(s)\033[0m";
+		cout << "\n\033[35mYou have guess \033[0m" << counter
+		     << "\033[35m time(s)\033[0m";
 	}
 
 	// 一般猜數字模式+雙人模式
 	else if (mode == 1 && player == 2) {
 		while (true) {
 			digit = 4; // default digit
-			cout << endl << "\033[34mHow many digits?(default=4): \033[0m";
+			cout << endl
+			     << "\033[34mHow many digits?(default=4): \033[0m";
 			cin >> digit;
 			if (digit > 0 and digit <= 10)
 				break;
-			cout << "\033[31mplease intput valid digit!(1~10)" << endl << endl;
+			cout << "\033[31mplease intput valid digit!(1~10)"
+			     << endl
+			     << endl;
 		}
 		int Group1_ansArray[digit], Group2_ansArray[digit];
 		char Group1_guessArray[digit], Group2_guessArray[digit];
 		int counter = 0, Group1_counter = 0, Group2_counter = 0;
 
 		// 雙人選擇隨機謎底
-		if (number_set == 1) { // 如果玩家選擇隨機答案則兩組人馬猜一組數字，比誰先猜到
+		if (number_set ==
+		    1) { // 如果玩家選擇隨機答案則兩組人馬猜一組數字，比誰先猜到
 			int random_ansArray[digit];
-			randomNumberGenerator(random_ansArray, digit); // 隨機產生謎底
+			randomNumberGenerator(random_ansArray,
+					      digit); // 隨機產生謎底
 			cout << "Answer:"; //reveal answer
 			printArray(random_ansArray, digit);
 			time(&start); // 開始計時
@@ -442,7 +463,8 @@ int main()
 						cin >> Group1_guessArray[ans];
 					while (true) { // 確認玩家輸入的數字不重複
 						if (guess_input_repeat_NumberCheck(
-							    Group1_guessArray, digit))
+							    Group1_guessArray,
+							    digit))
 							break;
 						cout << "\033[31mWrong Input! You cannot enter repeated numbers!\033[30m"
 						     << endl;
@@ -451,8 +473,9 @@ int main()
 						cin >> Group1_guessArray;
 					}
 					int A = 0, B = 0;
-					check_for2players(Group1_guessArray, random_ansArray, digit,
-							  A, B);
+					check_for2players(Group1_guessArray,
+							  random_ansArray,
+							  digit, A, B);
 					if ((Group1_guessArray[0] == '-' &&
 					     Group1_guessArray[1] == '1') ||
 					    A == digit) {
@@ -466,7 +489,8 @@ int main()
 								system("taskkill /F /T /IM timer.exe");
 							}
 							cout << "\033[35m\n\nBattle over! Group 1 spent \033[37m"
-							     << difftime(end, start)
+							     << difftime(end,
+									 start)
 							     << "\033[35m] sec(s) to win the race!\n\033[37m"
 							     << endl;
 						}
@@ -490,18 +514,22 @@ int main()
 						cin >> Group2_guessArray[ans];
 					while (true) { // 確認玩家輸入的數字不重複
 						if (guess_input_repeat_NumberCheck(
-							    Group2_guessArray, digit))
+							    Group2_guessArray,
+							    digit))
 							break;
 						cout << "\033[31mWrong Input! You cannot enter repeated numbers!\033[30m"
 						     << endl;
 						cout << endl
 						     << "Group2 guess ( or input -1 to quit )(split by space): \033[37m";
-						for (int ans = 0; ans < digit; ans++)
-							cin >> Group2_guessArray[ans];
+						for (int ans = 0; ans < digit;
+						     ans++)
+							cin >> Group2_guessArray
+									[ans];
 					}
 					int A = 0, B = 0;
-					check_for2players(Group2_guessArray, random_ansArray, digit,
-							  A, B);
+					check_for2players(Group2_guessArray,
+							  random_ansArray,
+							  digit, A, B);
 					if ((Group2_guessArray[0] == '-' &&
 					     Group2_guessArray[1] == '1') ||
 					    A == digit) {
@@ -515,7 +543,8 @@ int main()
 								system("taskkill /F /T /IM timer.exe");
 							}
 							cout << "\033[35m\n\nBattle over! Group 2 spent \033[37m"
-							     << difftime(end, start)
+							     << difftime(end,
+									 start)
 							     << "\033[35m sec(s) to win the race!\n\033[37m"
 							     << endl;
 						}
@@ -532,13 +561,15 @@ int main()
 		}
 
 		// 雙人選擇自行謎底
-		else if (number_set == 2) { // 若是自行輸入謎底 則兩組互猜對方所出的謎題
+		else if (number_set ==
+			 2) { // 若是自行輸入謎底 則兩組互猜對方所出的謎題
 			while (true) { // 第一組輸入謎底
 				cout << "\033[34mGroup1 please input " << digit
 				     << " digits(split by space): \033[37m";
 				for (int ans = 0; ans < digit; ans++)
 					cin >> Group1_ansArray[ans];
-				if (input_repeat_NumberCheck(Group1_ansArray, digit))
+				if (input_repeat_NumberCheck(Group1_ansArray,
+							     digit))
 					break;
 				cout << endl
 				     << "\033[31mWrong Input! You cannot enter repeated numbers!\033[37m"
@@ -550,7 +581,8 @@ int main()
 				     << " digits(split by space): \033[37m";
 				for (int ans = 0; ans < digit; ans++)
 					cin >> Group2_ansArray[ans];
-				if (input_repeat_NumberCheck(Group2_ansArray, digit))
+				if (input_repeat_NumberCheck(Group2_ansArray,
+							     digit))
 					break;
 				cout << endl
 				     << "\033[31mWrong Input! You cannot enter repeated numbers!\033[37m"
@@ -569,7 +601,8 @@ int main()
 						cin >> Group1_guessArray[ans];
 					while (true) { // 確認玩家輸入的數字不重複
 						if (guess_input_repeat_NumberCheck(
-							    Group1_guessArray, digit))
+							    Group1_guessArray,
+							    digit))
 							break;
 						cout << "\033[31mWrong Input! You cannot enter repeated numbers!\033[37m"
 						     << endl;
@@ -578,8 +611,9 @@ int main()
 						cin >> Group1_guessArray;
 					}
 					int A = 0, B = 0; // 幾A幾B
-					check_for2players(Group1_guessArray, Group2_ansArray, digit,
-							  A, B);
+					check_for2players(Group1_guessArray,
+							  Group2_ansArray,
+							  digit, A, B);
 					if ((Group1_guessArray[0] == '-' &&
 					     Group1_guessArray[1] == '1') ||
 					    A == digit) {
@@ -593,7 +627,8 @@ int main()
 								system("taskkill /F /T /IM timer.exe");
 							}
 							cout << "\033[35m\n\nBattle over! Group 1 spent \033[37m"
-							     << difftime(end, start)
+							     << difftime(end,
+									 start)
 							     << "\033[35m sec(s) to win the race!\n\033[37m"
 							     << endl;
 						}
@@ -605,7 +640,8 @@ int main()
 					     << "\033[31mB\033[0m"
 					     << endl; // change output color這是換顏色的亂碼
 					Group1_counter++;
-				} else if (counter % 2 == 0) { // 第二組猜第一組的謎底
+				} else if (counter % 2 ==
+					   0) { // 第二組猜第一組的謎底
 					cout << endl
 					     << "Group2 guess ( or input -1 to quit ): \033[37m";
 					for (int ans = 0; ans < digit; ans++)
@@ -614,7 +650,8 @@ int main()
 					system("start imer.exe");
 					while (true) { // 確認玩家輸入的數字不重複
 						if (guess_input_repeat_NumberCheck(
-							    Group2_guessArray, digit))
+							    Group2_guessArray,
+							    digit))
 							break;
 						cout << endl
 						     << "\033[31mWrong Input! You cannot enter repeated numbers!\033[30m"
@@ -624,8 +661,9 @@ int main()
 						cin >> Group2_guessArray;
 					}
 					int A = 0, B = 0; // 幾A幾B
-					check_for2players(Group2_guessArray, Group1_ansArray, digit,
-							  A, B);
+					check_for2players(Group2_guessArray,
+							  Group1_ansArray,
+							  digit, A, B);
 					if ((Group2_guessArray[0] == '-' &&
 					     Group2_guessArray[1] == '1') ||
 					    A == digit) {
@@ -642,7 +680,8 @@ int main()
 								system("taskkill /F /T /IM timer.exe");
 							}
 							cout << "\033[35m\n\nBattle over! Group 2 spent \033[37m"
-							     << difftime(end, start)
+							     << difftime(end,
+									 start)
 							     << "\033[35m sec(s) to win the race!\n\033[37m"
 							     << endl;
 						}

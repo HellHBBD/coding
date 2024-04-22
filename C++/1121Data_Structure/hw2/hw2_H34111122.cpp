@@ -43,7 +43,8 @@ int compareSong(const Song *A, const Song *B)
 {
 	if (A->releaseYear == B->releaseYear) { //1. releaseYear
 		if (A->singer == B->singer) //2. singer
-			return compareStrings(A->songTitle, B->songTitle); //3. songTitle
+			return compareStrings(A->songTitle,
+					      B->songTitle); //3. songTitle
 		return compareStrings(A->singer, B->singer);
 	}
 	return A->releaseYear - B->releaseYear;
@@ -101,7 +102,8 @@ musicSystem::~musicSystem()
 	head = tail = 0;
 }
 
-void musicSystem::appendNode(const string &songTitle, const string &singer, const int &releaseYear)
+void musicSystem::appendNode(const string &songTitle, const string &singer,
+			     const int &releaseYear)
 {
 	Song *new_song = new Song;
 	*new_song = (Song){ .songTitle = songTitle,
@@ -116,10 +118,13 @@ void musicSystem::appendNode(const string &songTitle, const string &singer, cons
 	tail = new_song;
 }
 
-void musicSystem::insertNode(const string &songTitle, const string &singer, const int &releaseYear)
+void musicSystem::insertNode(const string &songTitle, const string &singer,
+			     const int &releaseYear)
 {
 	Song *new_song = new Song, *insert_position = head;
-	*new_song = (Song){ .songTitle = songTitle, .singer = singer, .releaseYear = releaseYear };
+	*new_song = (Song){ .songTitle = songTitle,
+			    .singer = singer,
+			    .releaseYear = releaseYear };
 	while (insert_position) { //find proper insert position
 		if (compareSong(new_song, insert_position) <= 0)
 			break;
@@ -129,7 +134,9 @@ void musicSystem::insertNode(const string &songTitle, const string &singer, cons
 		appendNode(songTitle, singer, releaseYear);
 		return;
 	}
-	new_song->prev = insert_position->prev; //doesn't matter if the insert condition changes
+	new_song->prev =
+		insert_position
+			->prev; //doesn't matter if the insert condition changes
 	insert_position->prev = new_song;
 	new_song->next = insert_position;
 	if (new_song->prev == 0) //insert to the front
@@ -142,8 +149,10 @@ void musicSystem::deleteNodesInRange(const int &start, const int &end)
 {
 	Song *delete_song = head;
 	while (delete_song) { //traversal through whole list
-		if (delete_song->releaseYear >= start && delete_song->releaseYear <= end) {
-			cout << delete_song->songTitle << " (" << delete_song->singer << ", "
+		if (delete_song->releaseYear >= start &&
+		    delete_song->releaseYear <= end) {
+			cout << delete_song->songTitle << " ("
+			     << delete_song->singer << ", "
 			     << delete_song->releaseYear << ")" << endl;
 			if (delete_song->next == 0) //delete last song
 				tail = delete_song->prev;
@@ -160,7 +169,8 @@ void musicSystem::deleteNodesInRange(const int &start, const int &end)
 	cout << endl;
 }
 
-void musicSystem::renameSingerInNode(const string &old_name, const string &new_name)
+void musicSystem::renameSingerInNode(const string &old_name,
+				     const string &new_name)
 {
 	Song *rename_song = head;
 	while (rename_song) { //traversal through whole list
@@ -174,8 +184,8 @@ void musicSystem::printAllSong() const
 {
 	Song *song = head;
 	while (song) { //traversal through whole list
-		cout << song->songTitle << " (" << song->singer << ", " << song->releaseYear << ")"
-		     << endl;
+		cout << song->songTitle << " (" << song->singer << ", "
+		     << song->releaseYear << ")" << endl;
 		song = song->next;
 	}
 	cout << endl;
@@ -185,8 +195,8 @@ void musicSystem::reversePrintAllSong() const
 {
 	Song *song = tail;
 	while (song) { //traversal through whole list
-		cout << song->songTitle << " (" << song->singer << ", " << song->releaseYear << ")"
-		     << endl;
+		cout << song->songTitle << " (" << song->singer << ", "
+		     << song->releaseYear << ")" << endl;
 		song = song->prev;
 	}
 	cout << endl;

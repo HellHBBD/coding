@@ -110,7 +110,8 @@ class Tree {
 		while (!q.empty()) {
 			Node *current = q.front();
 			q.pop();
-			cout << " " << current->data << " level: " << current->level << endl;
+			cout << " " << current->data
+			     << " level: " << current->level << endl;
 			if (current->leftchild != NULL)
 				q.push(current->leftchild);
 			if (current->rightchild != NULL)
@@ -121,7 +122,8 @@ class Tree {
 
 int main()
 {
-	string formulation[10] = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
+	string formulation[10] = { "A", "B", "C", "D", "E",
+				   "F", "G", "H", "I", "J" };
 	Tree skillTree;
 	Node *nodelist[10]; //存的是node的記憶體位址
 	for (int i = 0; i < 10; i++) {

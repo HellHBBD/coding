@@ -1,12 +1,14 @@
 #include <stdio.h>
 int W = 32;
 
-void Direct_convert(unsigned Rmin, unsigned Rmax, unsigned L[], unsigned U[], unsigned *n)
+void Direct_convert(unsigned Rmin, unsigned Rmax, unsigned L[], unsigned U[],
+		    unsigned *n)
 {
 	int d = 0, i;
 	while (Rmin <= Rmax) {
 		for (i = 0; i < W; i++)
-			if ((Rmin % (1 << (i + 1)) != 0) || (Rmin + (1 << (i + 1)) - 1) > Rmax)
+			if ((Rmin % (1 << (i + 1)) != 0) ||
+			    (Rmin + (1 << (i + 1)) - 1) > Rmax)
 				break;
 		L[d] = Rmin;
 		U[d] = Rmin + (1 << i) - 1;

@@ -30,7 +30,8 @@ int main()
 			word++;
 		} else {
 			if (length > lengthMax) {
-				lengthCount = realloc(lengthCount, length * sizeof(int));
+				lengthCount = realloc(lengthCount,
+						      length * sizeof(int));
 				for (int i = lengthMax; i < length; i++)
 					lengthCount[i] = 0;
 				lengthMax = length;
@@ -41,7 +42,8 @@ int main()
 			word++;
 		}
 		if (*word > asciiMax) {
-			alphabetCount = realloc(alphabetCount, ((int)*word) * sizeof(int));
+			alphabetCount = realloc(alphabetCount,
+						((int)*word) * sizeof(int));
 			for (char i = asciiMax; i < *word; i++)
 				alphabetCount[i] = 0;
 			asciiMax = *word;

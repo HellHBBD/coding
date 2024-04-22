@@ -36,7 +36,8 @@ void quickSort(int array[], int leftest, int rightest)
 			swap(array[left_index], array[right_index]);
 		}
 		quickSort(array, leftest, left_index - 1); //recursive at left
-		quickSort(array, right_index + 1, rightest); //recursive at right
+		quickSort(array, right_index + 1,
+			  rightest); //recursive at right
 	}
 }
 

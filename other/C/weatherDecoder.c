@@ -9,7 +9,8 @@ char *getline()
 		if (line == 0)
 			line = (char *)malloc(sizeof(char) * 2);
 		else
-			line = (char *)realloc(line, sizeof(char) * (strlen(line) + 2));
+			line = (char *)realloc(
+				line, sizeof(char) * (strlen(line) + 2));
 		line[strlen(line)] = c;
 		line[strlen(line) + 1] = '\0';
 	}

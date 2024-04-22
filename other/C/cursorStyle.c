@@ -17,9 +17,11 @@ int main()
 			puts("");
 	}
 	printf("\033[0m");
-	const char *styleTable[] = { "Default",	       "Bar (blinking)",       "Block (blinking)",
-				     "Block (steady)", "Underline (blinking)", "Underline (steady)",
-				     "Bar (blinking)", "Bar (steady)" };
+	const char *styleTable[] = {
+		"Default",	  "Bar (blinking)",	  "Block (blinking)",
+		"Block (steady)", "Underline (blinking)", "Underline (steady)",
+		"Bar (blinking)", "Bar (steady)"
+	};
 
 	for (int i = 0; i < 8; i++) {
 		printf("%d %s\n\e[%d q", i, styleTable[i], i);

@@ -10,9 +10,11 @@ int main()
 		if (strcmp(opt, "insert") == 0) {
 			char target1[20] = {}, target2[20] = {};
 			int val1, x, y, z, val2;
-			scanf("%s %s %d %d %d %d %d", target1, target2, &val1, &x, &y, &z, &val2);
+			scanf("%s %s %d %d %d %d %d", target1, target2, &val1,
+			      &x, &y, &z, &val2);
 
-			struct LinkedList *new_people = create(target2, val1, x, y, z, val2);
+			struct LinkedList *new_people =
+				create(target2, val1, x, y, z, val2);
 			int val = insert(head, target1, new_people);
 			if (val == -1)
 				printf("Insert Error: Not Found\n");

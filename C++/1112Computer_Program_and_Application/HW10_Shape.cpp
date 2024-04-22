@@ -233,7 +233,8 @@ void Sphere::displayInfo()
 	cout << "Type: Sphere" << endl;
 	cout << "Radius: " << radius << " units" << endl;
 	cout << "Volume: " << calculateArea() << " cubic units" << endl;
-	cout << "Surface Area: " << calculatePerimeter() << " square units" << endl;
+	cout << "Surface Area: " << calculatePerimeter() << " square units"
+	     << endl;
 }
 
 void Sphere::set(double radius)

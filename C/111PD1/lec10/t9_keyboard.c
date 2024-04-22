@@ -6,7 +6,8 @@
 
 void findIndex(char letter, int *a, int *b)
 {
-	const char *table[8] = { "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+	const char *table[8] = { "abc", "def",	"ghi", "jkl",
+				 "mno", "pqrs", "tuv", "wxyz" };
 	*a = *b = -1;
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 4; j++) {

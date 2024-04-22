@@ -43,7 +43,8 @@ void read_file()
 	FILE *file = fopen("Graph.txt", "r");
 	char start, end, name;
 	int length;
-	while (fscanf(file, "%*d, %*d, '%c', '%c', %d, '%*c'", &start, &end, &length) != EOF) {
+	while (fscanf(file, "%*d, %*d, '%c', '%c', %d, '%*c'", &start, &end,
+		      &length) != EOF) {
 		Edge *current = list[start - 'A'];
 		if (current) {
 			for (; current->next && current->next->endNode < end;
@@ -85,8 +86,10 @@ void Dijkstra()
 		char node = priority_queue.pop();
 		for (Edge *edge = list[node - 'A']; edge; edge = edge->next)
 			if (d[edge->endNode - 'A'] == -1 ||
-			    d[edge->endNode - 'A'] > d[node - 'A'] + edge->length)
-				d[edge->endNode - 'A'] = d[node - 'A'] + edge->length;
+			    d[edge->endNode - 'A'] >
+				    d[node - 'A'] + edge->length)
+				d[edge->endNode - 'A'] =
+					d[node - 'A'] + edge->length;
 		printf("%c|", node);
 		// printf("%c|", source);
 		for (int i = 0; i < 8; i++)
@@ -101,7 +104,8 @@ void Dijkstra()
 void free_list()
 {
 	for (int i = 0; i < 8; i++) {
-		for (Edge *deleteEdge = list[i]; deleteEdge; deleteEdge = list[i]) {
+		for (Edge *deleteEdge = list[i]; deleteEdge;
+		     deleteEdge = list[i]) {
 			list[i] = list[i]->next;
 			delete deleteEdge;
 		}

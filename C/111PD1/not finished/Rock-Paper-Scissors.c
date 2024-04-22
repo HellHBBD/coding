@@ -15,8 +15,8 @@ void eliminate_char(char *list, const int index, const int max)
 		list[i] = list[i + 1];
 }
 
-void compete(const char *shape, int *player, const int player1, const int player2, char *judge,
-	     const int N, const int lN)
+void compete(const char *shape, int *player, const int player1,
+	     const int player2, char *judge, const int N, const int lN)
 {
 	char shape1 = shape[player1 - 1];
 	char shape2 = shape[player2 - 1];

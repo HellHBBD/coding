@@ -16,7 +16,8 @@ void merge(int *arr, int size, int left, int right, int end)
 	for (int a = 0; a < size; ++a)
 		duplicateArr[a] = arr[a];
 	for (int k = left; k < end; ++k) {
-		if (i < right && (j >= end || duplicateArr[i] < duplicateArr[j])) {
+		if (i < right &&
+		    (j >= end || duplicateArr[i] < duplicateArr[j])) {
 			arr[k] = duplicateArr[i];
 			i++;
 		} else {
@@ -33,7 +34,8 @@ void mergeSort(int *arr, int size)
 	for (int len = 1; len < size; len *= 2) {
 		// 從長度為 1 的 subarray 開始 merge，合併之後長度會變成兩倍
 		for (int i = 0; i < size; i += len * 2)
-			merge(arr, size, i, min(i + len, size), min(i + 2 * len, size));
+			merge(arr, size, i, min(i + len, size),
+			      min(i + 2 * len, size));
 	}
 }
 
@@ -54,15 +56,20 @@ void natural_mergeSort(int *arr, int size)
 	//for(it=index.begin(); it!=index.end(); ++it) cout << *it << " "; //traverse element
 	int num = 0;
 	while (index.size() > 1) {
-		if (num == index.size() - 1) { //已經指到最後一個，不執行合併，往下個回合執行
+		if (num ==
+		    index.size() -
+			    1) { //已經指到最後一個，不執行合併，往下個回合執行
 			num = 0;
 			continue;
 		}
-		if (num == index.size() - 2) //if dont have next index,end pointer assigned "size"
+		if (num ==
+		    index.size() -
+			    2) //if dont have next index,end pointer assigned "size"
 			merge(arr, size, index[num], index[num + 1], size);
 
 		else //use next index() as "end" pointer
-			merge(arr, size, index[num], index[num + 1], index[num + 2]);
+			merge(arr, size, index[num], index[num + 1],
+			      index[num + 2]);
 
 		num++;
 		it = index.begin() + num; //after merge delete the middle index

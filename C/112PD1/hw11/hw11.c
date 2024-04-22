@@ -24,10 +24,15 @@ void input()
 	struct prefix *current = 0;
 	while (1) {
 		memset(temp, 0, 5);
-		int scanCount = fscanf(init, "%hhu.%hhu.%hhu.%hhu/%hhu", temp + 3, temp + 2,
-				       temp + 1, temp, temp + 4);
+		int scanCount = fscanf(init, "%hhu.%hhu.%hhu.%hhu/%hhu",
+				       temp + 3, temp + 2, temp + 1, temp,
+				       temp + 4);
 		if (scanCount == 4) {
-			temp[4] = temp[3] ? 32 : temp[2] ? 24 : temp[1] ? 16 : temp[0] ? 8 : 0;
+			temp[4] = temp[3] ? 32 :
+				  temp[2] ? 24 :
+				  temp[1] ? 16 :
+				  temp[0] ? 8 :
+					    0;
 		} else if (scanCount == -1) {
 			/* printf("The total number of prefixes in the input file is : %d.\n", count); */
 			fclose(init);
@@ -57,7 +62,8 @@ void length_distribution(int i)
 	for (struct prefix *current = head; current; current = current->next)
 		if (current->len == i)
 			count++;
-	printf("The number of prefixes with prefix length %d = %d.\n", i, count);
+	printf("The number of prefixes with prefix length %d = %d.\n", i,
+	       count);
 }
 
 void segment(int d)
@@ -83,11 +89,13 @@ void segment(int d)
 			i = size;
 
 		else
-			while (firstBits(group[i]->ip, d) != firstBits(current->ip, d))
+			while (firstBits(group[i]->ip, d) !=
+			       firstBits(current->ip, d))
 				i++;
 
 		struct prefix *currentPrefix = group[i];
-		while (currentPrefix->next && currentPrefix->next->ip < current->ip)
+		while (currentPrefix->next &&
+		       currentPrefix->next->ip < current->ip)
 			currentPrefix = currentPrefix->next;
 		current->next = currentPrefix->next;
 		currentPrefix->next = current;
@@ -104,10 +112,15 @@ void prefix_insert()
 	while (1) {
 		memset(temp, 0, 5);
 		begin = rdtsc();
-		int scanCount = fscanf(insert, "%hhu.%hhu.%hhu.%hhu/%hhu", temp + 3, temp + 2,
-				       temp + 1, temp, temp + 4);
+		int scanCount = fscanf(insert, "%hhu.%hhu.%hhu.%hhu/%hhu",
+				       temp + 3, temp + 2, temp + 1, temp,
+				       temp + 4);
 		if (scanCount == 4) {
-			temp[4] = temp[3] ? 32 : temp[2] ? 24 : temp[1] ? 16 : temp[0] ? 8 : 0;
+			temp[4] = temp[3] ? 32 :
+				  temp[2] ? 24 :
+				  temp[1] ? 16 :
+				  temp[0] ? 8 :
+					    0;
 		} else if (scanCount == -1) {
 			fclose(insert);
 			return;
@@ -122,11 +135,13 @@ void prefix_insert()
 			i = size;
 
 		else
-			while (firstBits(group[i]->ip, d) != firstBits(current->ip, d))
+			while (firstBits(group[i]->ip, d) !=
+			       firstBits(current->ip, d))
 				i++;
 
 		struct prefix *currentPrefix = group[i];
-		while (currentPrefix->next && currentPrefix->next->ip < current->ip)
+		while (currentPrefix->next &&
+		       currentPrefix->next->ip < current->ip)
 			currentPrefix = currentPrefix->next;
 		current->next = currentPrefix->next;
 		currentPrefix->next = current;
@@ -146,10 +161,15 @@ void prefix_delete()
 		count++;
 		memset(temp, 0, 5);
 		begin = rdtsc();
-		int scanCount = fscanf(delete, "%hhu.%hhu.%hhu.%hhu/%hhu", temp + 3, temp + 2,
-				       temp + 1, temp, temp + 4);
+		int scanCount = fscanf(delete, "%hhu.%hhu.%hhu.%hhu/%hhu",
+				       temp + 3, temp + 2, temp + 1, temp,
+				       temp + 4);
 		if (scanCount == 4) {
-			temp[4] = temp[3] ? 32 : temp[2] ? 24 : temp[1] ? 16 : temp[0] ? 8 : 0;
+			temp[4] = temp[3] ? 32 :
+				  temp[2] ? 24 :
+				  temp[1] ? 16 :
+				  temp[0] ? 8 :
+					    0;
 		} else if (scanCount == -1) {
 			fclose(delete);
 			return;
@@ -189,10 +209,15 @@ void search()
 	while (1) {
 		memset(temp, 0, 5);
 		begin = rdtsc();
-		int scanCount = fscanf(search, "%hhu.%hhu.%hhu.%hhu/%hhu", temp + 3, temp + 2,
-				       temp + 1, temp, temp + 4);
+		int scanCount = fscanf(search, "%hhu.%hhu.%hhu.%hhu/%hhu",
+				       temp + 3, temp + 2, temp + 1, temp,
+				       temp + 4);
 		if (scanCount == 4) {
-			temp[4] = temp[3] ? 32 : temp[2] ? 24 : temp[1] ? 16 : temp[0] ? 8 : 0;
+			temp[4] = temp[3] ? 32 :
+				  temp[2] ? 24 :
+				  temp[1] ? 16 :
+				  temp[0] ? 8 :
+					    0;
 		} else if (scanCount == -1) {
 			fclose(search);
 			return;
@@ -264,7 +289,8 @@ void clear()
 	head = 0;
 	int size = (1 << d);
 	for (int i = 0; i < size + 1 && group; i++) {
-		for (struct prefix *deleteNode = group[i]; deleteNode; deleteNode = group[i]) {
+		for (struct prefix *deleteNode = group[i]; deleteNode;
+		     deleteNode = group[i]) {
 			/* printf("%d.%d.%d.%d/%d\n", deleteNode->ip >> 24 & 255, deleteNode->ip >> 16 & 255, deleteNode->ip >> 8 & 255, deleteNode->ip & 255, deleteNode->len); */
 			group[i] = group[i]->next;
 			free(deleteNode);

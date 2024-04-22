@@ -49,14 +49,17 @@ int main()
 				printf("Please enter three numbers: ");
 				int a, b, c;
 				while (1) {
-					int getNumber = scanf("%d%d%d", &a, &b, &c);
+					int getNumber =
+						scanf("%d%d%d", &a, &b, &c);
 					flush = getchar();
 					//printf("%d %d %d%c",a,b,c,d);
-					if (getNumber == 3 && flush == '\n' && a == -1 && b == -1 &&
-					    c == -1 && enter_again) {
+					if (getNumber == 3 && flush == '\n' &&
+					    a == -1 && b == -1 && c == -1 &&
+					    enter_again) {
 						enter_again = false;
 						break;
-					} else if (getNumber == 3 && flush == '\n' && a > 0 &&
+					} else if (getNumber == 3 &&
+						   flush == '\n' && a > 0 &&
 						   b > 0 && c > 0) {
 						enter_again = false;
 						break;
@@ -75,7 +78,8 @@ int main()
 				int factor = maxFactor(a, b, c);
 				int price = a + b + c - factor * 2;
 				printf("Divide these Kirbys into %d boxes, with the number of Kirby in each box being %d, %d, and %d\nPrice: %d\n",
-				       factor, a / factor, b / factor, c / factor, price);
+				       factor, a / factor, b / factor,
+				       c / factor, price);
 				KirbyA += a;
 				KirbyB += b;
 				KirbyC += c;

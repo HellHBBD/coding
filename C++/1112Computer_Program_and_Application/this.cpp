@@ -18,7 +18,11 @@ class Time {
 int main()
 {
 	Time t;
-	t.printStandard('\n').setHour(18).setMinute(30).setSecond(22).printStandard('\n');
+	t.printStandard('\n')
+		.setHour(18)
+		.setMinute(30)
+		.setSecond(22)
+		.printStandard('\n');
 	cout << endl;
 	t.printThis();
 	return 0;
@@ -51,8 +55,9 @@ Time &Time::setSecond(int second)
 
 Time &Time::printStandard(char display)
 {
-	cout << ((Hour == 0 || Hour == 12) ? 12 : Hour % 12) << ":" << setfill('0') << setw(2)
-	     << Minute << ":" << setw(2) << Second << (Hour < 12 ? " AM" : " PM") << display;
+	cout << ((Hour == 0 || Hour == 12) ? 12 : Hour % 12) << ":"
+	     << setfill('0') << setw(2) << Minute << ":" << setw(2) << Second
+	     << (Hour < 12 ? " AM" : " PM") << display;
 	return *this;
 }
 

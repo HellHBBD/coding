@@ -84,8 +84,8 @@ void DijkstraAlgo(int graph[v][v], int src)
 	// Print the final distance from the source vertex to each vertex
 	cout << "vertex\tdist from src" << endl;
 	for (int i = 0; i < v; i++) {
-		cout << mapIndexToLetter(i) << setw(8) << setfill(' ') << dist[i] << setw(15)
-		     << setfill(' ');
+		cout << mapIndexToLetter(i) << setw(8) << setfill(' ')
+		     << dist[i] << setw(15) << setfill(' ');
 		findParent(parent, i, src);
 		cout << endl;
 	}

@@ -92,12 +92,14 @@ void BST::InsertBST(int key, string element)
 			insert_position = insert_position->rightchild;
 	} // 跳出迴圈後, insert_position即為NULL，而parent_node則是new_node的parent
 
-	new_node->parent = parent_node; // 將new_node的parent pointer指向parent_node
+	new_node->parent =
+		parent_node; // 將new_node的parent pointer指向parent_node
 
 	if (parent_node == NULL) { // 下面一組if-else, 把new_node接上BST
 		// your code here
 		root = new_node;
-	} else if (new_node->key < parent_node->key) { // change y to parent_node
+	} else if (new_node->key <
+		   parent_node->key) { // change y to parent_node
 		// your code here
 		parent_node->leftchild = new_node;
 	} else {
@@ -151,9 +153,11 @@ void BST::Levelorder()
 		cout << current->element << "(" << current->key << ")"
 		     << " ";
 
-		if (current->leftchild != NULL) // 若leftchild有資料, 將其推進queue
+		if (current->leftchild !=
+		    NULL) // 若leftchild有資料, 將其推進queue
 			q.push(current->leftchild);
-		if (current->rightchild != NULL) // 若rightchild有資料, 將其推進queue
+		if (current->rightchild !=
+		    NULL) // 若rightchild有資料, 將其推進queue
 			q.push(current->rightchild);
 	}
 }
@@ -179,14 +183,16 @@ int main()
 
 	TreeNode *node = T.Search(1000);
 	if (node != NULL)
-		cout << "There is " << node->GetElement() << "(" << node->GetKey() << ")" << endl;
+		cout << "There is " << node->GetElement() << "("
+		     << node->GetKey() << ")" << endl;
 
 	else
 		cout << "no element with Key(1000)" << endl;
 
 	node = T.Search(73);
 	if (node != NULL)
-		cout << "There is " << node->GetElement() << "(" << node->GetKey() << ")" << endl;
+		cout << "There is " << node->GetElement() << "("
+		     << node->GetKey() << ")" << endl;
 
 	else
 		cout << "no element with Key(73)" << endl;

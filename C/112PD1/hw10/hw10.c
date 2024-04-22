@@ -33,8 +33,11 @@ int main(int argc, char **argv)
 	double x = atof(argv[1]);
 	int n = atoi(argv[2]);
 	int m = atoi(argv[3]);
-	printf("call powerpower() with power(): %lf\n", powerpower(power, x, n, m));
-	printf("call powerpower() with multiply(): %lf\n", powerpower(multiply, x, n, m));
-	printf("call powerpower() with divide(): %lf\n", powerpower(divide, x, n, m));
+	printf("call powerpower() with power(): %lf\n",
+	       powerpower(power, x, n, m));
+	printf("call powerpower() with multiply(): %lf\n",
+	       powerpower(multiply, x, n, m));
+	printf("call powerpower() with divide(): %lf\n",
+	       powerpower(divide, x, n, m));
 	return 0;
 }

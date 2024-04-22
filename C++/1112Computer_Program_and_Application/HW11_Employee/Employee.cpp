@@ -6,8 +6,8 @@
 using namespace std;
 
 // constructor
-Employee::Employee(const string &first, const string &last, const string &ssn, int month, int day,
-		   int year)
+Employee::Employee(const string &first, const string &last, const string &ssn,
+		   int month, int day, int year)
 	: firstName(first)
 	, lastName(last)
 	, socialSecurityNumber(ssn)
@@ -66,7 +66,8 @@ Date Employee::getBirthDate() const
 void Employee::print() const
 {
 	cout << getFirstName() << ' ' << getLastName()
-	     << "\nsocial security number: " << getSocialSecurityNumber() << endl;
+	     << "\nsocial security number: " << getSocialSecurityNumber()
+	     << endl;
 	cout << "Birthday: " << birthDate;
 } // end function print
 

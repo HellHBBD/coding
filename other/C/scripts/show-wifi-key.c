@@ -19,8 +19,10 @@ char *readline()
 void find(char *wifi)
 {
 	const char *str1 = "sudo cat /etc/NetworkManager/system-connections/";
-	const char *str2 = ".nmconnection | grep 'psk=' | awk -F '=' '{print $2}'";
-	char *cmd = malloc(sizeof(char) * (strlen(str1) + strlen(wifi) + strlen(str2) + 1));
+	const char *str2 =
+		".nmconnection | grep 'psk=' | awk -F '=' '{print $2}'";
+	char *cmd = malloc(sizeof(char) *
+			   (strlen(str1) + strlen(wifi) + strlen(str2) + 1));
 	strcpy(cmd, str1);
 	strcat(cmd, wifi);
 	strcat(cmd, str2);

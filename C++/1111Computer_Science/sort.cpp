@@ -28,12 +28,14 @@ void printArray(int array[], int length, int itemInRow)
 void insertionSort(int array[], int length)
 {
 	int currentItemIndex, insertItem;
-	for (int insertItemIndex = 1; insertItemIndex < length; insertItemIndex++) {
+	for (int insertItemIndex = 1; insertItemIndex < length;
+	     insertItemIndex++) {
 		insertItem = array[insertItemIndex];
 		cout << "insert item: " << insertItem << endl;
 		for (currentItemIndex = insertItemIndex; currentItemIndex >= 0;
 		     currentItemIndex--) {
-			if ((array[currentItemIndex - 1] < insertItem) or currentItemIndex == 0) {
+			if ((array[currentItemIndex - 1] < insertItem) or
+			    currentItemIndex == 0) {
 				array[currentItemIndex] = insertItem;
 				printArray(array, length, 10);
 				break;

@@ -27,27 +27,28 @@ int main()
 	char temp;
 	cin.getline(sentence, sizeof(sentence));
 	while (*c != '\0') {
-		if (!isalpha(*(c - 1)) && *c == 'h' && *(c + 1) == 'e' && !isalpha(*(c + 2))) {
+		if (!isalpha(*(c - 1)) && *c == 'h' && *(c + 1) == 'e' &&
+		    !isalpha(*(c + 2))) {
 			finalStr = strConcat(finalStr, "she or he");
 			c += 2;
 		} else if (!isalpha(*(c - 1)) && *c == 'H' && *(c + 1) == 'e' &&
 			   !isalpha(*(c + 2))) {
 			finalStr = strConcat(finalStr, "She or he");
 			c += 2;
-		} else if (!isalpha(*(c - 1)) && *c == 'h' && *(c + 1) == 'i' && *(c + 2) == 's' &&
-			   !isalpha(*(c + 3))) {
+		} else if (!isalpha(*(c - 1)) && *c == 'h' && *(c + 1) == 'i' &&
+			   *(c + 2) == 's' && !isalpha(*(c + 3))) {
 			finalStr = strConcat(finalStr, "her(s) or his");
 			c += 3;
-		} else if (!isalpha(*(c - 1)) && *c == 'H' && *(c + 1) == 'i' && *(c + 2) == 's' &&
-			   !isalpha(*(c + 3))) {
+		} else if (!isalpha(*(c - 1)) && *c == 'H' && *(c + 1) == 'i' &&
+			   *(c + 2) == 's' && !isalpha(*(c + 3))) {
 			finalStr = strConcat(finalStr, "Her(s) or his");
 			c += 3;
-		} else if (!isalpha(*(c - 1)) && *c == 'h' && *(c + 1) == 'i' && *(c + 2) == 'm' &&
-			   !isalpha(*(c + 3))) {
+		} else if (!isalpha(*(c - 1)) && *c == 'h' && *(c + 1) == 'i' &&
+			   *(c + 2) == 'm' && !isalpha(*(c + 3))) {
 			finalStr = strConcat(finalStr, "her or him");
 			c += 3;
-		} else if (!isalpha(*(c - 1)) && *c == 'H' && *(c + 1) == 'i' && *(c + 2) == 'm' &&
-			   !isalpha(*(c + 3))) {
+		} else if (!isalpha(*(c - 1)) && *c == 'H' && *(c + 1) == 'i' &&
+			   *(c + 2) == 'm' && !isalpha(*(c + 3))) {
 			finalStr = strConcat(finalStr, "Her or him");
 			c += 3;
 		} else {

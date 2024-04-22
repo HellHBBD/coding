@@ -94,8 +94,8 @@ void Time::printUniversal(char display) const
 	int hour = Second / 3600;
 	int minute = Second % 3600 / 60;
 	int second = Second % 60;
-	cout << setfill('0') << setw(2) << hour << ":" << setw(2) << minute << ":" << setw(2)
-	     << second << display;
+	cout << setfill('0') << setw(2) << hour << ":" << setw(2) << minute
+	     << ":" << setw(2) << second << display;
 }
 
 void Time::printStandard(char display) const
@@ -103,6 +103,7 @@ void Time::printStandard(char display) const
 	int hour = Second / 3600;
 	int minute = Second % 3600 / 60;
 	int second = Second % 60;
-	cout << ((hour == 0 || hour == 12) ? 12 : hour % 12) << ":" << setfill('0') << setw(2)
-	     << minute << ":" << setw(2) << second << (hour < 12 ? " AM" : " PM") << display;
+	cout << ((hour == 0 || hour == 12) ? 12 : hour % 12) << ":"
+	     << setfill('0') << setw(2) << minute << ":" << setw(2) << second
+	     << (hour < 12 ? " AM" : " PM") << display;
 }

@@ -5,8 +5,9 @@
 using namespace std;
 
 // constructor
-SalariedEmployee::SalariedEmployee(const string &first, const string &last, const string &ssn,
-				   double salary, int month, int day, int year)
+SalariedEmployee::SalariedEmployee(const string &first, const string &last,
+				   const string &ssn, double salary, int month,
+				   int day, int year)
 	: Employee(first, last, ssn, month, day, year)
 {
 	setWeeklySalary(salary);

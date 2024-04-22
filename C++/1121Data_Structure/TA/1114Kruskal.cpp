@@ -58,7 +58,8 @@ int FindSetCollapsing(int *subset, int i)
 
 void UnionSet(int *subset, int x, int y)
 {
-	int xroot = FindSetCollapsing(subset, x), yroot = FindSetCollapsing(subset, y);
+	int xroot = FindSetCollapsing(subset, x),
+	    yroot = FindSetCollapsing(subset, y);
 
 	// Compare by rank, more negative values indicate more elements in the set,
 	// so smaller values represent more elements
@@ -124,9 +125,9 @@ void GraphMST::KruskalMST()
 		  << " - " << std::setw(3) << "v2"
 		  << " : weight\n";
 	for (int i = 0; i < numVertex - 1; i++)
-		std::cout << std::setw(3) << edgeSetMST[i].from << " - " << std::setw(3)
-			  << edgeSetMST[i].to << " : " << std::setw(4) << edgeSetMST[i].weight
-			  << "\n";
+		std::cout << std::setw(3) << edgeSetMST[i].from << " - "
+			  << std::setw(3) << edgeSetMST[i].to << " : "
+			  << std::setw(4) << edgeSetMST[i].weight << "\n";
 }
 
 void GraphMST::AddEdge(int from, int to, int weight)

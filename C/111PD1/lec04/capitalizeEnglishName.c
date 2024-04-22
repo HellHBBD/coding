@@ -9,7 +9,8 @@ int main()
 	for (int i = 0; i < n; i++) {
 		while (1) {
 			charInput = getchar();
-			if (charInput == ',' || charInput == ';' || charInput == '.') {
+			if (charInput == ',' || charInput == ';' ||
+			    charInput == '.') {
 				printf("\n");
 				charBuffer = ' ';
 				break;

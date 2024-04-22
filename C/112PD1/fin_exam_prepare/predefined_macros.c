@@ -11,8 +11,9 @@ int main()
 	printf("is standard: %d\n", __STDC__);
 	/* printf("is hosted implementation: %d\n",__STDC__HOSTED__); */
 	/* printf("Standard version: %s\n",__STDC__VERSION__); */
-#define TEST(condition, ...) \
-	((condition) ? printf("Pass test: %s\n", #condition) : printf(__VA_ARGS__))
+#define TEST(condition, ...)                                   \
+	((condition) ? printf("Pass test: %s\n", #condition) : \
+		       printf(__VA_ARGS__))
 	TEST(3 < 4, "not pass at line %d\n", __LINE__);
 	TEST(3 > 4, "not pass at line %d\n", __LINE__);
 #if defined(_WIN32)

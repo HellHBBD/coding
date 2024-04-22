@@ -9,8 +9,9 @@ class HourlyEmployee : public Employee {
     public:
 	static const int hoursPerWeek = 168; // hours in one week
 
-	HourlyEmployee(const string &, const string &, const string &, double = 0.0, double = 0.0,
-		       int = 1, int = 1, int = 1900);
+	HourlyEmployee(const string &, const string &, const string &,
+		       double = 0.0, double = 0.0, int = 1, int = 1,
+		       int = 1900);
 
 	void setWage(double); // set hourly wage
 	double getWage() const; // return hourly wage

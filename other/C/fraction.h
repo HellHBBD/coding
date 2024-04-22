@@ -50,24 +50,28 @@ void print(struct Fraction fraction)
 
 struct Fraction add(struct Fraction a, struct Fraction b)
 {
-	return fracture(a.numerator * b.denominator + b.numerator * a.denominator,
+	return fracture(a.numerator * b.denominator +
+				b.numerator * a.denominator,
 			a.denominator * b.denominator);
 }
 
 struct Fraction subtract(struct Fraction a, struct Fraction b)
 {
-	return fracture(a.numerator * b.denominator - b.numerator * a.denominator,
+	return fracture(a.numerator * b.denominator -
+				b.numerator * a.denominator,
 			a.denominator * b.denominator);
 }
 
 struct Fraction multiply(struct Fraction a, struct Fraction b)
 {
-	return fracture(a.numerator * b.numerator, a.denominator * b.denominator);
+	return fracture(a.numerator * b.numerator,
+			a.denominator * b.denominator);
 }
 
 struct Fraction divide(struct Fraction a, struct Fraction b)
 {
-	return fracture(a.numerator * b.denominator, a.denominator * b.numerator);
+	return fracture(a.numerator * b.denominator,
+			a.denominator * b.numerator);
 }
 
 #endif

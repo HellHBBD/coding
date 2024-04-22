@@ -5,8 +5,10 @@
 using namespace std;
 
 // constructor
-CommissionEmployee::CommissionEmployee(const string &first, const string &last, const string &ssn,
-				       double sales, double rate, int month, int day, int year)
+CommissionEmployee::CommissionEmployee(const string &first, const string &last,
+				       const string &ssn, double sales,
+				       double rate, int month, int day,
+				       int year)
 	: Employee(first, last, ssn, month, day, year)
 {
 	setGrossSales(sales);

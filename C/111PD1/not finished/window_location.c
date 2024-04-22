@@ -86,12 +86,13 @@ int main()
 	char url[500] = "";
 	fgets(url, 500, stdin); // Get url string
 	Location *l = parse_url(url);
-	printf("Location {\n  protocol: %s,\n  host: %s,\n", l->protocol, l->host);
+	printf("Location {\n  protocol: %s,\n  host: %s,\n", l->protocol,
+	       l->host);
 	if (l->port)
 		printf("  port: %d,\n", l->port);
 	else
 		printf("  port: (default),\n");
-	printf("  pathname: /%s,\n  search: ?%s,\n  hash: #%s,\n}\n", l->pathname, l->search,
-	       l->hash);
+	printf("  pathname: /%s,\n  search: ?%s,\n  hash: #%s,\n}\n",
+	       l->pathname, l->search, l->hash);
 	return 0;
 }

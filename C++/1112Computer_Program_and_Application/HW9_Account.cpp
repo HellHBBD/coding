@@ -60,7 +60,8 @@ int main()
 	cout << "Crediting $65.00 to account2." << endl;
 	account2.credit(65.0);
 	cout << "account2 balance: $" << account2.getBalance() << endl;
-	cout << "Adding $" << account2.calculateInterest() << " interest to account2." << endl;
+	cout << "Adding $" << account2.calculateInterest()
+	     << " interest to account2." << endl;
 	account2.credit(account2.calculateInterest());
 	cout << "New account2 balance: $" << account2.getBalance() << endl;
 

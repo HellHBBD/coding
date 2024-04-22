@@ -5,7 +5,8 @@
 #define SET(num, digit) ((num) |= (1 << (digit)))
 
 void xor
-	(unsigned *num, const int source, const int digit, const unsigned char key) {
+	(unsigned *num, const int source, const int digit,
+	 const unsigned char key) {
 		if (source ^ key) {
 			SET(*num, digit);
 		} else {
