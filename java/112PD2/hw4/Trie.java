@@ -2,7 +2,7 @@ public class Trie {
 	Trie[] children;
 	int count;
 
-	Trie() {
+	public Trie() {
 		children = new Trie[26];
 		count = 0;
 	}
