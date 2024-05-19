@@ -5,7 +5,7 @@ public class TFIDF {
 	ArrayList<Text> text;
 
 	public TFIDF() {
-		Trie wordCount = new Trie();
+		wordCount = new Trie();
 		text = new ArrayList<Text>();
 	}
 
@@ -14,7 +14,7 @@ public class TFIDF {
 	}
 
 	public void addText(Text text){
-		text.add(text);
+		this.text.add(text);
 	}
 
 	public int getWord(String word){

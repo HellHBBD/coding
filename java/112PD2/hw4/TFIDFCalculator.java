@@ -15,16 +15,20 @@ class TFIDFCalculator {
 		BufferedReader br = new BufferedReader(new FileReader(name));
 		String line;
 		int lineCount = 1;
-		Trie temp = new Trie();
+		// temp to store each text
+		Text temp = new Text();
 		while ((line = br.readLine()) != null) {
 			// System.out.println(line);
 			Matcher match = Pattern.compile("[a-zA-Z]+").matcher(line);
-			if (lineCount % 5 == 0){
-				temp = new Trie();
+			// five lines -> one text
+			if (lineCount % 5 == 0) {
+				docs.addText(temp);
+				temp = new Text();
 			}
 			while (match.find()) {
 				String word = match.group().toLowerCase();
 				// System.out.println(word);
+				// first time insert
 				if (temp.getWord(word) == 0) {
 					docs.addWord(word);
 				}
@@ -36,6 +40,9 @@ class TFIDFCalculator {
 	}
 
 	public static void main(String[] args) throws IOException {
-		TFIDF docs = read(args[0]);
+		// TFIDF docs = read(args[0]);
+		// System.out.println(docs.getWord("same"));
+		TFIDF test = new TFIDF();
+
 	}
 }
