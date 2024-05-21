@@ -1,4 +1,6 @@
-public class Text{
+import java.io.Serializable;
+
+public class Text implements Serializable {
 	int wordCount;
 	Trie words;
 

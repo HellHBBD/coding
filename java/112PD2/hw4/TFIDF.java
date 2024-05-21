@@ -1,6 +1,8 @@
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
-public class TFIDF {
+public class TFIDF implements Serializable{
 	Trie wordCount;
 	ArrayList<Text> text;
 
@@ -22,11 +24,15 @@ public class TFIDF {
 	}
 
 	public double tf(String word, int textIndex){
-		Text temp = text.get(textIndex - 1);
+		Text temp = text.get(textIndex);
+		System.out.println(temp.getWord(word));
+		System.out.println(temp.getWordCount());
 		return (double)temp.getWord(word) / temp.getWordCount();
 	}
 
 	public double idf(String word){
+		System.out.println(text.size());
+		System.out.println(getWord(word));
 		return Math.log((double)text.size() / getWord(word));
 	}
 

@@ -1,4 +1,6 @@
-public class Trie {
+import java.io.Serializable;
+
+public class Trie implements Serializable {
 	Trie[] children;
 	int count;
 
