@@ -1,6 +1,8 @@
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 
@@ -30,23 +32,18 @@ class TFIDFCalculator {
 		// 	;
 		// }
 		docs = new TFIDF();
-		BufferedReader br = new BufferedReader(new FileReader(name));
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(name), "UTF-8"));
 		String line;
-		int lineCount = 1;
+		int lineCount = 0;
 		// temp to store each text
 		Text temp = new Text();
 		Pattern pattern = Pattern.compile("[a-zA-Z]+");
 		while ((line = br.readLine()) != null) {
-			// System.out.println(line);
 			Matcher match = pattern.matcher(line);
-			// five lines -> one text
-			if (lineCount % 5 == 0) {
-				docs.addText(temp);
-				temp = new Text();
-			}
+			
 			while (match.find()) {
 				String word = match.group().toLowerCase();
-				System.out.print(word + " ");
+				// System.out.print(word + " ");
 				// first time insert
 				// if (word.equals("same")) {
 				// 	System.out.println(line);
@@ -56,7 +53,12 @@ class TFIDFCalculator {
 				}
 				temp.add(word);
 			}
+			// five lines -> one text
 			lineCount++;
+			if (lineCount != 0 && lineCount % 5 == 0) {
+				docs.addText(temp);
+				temp = new Text();
+			}
 		}
 		br.close();
 		// Ser
@@ -68,31 +70,16 @@ class TFIDFCalculator {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		TFIDF docs = read(args[0]);
-		// System.out.println(String.format("%.5f ", docs.tfidf("same", 0)));
+		// System.out.println(String.format("%.5f ", docs.tfidf("same", 30)));
 
-		// BufferedReader br = new BufferedReader(new FileReader("assets/docs.txt"));
-		// Trie test = new Trie();
-		// String line;
-		// Pattern pattern = Pattern.compile("[a-zA-Z]+");
-		// while ((line = br.readLine()) != null) {
-		// 	// System.out.println(line);
-		// 	Matcher match = pattern.matcher(line);
-		// 	while (match.find()) {
-		// 		String word = match.group().toLowerCase();
-		// 		test.add(word);
-		// 	}
-		// }
-		// br.close();
-		// System.out.println(test.getCount("same"));
-
-		// BufferedReader br = new BufferedReader(new FileReader(args[1]));
-		// String[] words = br.readLine().split(" ");
-		// String[] textIndex = br.readLine().split(" ");
-		// br.close();
-		// BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"));
-		// for (int i = 0;i < words.length;i++) {
-		// 	bw.write(String.format("%.5f ", docs.tfidf(words[i], Integer.parseInt(textIndex[i]))));
-		// }
-		// bw.close();
+		BufferedReader br = new BufferedReader(new FileReader(args[1]));
+		String[] words = br.readLine().split(" ");
+		String[] textIndex = br.readLine().split(" ");
+		br.close();
+		BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"));
+		for (int i = 0;i < words.length;i++) {
+			bw.write(String.format("%.5f ", docs.tfidf(words[i], Integer.parseInt(textIndex[i]))));
+		}
+		bw.close();
 	}
 }

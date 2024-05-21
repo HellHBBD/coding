@@ -25,14 +25,14 @@ public class TFIDF implements Serializable{
 
 	public double tf(String word, int textIndex){
 		Text temp = text.get(textIndex);
-		System.out.println(temp.getWord(word));
-		System.out.println(temp.getWordCount());
+		// System.out.println(temp.getWord(word));
+		// System.out.println(temp.getWordCount());
 		return (double)temp.getWord(word) / temp.getWordCount();
 	}
 
 	public double idf(String word){
-		System.out.println(text.size());
-		System.out.println(getWord(word));
+		// System.out.println(text.size());
+		// System.out.println(getWord(word));
 		return Math.log((double)text.size() / getWord(word));
 	}
 
