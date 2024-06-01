@@ -117,11 +117,12 @@ class TFIDF implements Serializable{
 public class BuildIndex {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		String pathname = args[0];
-		Matcher pathmatch = Pattern.compile("/(?<name>.)\\.txt").matcher(pathname);
+		Matcher pathmatch = Pattern.compile("(?<name>\\w+)\\.txt").matcher(pathname);
 		String filename = null;
 		if (pathmatch.find()) {
 			filename = pathmatch.group("name") + ".ser";
 		}
+		System.out.println(filename);
 		TFIDF docs = new TFIDF();
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(pathname), "UTF-8"));
 		String line;
@@ -153,7 +154,8 @@ public class BuildIndex {
 		}
 		br.close();
 		// Ser
-		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
+		FileOutputStream fos = new FileOutputStream(filename);
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(docs);
 		oos.close();
 
