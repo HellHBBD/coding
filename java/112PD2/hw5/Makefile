@@ -1,8 +1,8 @@
 JAVAFILES=$(wildcard *.java)
 CLASSFILES=$(JAVAFILES:.java=.class)
 DOCS=assets/corpus0.txt
-# DATA=
-# TC=
+DATA=corpus0
+TC=assets/tc0.txt
 
 all: $(CLASSFILES)
 
@@ -12,8 +12,10 @@ all: $(CLASSFILES)
 clean:
 	rm -f $(CLASSFILES)
 
-run: all
+build: all
 	java -Xmx2g BuildIndex $(DOCS)
-	# java TFIDFSearch
 
-.PHONY: all clean
+search: all
+	java -Xmx2g TFIDFSearch $(DATA) $(TC)
+
+.PHONY: all clean build search

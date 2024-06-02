@@ -106,7 +106,11 @@ class TFIDF implements Serializable{
 	public double idf(String word){
 		// System.out.println(text.size());
 		// System.out.println(getWord(word));
-		return Math.log((double)text.size() / getWord(word));
+		int count = getWord(word);
+		if (count == 0) {
+			return 0;
+		}
+		return Math.log((double)text.size() / count);
 	}
 
 	public double tfidf(String word, int textIndex){
@@ -122,7 +126,6 @@ public class BuildIndex {
 		if (pathmatch.find()) {
 			filename = pathmatch.group("name") + ".ser";
 		}
-		System.out.println(filename);
 		TFIDF docs = new TFIDF();
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(pathname), "UTF-8"));
 		String line;
