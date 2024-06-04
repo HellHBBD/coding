@@ -13,51 +13,42 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class Trie implements Externalizable {
-	Trie[] children;
-	int count;
+	HashMap<String, Integer> map;
 
 	public Trie() {
-		children = new Trie[26];
-		count = 0;
+		map = new HashMap<String, Integer>();
 	}
 
 	public void add(String word) {
-		Trie node = this;
-		for (char c : word.toCharArray()) {
-            if (node.children[c - 'a'] == null) {
-                node.children[c - 'a'] = new Trie();
-            }
-            node = node.children[c - 'a'];
-        }
-        node.count++;
+		if (map.containsKey(word)) {
+			map.replace(word, map.get(word) + 1);
+		} else {
+			map.put(word, 1);
+		}
 	}
 
 	public int get(String word) {
-		Trie node = this;
-        for (char c : word.toCharArray()) {
-            node = node.children[c - 'a'];
-            if (node == null) {
-                return 0;
-            }
-        }
-        return node.count;
+		if (map.containsKey(word)) {
+			return map.get(word);
+		} else {
+			return 0;
+		}
 	}
 
 	@Override
 	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-		children = (Trie[]) in.readObject();
-		count = in.readInt();
+		map = (HashMap<String, Integer>) in.readObject();
 	}
 
 	@Override
 	public void writeExternal(ObjectOutput out) throws IOException {
-		out.writeObject(children);
-		out.writeInt(count);
+		out.writeObject(map);
 		out.flush();
 	}
 }
