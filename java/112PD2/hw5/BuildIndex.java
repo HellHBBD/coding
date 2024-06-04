@@ -3,16 +3,10 @@ import java.io.Serializable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 
 // Ser
-import java.io.FileNotFoundException;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import java.util.ArrayList;
@@ -40,7 +34,7 @@ class Trie implements Serializable {
         node.count++;
 	}
 
-	public int getCount(String word) {
+	public int get(String word) {
 		Trie node = this;
         for (char c : word.toCharArray()) {
             node = node.children[c - 'a'];
@@ -66,12 +60,12 @@ class Text implements Serializable {
 		words.add(word);
 	}
 
-	public int getWordCount(){
+	public int getTotal(){
 		return wordCount;
 	}
 
 	public int getWord(String word){
-		return words.getCount(word);
+		return words.get(word);
 	}
 }
 
@@ -93,19 +87,19 @@ class TFIDF implements Serializable{
 	}
 
 	public int getWord(String word){
-		return wordCount.getCount(word);
+		return wordCount.get(word);
+	}
+
+	public int size() {
+		return text.size();
 	}
 
 	public double tf(String word, int textIndex){
 		Text temp = text.get(textIndex);
-		// System.out.println(temp.getWord(word));
-		// System.out.println(temp.getWordCount());
-		return (double)temp.getWord(word) / temp.getWordCount();
+		return (double)temp.getWord(word) / temp.getTotal();
 	}
 
 	public double idf(String word){
-		// System.out.println(text.size());
-		// System.out.println(getWord(word));
 		int count = getWord(word);
 		if (count == 0) {
 			return 0;
@@ -138,11 +132,6 @@ public class BuildIndex {
 			
 			while (match.find()) {
 				String word = match.group().toLowerCase();
-				// System.out.print(word + " ");
-				// first time insert
-				// if (word.equals("same")) {
-				// 	System.out.println(line);
-				// }
 				if (temp.getWord(word) == 0) {
 					docs.addWord(word);
 				}
@@ -161,15 +150,5 @@ public class BuildIndex {
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(docs);
 		oos.close();
-
-		// BufferedReader br = new BufferedReader(new FileReader(args[1]));
-		// String[] words = br.readLine().split(" ");
-		// String[] textIndex = br.readLine().split(" ");
-		// br.close();
-		// BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"));
-		// for (int i = 0;i < words.length;i++) {
-		// 	bw.write(String.format("%.5f ", docs.tfidf(words[i], Integer.parseInt(textIndex[i]))));
-		// }
-		// bw.close();
 	}
 }
