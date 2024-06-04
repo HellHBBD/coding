@@ -141,11 +141,11 @@ public class TFIDFSearch {
 		PriorityList pl = new PriorityList(n);
 		String line = null;
 		//trace
-		int lineNumber = 1;
+		// int lineNumber = 1;
 
 		while ((line = br.readLine()) != null) {
 			//trace
-			System.out.print("\rsearching line " + lineNumber++);
+			// System.out.print("\rsearching line " + lineNumber++);
 
 			Matcher match = Pattern.compile("OR").matcher(line);
 			String[] words = line.split("[ ANDOR]+");

@@ -1,4 +1,7 @@
-import java.io.Serializable;
+// import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,7 +17,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class Trie implements Serializable {
+class Trie implements Externalizable {
 	Trie[] children;
 	int count;
 
@@ -44,9 +47,22 @@ class Trie implements Serializable {
         }
         return node.count;
 	}
+
+	@Override
+	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+		children = (Trie[]) in.readObject();
+		count = in.readInt();
+	}
+
+	@Override
+	public void writeExternal(ObjectOutput out) throws IOException {
+		out.writeObject(children);
+		out.writeInt(count);
+		out.flush();
+	}
 }
 
-class Text implements Serializable {
+class Text implements Externalizable {
 	int wordCount;
 	Trie words;
 
@@ -67,9 +83,22 @@ class Text implements Serializable {
 	public int getWord(String word){
 		return words.get(word);
 	}
+
+	@Override
+	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+		wordCount = in.readInt();
+		words = (Trie) in.readObject();
+	}
+
+	@Override
+	public void writeExternal(ObjectOutput out) throws IOException {
+		out.writeInt(wordCount);
+		out.writeObject(words);
+		out.flush();
+	}
 }
 
-class TFIDF implements Serializable{
+class TFIDF implements Externalizable {
 	Trie wordCount;
 	ArrayList<Text> text;
 
@@ -109,6 +138,19 @@ class TFIDF implements Serializable{
 
 	public double tfidf(String word, int textIndex){
 		return tf(word, textIndex) * idf(word);
+	}
+
+	@Override
+	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+		wordCount = (Trie) in.readObject();
+		text = (ArrayList<Text>) in.readObject();
+	}
+
+	@Override
+	public void writeExternal(ObjectOutput out) throws IOException {
+		out.writeObject(wordCount);
+		out.writeObject(text);
+		out.flush();
 	}
 }
 
