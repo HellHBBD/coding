@@ -34,21 +34,29 @@ class Trie implements Externalizable {
 	}
 
 	public int get(String word) {
-		if (map.containsKey(word)) {
-			return map.get(word);
-		} else {
-			return 0;
-		}
+		return map.getOrDefault(word, 0);
 	}
 
 	@Override
 	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-		map = (HashMap<String, Integer>) in.readObject();
+		int n = in.readInt();
+		for (int i = 0;i < n;i++) {
+			String key = in.readUTF();
+			int value = in.readInt();
+			map.put(key, value);
+		}
 	}
 
 	@Override
 	public void writeExternal(ObjectOutput out) throws IOException {
-		out.writeObject(map);
+		int n = map.size();
+		out.writeInt(n);
+		for (HashMap.Entry<String, Integer> entry : map.entrySet()) {
+			String key = entry.getKey();
+			int value = entry.getValue();
+			out.writeUTF(key);
+			out.writeInt(value);
+		}
 		out.flush();
 	}
 }
