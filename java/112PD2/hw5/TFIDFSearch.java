@@ -60,53 +60,43 @@ class PriorityList {
 		bw.write("\n");
 	}
 
-	public void OR(TFIDF docs, String[] words) {
-		int docsSize = docs.size();
+	public void OR(Indexer indexer, String[] words) {
+		int indexerSize = indexer.size();
 		int wordCount = words.length;
-		double[] idf = new double[wordCount];
 
-		for (int j = 0;j < wordCount;j++) { // initialize idf table
-			idf[j] = docs.idf(words[j]);
-		}
-
-		for (int i = 0;i < docsSize;i++) { // for each text
-			double tf = 0, result = 0;
+		for (int i = 0;i < indexerSize;i++) { // for each text
+			double total = 0;
 			boolean notZero = false;
 			for (int j = 0;j < wordCount;j++) { // for each word
-				tf = docs.tf(words[j], i);
-				result += tf * idf[j];
-				if (tf != 0) { // record once not zero
+				double tfidf = indexer.tfidf(words[j], i);
+				total += tfidf;
+				if (tfidf != 0) { // record once not zero
 					notZero = true;
 				}
 			}
 			if (notZero) { // if OR condition true
-				push(result, i);
+				push(total, i);
 			}
 		}
 	}
 
-	public void AND(TFIDF docs, String[] words) {
-		int docsSize = docs.size();
+	public void AND(Indexer indexer, String[] words) {
+		int indexerSize = indexer.size();
 		int wordCount = words.length;
-		double[] idf = new double[wordCount];
 
-		for (int j = 0;j < wordCount;j++) { // initialize idf table
-			idf[j] = docs.idf(words[j]);
-		}
-
-		for (int i = 0;i < docsSize;i++) { // for each text
-			double tf = 0, result = 0;
+		for (int i = 0;i < indexerSize;i++) { // for each text
+			double total = 0;
 			boolean zero = false;
 			for (int j = 0;j < wordCount;j++) { // for each word
-				tf = docs.tf(words[j], i);
-				result += tf * idf[j];
-				if (tf == 0) { // record once zero
+				double tfidf = indexer.tfidf(words[j], i);
+				if (tfidf == 0) { // record once zero
 					zero = true;
 					break;
 				}
+				total += tfidf;
 			}
 			if (!zero) { // if AND condition true
-				push(result, i);
+				push(total, i);
 			}
 		}
 	}
@@ -121,17 +111,17 @@ class PriorityList {
 
 public class TFIDFSearch {
 	public static void main(String[] args) throws IOException, ClassNotFoundException  {
-		TFIDF docs = null;
+		Indexer indexer = null;
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(args[0] + ".ser"));
 		//trace
 		System.out.print("reading data ...");
 
-		docs = (TFIDF) ois.readObject();
+		indexer = (Indexer) ois.readObject();
 		//trace
-		if (docs != null) {
-			System.out.println("\rreading data ... success!!");
+		if (indexer != null) {
+			System.out.println(" success!!");
 		} else {
-			System.out.println("\rreading data ... fail!!");
+			System.out.println(" fail!!");
 		}
 
 		ois.close();
@@ -150,9 +140,9 @@ public class TFIDFSearch {
 			Matcher match = Pattern.compile("OR").matcher(line);
 			String[] words = line.split("[ ANDOR]+");
 			if (match.find()) {
-				pl.OR(docs, words);
+				pl.OR(indexer, words);
 			} else {
-				pl.AND(docs, words);
+				pl.AND(indexer, words);
 			}
 			pl.print(bw);
 			pl.clear();

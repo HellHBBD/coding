@@ -168,6 +168,9 @@ public class BuildIndex {
 		// temp to store each text
 		Text temp = new Text();
 		Pattern pattern = Pattern.compile("[a-zA-Z]+");
+		//trace
+		System.out.print("text -> data ...");
+
 		while ((line = br.readLine()) != null) {
 			Matcher match = pattern.matcher(line);
 			
@@ -186,10 +189,14 @@ public class BuildIndex {
 			}
 		}
 		br.close();
+		System.out.println(" success!!");
 		// Ser
+		System.out.print("data -> index ...");
+		Indexer indexer = new Indexer(docs);
 		FileOutputStream fos = new FileOutputStream(filename);
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(docs);
+		oos.writeObject(indexer);
 		oos.close();
+		System.out.println(" success");
 	}
 }
