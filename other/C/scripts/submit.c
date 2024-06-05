@@ -4,8 +4,8 @@
 
 char *getMsg(char *arg)
 {
-	const char *str1 = "scp -P 32024 -r hw";
-	const char *str2 = "/*.java H34111122@140.116.246.208:~/hw";
+	const char *str1 = "scp -r /home/hellhbbd/coding/java/112PD2/hw";
+	const char *str2 = "/*.java pd2:~/hw";
 	char *msg = malloc(sizeof(char) *
 			   (strlen(str1) + strlen(str2) + 2 * strlen(arg) + 1));
 	strcpy(msg, str1);
