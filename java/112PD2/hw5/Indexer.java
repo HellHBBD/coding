@@ -4,20 +4,62 @@ import java.io.ObjectOutput;
 
 import java.io.IOException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
+class Map implements Externalizable {
+	HashMap<String, Double> map;
+
+	public Map() {
+		map = new HashMap<String, Double>();
+	}
+
+	public void put(String key, double value) {
+		map.put(key, value);
+	}
+
+	public double getOrDefault(String key, double defaultValue) {
+		return map.getOrDefault(key, defaultValue);
+	}
+
+	public int size() {
+		return map.size();
+	}
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+		int n = in.readInt();
+		for (int j = 0; j < n; j++) {
+			String key = in.readUTF();
+			double value = in.readDouble();
+			put(key, value);
+		}
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+		int n = map.size();
+		out.writeInt(n);
+		for (HashMap.Entry<String, Double> entry : map.entrySet()) {
+			String key = entry.getKey();
+			double value = entry.getValue();
+			out.writeUTF(key);
+			out.writeDouble(value);
+		}
+        out.flush();
+    }
+}
+
 public class Indexer implements Externalizable {
-    ArrayList<HashMap<String, Double>> list;
+	Map[] list;
 
 	public Indexer() {
 	}
 
     public Indexer(TFIDF docs) {
         int n = docs.size();
-        list = new ArrayList<>(n);
+        list = new Map[n];
         for (int i = 0; i < n; i++) {
-            list.add(new HashMap<>());
+			list[i] = new Map();
         }
 
         for (String word : docs.wordCount.map.keySet()) {
@@ -25,44 +67,43 @@ public class Indexer implements Externalizable {
             for (int i = 0; i < n; i++) {
                 double tf = docs.tf(word, i);
                 if (tf != 0) {
-                    list.get(i).put(word, tf * idf);
+                    list[i].put(word, tf * idf);
                 }
             }
         }
     }
 
 	public double tfidf(String word, int index) {
-		return list.get(index).getOrDefault(word, 0.0);
+		return list[index].getOrDefault(word, 0.0);
 	}
 
 	public int size() {
-		return list.size();
+		return list.length;
 	}
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         int m = in.readInt();
-        list = new ArrayList<>(m);
+        list = new Map[m];
         for (int i = 0; i < m; i++) {
-            HashMap<String, Double> temp = new HashMap<>();
+			list[i] = new Map();
             int n = in.readInt();
             for (int j = 0; j < n; j++) {
                 String key = in.readUTF();
                 double value = in.readDouble();
-                temp.put(key, value);
+                list[i].put(key, value);
             }
-            list.add(temp);
         }
     }
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        int m = list.size();
+        int m = list.length;
         out.writeInt(m);
-        for (HashMap<String, Double> map : list) {
+        for (Map map : list) {
             int n = map.size();
             out.writeInt(n);
-            for (HashMap.Entry<String, Double> entry : map.entrySet()) {
+            for (HashMap.Entry<String, Double> entry : map.map.entrySet()) {
                 String key = entry.getKey();
                 double value = entry.getValue();
                 out.writeUTF(key);
