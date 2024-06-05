@@ -1,13 +1,16 @@
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 
 // Ser
+import java.io.FileInputStream;
+import java.io.BufferedInputStream;
 import java.io.ObjectInputStream;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -110,9 +113,9 @@ class PriorityList {
 }
 
 public class TFIDFSearch {
-	public static void main(String[] args) throws IOException, ClassNotFoundException  {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		Indexer indexer = null;
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(args[0] + ".ser"));
+		ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(args[0] + ".ser")));
 		//trace
 		System.out.print("reading data ...");
 
@@ -125,18 +128,12 @@ public class TFIDFSearch {
 		}
 
 		ois.close();
-		BufferedReader br = new BufferedReader(new FileReader(args[1]));
-		BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"));
+		BufferedReader br = new BufferedReader(new FileReader(args[1]), 16384);
+		BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"), 16384);
 		int n = Integer.parseInt(br.readLine());
 		PriorityList pl = new PriorityList(n);
 		String line = null;
-		//trace
-		// int lineNumber = 1;
-
 		while ((line = br.readLine()) != null) {
-			//trace
-			// System.out.print("\rsearching line " + lineNumber++);
-
 			Matcher match = Pattern.compile("OR").matcher(line);
 			String[] words = line.split("[ ANDOR]+");
 			if (match.find()) {
@@ -147,7 +144,7 @@ public class TFIDFSearch {
 			pl.print(bw);
 			pl.clear();
 		}
-		System.out.println("\ndone");
+		System.out.println("done");
 		bw.close();
 		br.close();
 	}

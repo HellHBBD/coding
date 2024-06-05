@@ -1,8 +1,9 @@
+SHELL := /bin/bash
 JAVAFILES=$(wildcard *.java)
 CLASSFILES=$(JAVAFILES:.java=.class)
 DOCS=assets/corpus0.txt
 DATA=corpus0
-TC=assets/tc0.txt
+TC=assets/tc4.txt
 
 all: $(CLASSFILES)
 
@@ -10,7 +11,7 @@ all: $(CLASSFILES)
 	javac $<
 
 clean:
-	rm -f $(CLASSFILES)
+	rm -f *.class
 
 build: all
 	java -Xmx2g BuildIndex $(DOCS)
@@ -18,4 +19,8 @@ build: all
 search: all
 	java -Xmx2g TFIDFSearch $(DATA) $(TC)
 
-.PHONY: all clean build search
+test: all
+	time make search
+	nvim -d output.txt assets/ans4.txt
+
+.PHONY: all clean build search test

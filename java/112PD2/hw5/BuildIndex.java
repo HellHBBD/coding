@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 
 // Ser
 import java.io.FileOutputStream;
+import java.io.BufferedOutputStream;
 import java.io.ObjectOutputStream;
 
 import java.util.ArrayList;
@@ -191,12 +192,11 @@ public class BuildIndex {
 		br.close();
 		System.out.println(" success!!");
 		// Ser
-		System.out.print("data -> index ...");
+		System.out.print("data -> index ..");
 		Indexer indexer = new Indexer(docs);
-		FileOutputStream fos = new FileOutputStream(filename);
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)));
 		oos.writeObject(indexer);
 		oos.close();
-		System.out.println(" success");
+		System.out.println(" success!!");
 	}
 }

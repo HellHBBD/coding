@@ -45,7 +45,7 @@ class Map implements Externalizable {
 			out.writeUTF(key);
 			out.writeDouble(value);
 		}
-        out.flush();
+        // out.flush();
     }
 }
 
@@ -110,6 +110,6 @@ public class Indexer implements Externalizable {
                 out.writeDouble(value);
             }
         }
-        out.flush();
+        // out.flush();
     }
 }
