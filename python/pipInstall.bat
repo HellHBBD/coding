@@ -1,10 +1,11 @@
 python -m pip install --upgrade pip
-pip install jupyter notebook
-pip install pandas 
-pip install pyinstaller
-pip install matplotlib
-pip install Pillow
-pip install image
-pip install pypl
-pip install tk
+uv pip install uv
+uv pip install jupyter notebook
+uv pip install pandas
+uv pip install pyinstaller
+uv pip install matplotlib
+uv pip install Pillow
+uv pip install image
+uv pip install pypl
+uv pip install tk
 pause
