@@ -21,3 +21,5 @@ test.hpp
 test.py
 test.java
 test.txt
+.vscode/
+*.ser
