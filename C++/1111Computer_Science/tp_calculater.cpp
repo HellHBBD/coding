@@ -1,10 +1,12 @@
 #include <iostream>
 using namespace std;
 
+#define abs(a, b) ((a) > (b) ? (a) - (b) : (b) - (a))
+
 int main()
 {
 	int perfect, good, bad, miss, maxCombo, bigP, blackP;
-	float tp, tpTest;
+	double tp, tpTest;
 	cout << "How many perfect?" << endl;
 	cin >> perfect;
 	cout << "How many good?" << endl;
@@ -20,9 +22,9 @@ int main()
 		bigP = i;
 		blackP = perfect - i;
 		tpTest = (bigP + blackP * 0.7 + good * 0.3) / maxCombo;
-		if (tp == tpTest)
+		if (abs(tp, tpTest * 100) <= 0.01)
 			break;
 	}
-	cout << "Your black perfect is " << blackP;
+	cout << "Your black perfect is " << blackP << endl;
 	return 0;
 }

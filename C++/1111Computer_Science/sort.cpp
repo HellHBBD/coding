@@ -7,7 +7,7 @@ using namespace std;
 void randomArray(int array[], int length)
 {
 	for (int i = 0; i < length; i++)
-		array[i] = (rand() % 100);
+		array[i] = rand() % 100;
 }
 
 void cinArray(int array[], int length)
@@ -23,6 +23,7 @@ void printArray(int array[], int length, int itemInRow)
 		if ((i + 1) % itemInRow == 0)
 			cout << endl;
 	}
+	cout << endl;
 }
 
 void insertionSort(int array[], int length)
@@ -97,7 +98,7 @@ int main()
 	int arraySize;
 	cout << "array size: ";
 	cin >> arraySize;
-	int array[arraySize];
+	int *array = new int[arraySize];
 
 	randomArray(array, arraySize);
 	cout << "before sort:" << endl;
@@ -105,11 +106,12 @@ int main()
 	cout << endl;
 
 	insertionSort(array, arraySize);
-	// bubbleSort(array,arraySize);
-	//mergeSort(array,0,arraySize);
+	// bubbleSort(array, arraySize);
+	// mergeSort(array, 0, arraySize);
 
 	// cout << "after sort:" << endl;
-	// printArray(array,arraySize,itemInRow);
+	// printArray(array, arraySize, itemInRow);
 
+	delete[] array;
 	return 0;
 }

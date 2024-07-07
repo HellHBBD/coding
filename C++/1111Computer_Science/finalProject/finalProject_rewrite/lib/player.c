@@ -9,7 +9,8 @@ void player_init(struct Player *player)
 	player->B = 0;
 }
 
-void player_delete(struct Player *player) {
+void player_delete(struct Player *player)
+{
 	free(player->string);
 	player->string = NULL;
 	player->A = 0;
