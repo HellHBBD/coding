@@ -6,11 +6,11 @@
 
 struct Edge {
 	int from, to, weight;
-	Edge(){};
+	Edge() {};
 	Edge(int u, int v, int w)
 		: from(u)
 		, to(v)
-		, weight(w){};
+		, weight(w) {};
 };
 
 class GraphMST {
@@ -20,7 +20,7 @@ class GraphMST {
 
     public:
 	GraphMST()
-		: numVertex(0){};
+		: numVertex(0) {};
 
 	GraphMST(int n)
 		: numVertex(n)

@@ -6,22 +6,14 @@
 #define getName(var) #var
 
 template <class T> void swap(T &, T &);
-
 void shuffle(std::string[][13]);
-
 void print(std::string[][13]);
-
 void print(std::string, std::string[]);
-
 void deal(std::string[][13], std::string[], std::string[], std::string[],
 	  std::string[]);
-
 int compare(const std::string &, const std::string &);
-
 int compare(const int &, const int &);
-
 template <class T> void InsertionSort(T[], int);
-
 int calculateValue(std::string[]);
 
 int main()
@@ -66,8 +58,8 @@ int main()
 	return 0;
 }
 
-template <class T> void swap(T &a, T &b)
-{ //swap using reference
+template <class T> void swap(T &a, T &b) //swap using reference
+{
 	T temp = a;
 	a = b;
 	b = temp;
@@ -212,8 +204,8 @@ int compare(const std::string &card1, const std::string &card2)
 	return n1 - n2; //return compare result
 }
 
-int compare(const int &a, const int &b)
-{ //this overloading function is for comparing int
+int compare(const int &a, const int &b) //this overloading function is for comparing int
+{
 	return a - b;
 }
 

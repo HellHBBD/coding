@@ -22,13 +22,13 @@ class TreeNode {
 		, rightchild(0)
 		, parent(0)
 		, key(0)
-		, element(""){};
+		, element("") {};
 	TreeNode(int a, string b)
 		: leftchild(0)
 		, rightchild(0)
 		, parent(0)
 		, key(a)
-		, element(b){};
+		, element(b) {};
 
 	int GetKey()
 	{
@@ -54,7 +54,7 @@ class BST {
 
     public:
 	BST()
-		: root(0){};
+		: root(0) {};
 	TreeNode *Search(int key);
 	void InsertBST(int key, string element);
 	void InorderPrint();

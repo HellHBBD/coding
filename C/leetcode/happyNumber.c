@@ -3,7 +3,7 @@
 
 bool isHappy(unsigned n)
 {
-	const int notHappyList[] = {37, 58, 89, 142, 42, 20, 4, 16};
+	const int notHappyList[] = { 37, 58, 89, 142, 42, 20, 4, 16 };
 	int total = 0;
 	while (n != 0) {
 		int digit = n % 10;
@@ -13,7 +13,7 @@ bool isHappy(unsigned n)
 	if (total == 1)
 		return true;
 
-	for (int i = 0;i < 8;i++) {
+	for (int i = 0; i < 8; i++) {
 		if (total == notHappyList[i]) {
 			return false;
 		}

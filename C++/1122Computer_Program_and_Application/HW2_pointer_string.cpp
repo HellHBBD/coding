@@ -51,7 +51,8 @@ void analyzeText(const char text[])
 
 int main()
 {
-	const char paragraph[] = "Hello, world! I am learning C++. Isn't it exciting?";
+	const char paragraph[] =
+		"Hello, world! I am learning C++. Isn't it exciting?";
 	analyzeText(paragraph);
 	return 0;
 }

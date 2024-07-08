@@ -10,7 +10,8 @@ const int DIRECTORY_SIZE = 3;
 const char *names[DIRECTORY_SIZE] = { "John", "May", "Paul" };
 
 // Array of pointers to phone numbers (C-style strings)
-const char *phoneNumbers[DIRECTORY_SIZE] = { "0987654321", "0912345678", "0931645227" };
+const char *phoneNumbers[DIRECTORY_SIZE] = { "0987654321", "0912345678",
+					     "0931645227" };
 
 // Function prototypes
 void printDirectory();
@@ -34,7 +35,8 @@ int main()
 void printDirectory()
 {
 	for (int i = 0; i < DIRECTORY_SIZE; i++) {
-		cout << names[i] << "'s phone number is " << phoneNumbers[i] << endl;
+		cout << names[i] << "'s phone number is " << phoneNumbers[i]
+		     << endl;
 	}
 }
 
@@ -42,7 +44,8 @@ void findPhoneNumber(const char *name)
 {
 	for (int i = 0; i < DIRECTORY_SIZE; i++) {
 		if (strcmp(name, names[i]) == 0) {
-			cout << "found " << name << " has phone number " << phoneNumbers[i] << endl;
+			cout << "found " << name << " has phone number "
+			     << phoneNumbers[i] << endl;
 			return;
 		}
 	}
@@ -53,7 +56,8 @@ void updatePhoneNumber(const char *name, const char *newNumber)
 	for (int i = 0; i < DIRECTORY_SIZE; i++) {
 		if (strcmp(name, names[i]) == 0) {
 			phoneNumbers[i] = newNumber;
-			cout << name << "'s phone number has changed to " << newNumber << endl;
+			cout << name << "'s phone number has changed to "
+			     << newNumber << endl;
 			return;
 		}
 	}

@@ -10,7 +10,7 @@ using namespace std;
 class Employee {
     public:
 	Employee(const string &, const string &, const string &, int, int, int);
-	virtual ~Employee(){};
+	virtual ~Employee() {};
 
 	void setFirstName(const string &); // set first name
 	string getFirstName() const; // return first name
