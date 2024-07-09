@@ -5,11 +5,10 @@ using namespace std;
 
 void mySwap(int s[], int i, int j)
 {
-	int iRecord = s[i];
-	int jRecord = s[j];
+	int temp = s[i];
 	if (s[i] > s[j]) {
-		s[i] = jRecord;
-		s[j] = iRecord;
+		s[i] = s[j];
+		s[j] = temp;
 	}
 }
 
@@ -34,7 +33,7 @@ int main()
 	printArray(num, 10);
 
 	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < (9 - i); j++) {
+		for (int j = 0; j < 9 - i; j++) {
 			mySwap(num, j, j + 1);
 		}
 	}

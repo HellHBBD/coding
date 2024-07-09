@@ -7,7 +7,7 @@ int main()
 {
 	srand(time(0));
 	int random, drawCount, count40, count30, count20, count11;
-	const int maxRound = 10000000;
+	const int maxRound = 1000000;
 	count11 = 0;
 	count20 = 0;
 	count30 = 0;
