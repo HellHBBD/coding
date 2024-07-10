@@ -1,5 +1,6 @@
 python -m pip install --upgrade pip
-uv pip install uv
+pip install uv
+uv venv
 uv pip install jupyter notebook
 uv pip install pandas
 uv pip install pyinstaller
