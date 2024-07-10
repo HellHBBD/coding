@@ -1,9 +1,10 @@
 // Fig. 13.14: Employee.cpp
 // Abstract-base-class Employee member-function definitions.
 // Note: No definitions are given for pure virtual functions.
-#include "Employee.hpp" // Employee class definition
 #include <iostream>
 using namespace std;
+
+#include "Employee.hpp" // Employee class definition
 
 // constructor
 Employee::Employee(const string &first, const string &last, const string &ssn,

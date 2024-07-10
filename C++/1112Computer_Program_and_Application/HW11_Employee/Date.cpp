@@ -1,9 +1,10 @@
 // Fig. 11.10: Date.cpp
 // Date class member- and friend-function definitions.
-#include "Date.hpp"
 #include <iostream>
 #include <string>
 using namespace std;
+
+#include "Date.hpp"
 
 // initialize static member; one classwide copy
 const int Date::days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };

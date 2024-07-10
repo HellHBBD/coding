@@ -1,15 +1,16 @@
 // Fig. 13.23: fig13_23.cpp
 // Processing Employee derived-class objects individually
 // and polymorphically using dynamic binding.
+#include <iomanip>
+#include <iostream>
+#include <vector>
+using namespace std;
+
 #include "BasePlusCommissionEmployee.hpp"
 #include "CommissionEmployee.hpp"
 #include "Employee.hpp"
 #include "HourlyEmployee.hpp"
 #include "SalariedEmployee.hpp"
-#include <iomanip>
-#include <iostream>
-#include <vector>
-using namespace std;
 
 void virtualViaPointer(const Employee *const); // prototype
 void virtualViaReference(const Employee &); // prototype

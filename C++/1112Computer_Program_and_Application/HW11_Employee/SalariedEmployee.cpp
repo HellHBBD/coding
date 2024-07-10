@@ -1,8 +1,9 @@
 // Fig. 13.16: SalariedEmployee.cpp
 // SalariedEmployee class member-function definitions.
-#include "SalariedEmployee.hpp" // SalariedEmployee class definition
 #include <iostream>
 using namespace std;
+
+#include "SalariedEmployee.hpp" // SalariedEmployee class definition
 
 // constructor
 SalariedEmployee::SalariedEmployee(const string &first, const string &last,

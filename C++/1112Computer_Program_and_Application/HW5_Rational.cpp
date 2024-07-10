@@ -9,8 +9,9 @@ class Rational {
 	void subtract(Rational, Rational);
 	void multiply(Rational, Rational);
 	void divide(Rational, Rational);
-	void printFraction(char = '\0');
-	void printFloat(char = '\0');
+	void printFraction();
+	void printFraction(char);
+	void printFloat(char);
 	int getNumerator();
 	int getDenominator();
 
@@ -104,6 +105,11 @@ void Rational::divide(Rational a, Rational b)
 	numerator = a.numerator * b.denominator;
 	denominator = a.denominator * b.numerator;
 	simplify();
+}
+
+void Rational::printFraction()
+{
+	cout << numerator << "/" << denominator;
 }
 
 void Rational::printFraction(char display)

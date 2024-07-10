@@ -6,4 +6,5 @@ int main()
 	Alex.hello();
 	Derive Paul;
 	Paul.hello();
+	return 0;
 }

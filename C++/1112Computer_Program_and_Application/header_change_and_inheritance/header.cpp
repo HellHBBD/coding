@@ -1,6 +1,7 @@
-#include "header.hpp"
 #include <iostream>
 using namespace std;
+
+#include "header.hpp"
 
 void say()
 {

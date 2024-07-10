@@ -1,8 +1,9 @@
 // Fig. 13.18: HourlyEmployee.cpp
 // HourlyEmployee class member-function definitions.
-#include "HourlyEmployee.hpp" // HourlyEmployee class definition
 #include <iostream>
 using namespace std;
+
+#include "HourlyEmployee.hpp" // HourlyEmployee class definition
 
 // constructor
 HourlyEmployee::HourlyEmployee(const string &first, const string &last,

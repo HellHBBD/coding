@@ -1,9 +1,9 @@
-#include "CheckingAccount.hpp"
-#include "SavingsAccount.hpp"
 #include <iomanip>
 #include <iostream>
-#include <vector>
 using namespace std;
+
+#include "CheckingAccount.hpp"
+#include "SavingsAccount.hpp"
 
 int main()
 {

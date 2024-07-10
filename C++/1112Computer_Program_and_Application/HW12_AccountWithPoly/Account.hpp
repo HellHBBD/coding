@@ -2,6 +2,7 @@
 #define ACCOUNT_HPP
 
 #include <iostream>
+using namespace std;
 
 class Account {
     public:
@@ -10,8 +11,7 @@ class Account {
 	double getBalance() const;
 	virtual bool credit(double);
 	virtual bool debit(double);
-	virtual double calculateInterest();
-	virtual std::string getType() const;
+	virtual string getType() const;
 	virtual void printOption() const = 0;
 	virtual bool choose(int) = 0;
 

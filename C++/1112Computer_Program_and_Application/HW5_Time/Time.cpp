@@ -1,11 +1,8 @@
-#include "Time.hpp"
-#include <iomanip>
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
-//int main(){
-//	return 0;
-//}
+#include "Time.hpp"
 
 Time::Time(int hour, int minute, int second)
 {

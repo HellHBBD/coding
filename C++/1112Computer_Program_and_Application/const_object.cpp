@@ -16,7 +16,7 @@ int main()
 	Number a;
 	const Number b;
 	a.print();
-	//b.print(); const object must use const function
+	// b.print(); const object must use const function
 	cout << endl;
 	b.printc();
 	return 0;

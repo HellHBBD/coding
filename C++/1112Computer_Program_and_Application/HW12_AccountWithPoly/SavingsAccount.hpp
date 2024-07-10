@@ -1,8 +1,10 @@
 #ifndef SAVINGSACCOUNT_HPP
 #define SAVINGSACCOUNT_HPP
 
-#include "Account.hpp"
 #include <iostream>
+using namespace std;
+
+#include "Account.hpp"
 
 class SavingsAccount : public Account {
     public:
@@ -10,7 +12,7 @@ class SavingsAccount : public Account {
 	bool setInterestRate(double);
 	double getInterestRate() const;
 	double calculateInterest();
-	std::string getType() const;
+	string getType() const override;
 	void printOption() const override;
 	bool choose(int) override;
 

@@ -14,8 +14,6 @@ char *strConcat(const char *str1, const char *str2)
 
 string strConcat(string str1, string str2)
 {
-	int len1 = str1.length();
-	int len2 = str2.length();
 	string result = str1.append(str2);
 	return result;
 }

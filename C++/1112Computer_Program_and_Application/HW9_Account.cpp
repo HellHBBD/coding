@@ -4,7 +4,7 @@ using namespace std;
 
 class Account {
     public:
-	virtual Account(double = 0);
+	Account(double = 0);
 	double getBalance() const;
 	virtual bool credit(double);
 	virtual bool debit(double);

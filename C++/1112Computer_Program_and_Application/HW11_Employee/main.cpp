@@ -1,10 +1,11 @@
-#include "BasePlusCommissionEmployee.hpp"
-#include "HourlyEmployee.hpp"
-#include "SalariedEmployee.hpp"
 #include <iomanip>
 #include <iostream>
 #include <vector>
 using namespace std;
+
+#include "BasePlusCommissionEmployee.hpp"
+#include "HourlyEmployee.hpp"
+#include "SalariedEmployee.hpp"
 
 int main()
 {

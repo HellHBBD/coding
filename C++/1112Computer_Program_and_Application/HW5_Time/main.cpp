@@ -1,6 +1,7 @@
-#include "Time.hpp"
 #include <iostream>
 using namespace std;
+
+#include "Time.hpp"
 
 int main()
 {

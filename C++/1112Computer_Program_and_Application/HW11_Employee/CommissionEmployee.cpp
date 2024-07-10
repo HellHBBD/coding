@@ -1,8 +1,9 @@
 // Fig. 13.20: CommissionEmployee.cpp
 // CommissionEmployee class member-function definitions.
-#include "CommissionEmployee.hpp" // CommissionEmployee class definition
 #include <iostream>
 using namespace std;
+
+#include "CommissionEmployee.hpp" // CommissionEmployee class definition
 
 // constructor
 CommissionEmployee::CommissionEmployee(const string &first, const string &last,

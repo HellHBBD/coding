@@ -1,8 +1,10 @@
 #ifndef CHECKINGACCOUNT_HPP
 #define CHECKINGACCOUNT_HPP
 
-#include "Account.hpp"
 #include <iostream>
+using namespace std;
+
+#include "Account.hpp"
 
 class CheckingAccount : public Account {
     public:
@@ -11,9 +13,9 @@ class CheckingAccount : public Account {
 	double getFee() const;
 	bool credit(double) override;
 	bool debit(double) override;
-	std::string getType() const;
-	void printOption() const;
-	bool choose(int);
+	string getType() const override;
+	void printOption() const override;
+	bool choose(int) override;
 
     private:
 	double fee;

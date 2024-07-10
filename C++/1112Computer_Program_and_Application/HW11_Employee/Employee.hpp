@@ -3,9 +3,10 @@
 #ifndef EMPLOYEE_H
 #define EMPLOYEE_H
 
-#include "Date.hpp"
 #include <string> // C++ standard string class
 using namespace std;
+
+#include "Date.hpp"
 
 class Employee {
     public:

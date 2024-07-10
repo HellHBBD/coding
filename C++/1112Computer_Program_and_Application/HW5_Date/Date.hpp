@@ -14,4 +14,5 @@ class Date {
 	void setDayMax();
 	int Year, Month, Day, DayMax;
 };
+
 #endif

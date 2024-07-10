@@ -1,8 +1,9 @@
 // Fig. 13.22: BasePlusCommissionEmployee.cpp
 // BasePlusCommissionEmployee member-function definitions.
-#include "BasePlusCommissionEmployee.hpp"
 #include <iostream>
 using namespace std;
+
+#include "BasePlusCommissionEmployee.hpp"
 
 // constructor
 BasePlusCommissionEmployee::BasePlusCommissionEmployee(

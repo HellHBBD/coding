@@ -9,6 +9,7 @@ Account::Account(double initBalance)
 
 Account::~Account()
 {
+	balance = 0;
 }
 
 double Account::getBalance() const
@@ -47,10 +48,6 @@ bool Account::setBalance(double balance)
 		this->balance = balance;
 		return true;
 	}
-}
-
-double Account::calculateInterest()
-{
 }
 
 string Account::getType() const

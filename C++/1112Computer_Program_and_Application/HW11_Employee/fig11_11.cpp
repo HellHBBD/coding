@@ -1,7 +1,6 @@
 // Fig. 11.11: fig11_11.cpp
 // Date class test program.
 #include "Date.hpp" // Date class definition
-#include <iostream>
 using namespace std;
 
 int main()

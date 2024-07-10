@@ -1,9 +1,10 @@
 #ifndef DERIVE_H
 #define DERIVE_H
-#include "Base.hpp"
+#include "base.hpp"
 
 class Derive : public Base {
     public:
 	void hello();
 };
+
 #endif

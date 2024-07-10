@@ -2,6 +2,9 @@
 // Date class definition with overloaded increment operators.
 #ifndef DATE_H
 #define DATE_H
+
+#include <iostream>
+
 using namespace std;
 
 class Date {

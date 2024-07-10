@@ -1,6 +1,7 @@
-#include "Date.hpp"
 #include <iostream>
 using namespace std;
+
+#include "Date.hpp"
 
 int main()
 {

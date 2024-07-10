@@ -1,10 +1,7 @@
-#include "Date.hpp"
 #include <iostream>
 using namespace std;
 
-//int main(){
-//	return 0;
-//}
+#include "Date.hpp"
 
 //public
 Date::Date(int month, int day, int year)

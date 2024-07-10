@@ -11,4 +11,5 @@ class Time {
     private:
 	int Hour, Minute, Second;
 };
+
 #endif
