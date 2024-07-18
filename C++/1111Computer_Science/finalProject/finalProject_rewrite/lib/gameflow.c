@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <gameflow.h>
-#include <player.h>
-#include <answer.h>
+#include "gameflow.h"
+#include "player.h"
+#include "answer.h"
 
 void game_init()
 {

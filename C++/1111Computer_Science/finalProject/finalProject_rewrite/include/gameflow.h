@@ -1,8 +1,8 @@
 #ifndef GAMEFLOW_H
 #define GAMEFLOW_H
 
-#include <answer.h>
-#include <player.h>
+#include "answer.h"
+#include "player.h"
 
 extern int length;
 extern char *answer;

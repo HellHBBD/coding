@@ -1,7 +1,7 @@
 #include <time.h>
 #include <stdio.h>
 
-#include <timer.h>
+#include "timer.h"
 
 void timer_start()
 {

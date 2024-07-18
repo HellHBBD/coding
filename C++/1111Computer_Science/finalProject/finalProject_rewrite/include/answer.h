@@ -1,7 +1,7 @@
 #ifndef ANSWER_H
 #define ANSWER_H
 
-#include <player.h>
+#include "player.h"
 
 extern int length;
 extern char *answer;
